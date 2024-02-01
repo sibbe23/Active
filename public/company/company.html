@@ -1,22 +1,253 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Company - Nsnemo</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<style>
+    body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        #sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: -250px; /* Initially hide the sidebar by moving it off-screen */
+            background-color: #f6f6f6;
+            padding-top: 45px;
+            transition: left 0.2s ease; /* Add smooth transition effect */
+            border-right: 1px solid lightgray;
+        }
+
+        #sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 15px;
+            color: rgb(0, 0, 0);
+            display: block;
+        }
+        #sidebar button{
+            padding: 15px 20px;
+            font-size: 15px;
+
+            background-color: #f6f6f6;
+            border:none;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            text-align: left;
+        }
+
+        #sidebar a:hover {
+            border-left: 7px solid green;
+            background-color: #ffffff;
+        }
+        #sidebar button:hover {
+            background-color: #ffffff;
+
+            border-left: 10px solid red;
+
+        }
+         #sidebar #company{
+            border-left: 7px solid green;
+            background-color: #ffffff;
+        }
+      
+        #pushtobottomcenter {
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+    width: 100%;
+    background-color: #f6f6f6;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+    margin-left: 0%;
+    border-top: 1px solid lightgray;
+}
+        
+        #content {
+            margin-left: 0; /* Adjust margin to 0 when the sidebar is hidden */
+            transition: margin-left 0.2s ease; /* Add smooth transition effect */
+        }
+        #content2 {
+            margin-left: 0; /* Adjust margin to 0 when the sidebar is hidden */
+            transition: margin-left 0.2s ease; /* Add smooth transition effect */
+            border-radius: 100%;
+        }
+        /* Add these styles to your existing CSS or create a new CSS file */
+
+        .container {
+            margin-top: 50px;
+        }
+
+        #company-table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+
+        #company-table th, #company-table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        #company-table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #f8f9fa;
+        }
+
+        #company-table tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        #company-table .table {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+        #company-list tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #company-table th, #company-table td {
+            border: 1px solid #dee2e6;
+        }
+
+        #company-table .btn {
+            padding: 0.2rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        #vessel-list {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #212529;
+        }
+
+        #vessel-list th, #vessel-list td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        #vessel-list thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #f8f9fa;
+        }
+
+        #vessel-list tbody + tbody {
+            border-top: 2px solid #dee2e6;
+        }
+
+        #vessel-list .table {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+        }
+
+        #vessel-table tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        #vessel-list th, #vessel-list td {
+            border: 1px solid #dee2e6;
+        }
+
+        #vessel-list .btn {
+            padding: 0.2rem 0.5rem;
+            font-size: 0.875rem;
+        }
+        #company-table th,
+#vessel-list th {
+    height: 20px;
+}
+
+#company-table th,
+#company-table td,
+#vessel-list th,
+#vessel-list td {
+    padding: 0.5rem; /* Adjust padding as needed */
+}
+
+
+
+</style>
 </head>
-<body>
-    <h1 class="text-center"> Add new Company</h1> 
-    <form id="view-company">
-        <div id="company-list"></div>
-        <button type="submit" class="btn btn-primary" >View Company</button>
+<body >
+    <div id="sidebar">
+        <div class="text-center ">
+            <img src="./nemo.png" style="width: 50px;" alt="Nemo Logo">
+        </div>
+        <div class="text-center fs-2 " style="margin: 30px;" id="user_name">Hi, </div>
+        <a href="../search/search.html" id="search"> <i class="fas fa-search"></i> &nbsp; Search</a>
+        <div id="adminSection" style="display: none;">
+            <a href="../user/user.html"><i class="fas fa-user-plus"></i> &nbsp; Create User</a>
+            <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+            <a href="../company/company.html"><i class="fas fa-building"></i> &nbsp; Add Details</a>
+            <a href="../report/report.html"><i class="fas fa-file-alt"></i> &nbsp; Generate Report</a>
+        </div>
+    
+        <!-- Vendor Section -->
+        <div id="vendorSection" style="display: none;">
+            <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+        </div>
+        <button type="submit" id="logout"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout from Nemo</button>
+    </div>
+    
+    <div id="content2">
+    <button id="toggleSidebar" class="btn btn-warning rounded-0  "> Toggle Menu</button>
+    </div>
+
+    <div id="content" class="text-center ">
+    
+    <div class="container">
+        <h1 class="text-center">Company Table</h1>
+        <div class="table-responsive">
+            <table id="company-table" class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr style="font-size: 12px;">
+                        <th scope="col">Serial No</th>
+                        <th scope="col">Company ID</th>
+                        <th scope="col">Company Name</th>
+                        <th scope="col">Business Type</th>
+                        <th scope="col">Contact Person</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Management</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Last Update</th>
+                        <th scope="col">Actions</th>
+                 
+                    </tr>
+                </thead>
+                <tbody id="company-list"></tbody>
+            </table>
+        </div>
+    </div>
     </form>
-    <form id="company-form">
+    
+    <div style="display:flex;" class="justify-content-center ">
+    <form id="company-form" class="card">
         <input type="text" placeholder="Enter company name" id="company_name" required>
-        <input type="text" placeholder="Enter b_type" id="company_b_type" required>
+            <div>
+                <label for="fms">FMS</label>
+                <input type="radio" id="fms" name="business_type" value="FMS" required>
+        
+                <label for="fpp">FPP</label>
+                <input type="radio" id="fpp" name="business_type" value="FPP" required>
+            </div>
         <input type="text" placeholder="Enter contact person" id="company_contact" required>
         <input type="email" placeholder="Enter email" id="company_email" required>
         <input type="text" placeholder="Enter address" id="company_address" required>
@@ -26,25 +257,137 @@
         <button class="btn btn-success" type="submit">Add Company</button>
     </form>
 <hr>
-    <form id="vessel-form">
-        <input type="text" placeholder="Enter vessel name" id="vessel_name" required>
-        <button class="btn btn-success" type="submit">Add Vessel</button>
-    </form>
+<form id="update-company-form" class="card">
+    <input type="hidden" placeholder="Enter company Id" id="u_company_id">
+    <input type="text" placeholder="Enter company name" id="u_company_name">
+    <div>
+    <label for="u_fms">FMS</label>
+    <input type="radio" id="u_fms" name="u_business_type" value="FMS" required>
+
+    <label for="u_fpp">FPP</label>
+    <input type="radio" id="u_fpp" name="u_business_type" value="FPP" required>
+        </div>
+    <input type="text" placeholder="Enter contact person" id="u_company_contact">
+    <input type="email" placeholder="Enter email" id="u_company_email">
+    <input type="text" placeholder="Enter address" id="u_company_address">
+    <input type="text" placeholder="Enter management" id="u_company_management">
+    <input type="tel" placeholder="Enter phone" id="u_company_phone">
+    <input type="text" placeholder="Enter last update" id="u_company_last_update">
+    <button class="btn btn-primary" type="submit">Update Company</button>
+</form>
+
+    </div>
+    
 <hr>
-    <form id="vsl-form">
-        <input type="text" placeholder="Enter vessel name" id="vessel_name_vsl" required>
-        <input type="text" placeholder="Enter vessel type" id="vessel_type" required>
-        <input type="text" placeholder="Enter Company" id="company" required>
-        <input type="text" placeholder="Enter IMO number" id="imo_number" required>
-        <input type="text" placeholder="Enter Vessel flag" id="vessel_flag" required>
-        <button class="btn btn-success" type="submit">Add VSL name</button>
+
+<div class="container">
+    <h1 class="text-center">Vessel Table</h1>
+    <div class="table-responsive">
+        <table id="vessel-list" class="table table-sm table-striped table-bordered">
+            <thead>
+                <tr style="font-size: 12px;">
+                    <th scope="col">Sno</th>
+                    <th scope="col">Vessel Name</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="vessel-table"></tbody>
+        </table>
+    </div>
+</div>
+<div style="display: flex;" class="justify-content-center ">
+<form id="vessel-form" class="card ">
+    <input type="text" placeholder="Enter vessel name" id="vessel_name" required>
+    <button class="btn btn-success" type="submit">Add Vessel</button>
+</form>
+<form id="update-vessel-form" class="card">
+    <input type="hidden" placeholder="Enter Vessel ID" id="u_vessel_id">
+    <input type="text" placeholder="Enter Vessel Name" id="u_vessel_name">
+    <button class="btn btn-primary" type="submit">Update Vessel</button>
+</form>
+</div>
+
+
+<div class="container">
+    <h1>Vessel type</h1>
+    <div class="table-responsive">
+    <table  id="vsl-list" class="table table-sm table-striped table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">Vessel Name</th>
+                <th scope="col">Vessel Type</th>
+                <th scope="col">Company</th>
+                <th scope="col">IMO Number</th>
+                <th scope="col">Vessel Flag</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="vsl-table"></tbody>
+    </table>
+    </div>
+</div>
+<div style="display: flex;" class="justify-content-center ">
+<form id="vsl-form" class="card">
+    <input type="text" placeholder="Enter vessel name" id="vessel_name_vsl" required>
+    <input type="text" placeholder="Enter vessel type" id="vessel_type" required>
+    <input type="text" placeholder="Enter Company" id="vsl_company" required>
+    <input type="text" placeholder="Enter IMO number" id="imo_number" required>
+    <input type="text" placeholder="Enter Vessel flag" id="vessel_flag" required>
+    <button class="btn btn-success" type="submit">Add VSL</button>
+</form>
+
+
+    <form id="update-vsl-form" class="card">
+        <input type="hidden" placeholder="Enter Vessel Type ID" id="u_vessel_type_id">
+        <input type="text" placeholder="Enter vessel name" id="u_vessel_name_vsl" required>
+        <input type="text" placeholder="Enter vessel type" id="u_vessel_type" required>
+        <input type="text" placeholder="Enter Company" id="u_company" required>
+        <input type="text" placeholder="Enter IMO number" id="u_imo_number" required>
+        <input type="text" placeholder="Enter Vessel flag" id="u_vessel_flag" required>
+        <button class="btn btn-primary" type="submit">Update VSL</button>
     </form>
-    <hr>
+</div>
+
+<div class="container">
+    <h1>Experience</h1>
+    <div class="table-responsive">
+        <table class="table table-sm table-striped table-bordered"  id="exp-list">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Experience</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="exp-table"></tbody>
+        </table>
+    </div>
     <form id="exp-form">
         <input type="text" placeholder="Enter Experience" id="exp" required>
         <button class="btn btn-success" type="submit">Add Experience</button>
     </form>
 <hr>
+<form id="update-experience-form">
+    <input type="hidden" placeholder="Enter Experience ID" id="u_experience_id">
+    <input type="text" placeholder="Enter Experience" id="u_experience_name">
+    <button class="btn btn-success" type="submit">Update Experience</button>
+</form>
+<hr>
+<div id="rank-list">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">Rank</th>
+                <th scope="col">Rank Order</th>
+                <th scope="col">Category</th>
+
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="rank-table"></tbody>
+    </table>
     <form id="rank-form">
         <input type="text" placeholder="Enter Rank" id="rank" required>
         <input type="text" placeholder="Enter Rank Order" id="rank_order" required>
@@ -52,53 +395,239 @@
         <button class="btn btn-success" type="submit">Add Rank</button>
     </form>
     <hr>
+    <form id="update-rank-form">
+        <input type="hidden" placeholder="Enter Rank ID" id="u_rank_id">
+        <input type="text" placeholder="Enter Rank" id="u_rank_name">
+        <input type="text" placeholder="Enter Rank Order" id="u_rank_order">
+        <input type="text" placeholder="Enter Category" id="u_rank_category">
+
+        <!-- Add other fields specific to the Rank entity -->
+
+        <button class="btn btn-success" type="submit">Update Rank</button>
+    </form>
+    <hr>
+    <div id="grade-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Grade</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="grade-table"></tbody>
+        </table>
+    </div>
     <form id="grade-form">
-        <input type="text" placeholder="Enter Experience" id="grade_exp" required>
+        <input type="text" placeholder="Enter Grade" id="grade_exp" required>
         <button class="btn btn-success" type="submit">Add Grade</button>
     </form>
-    <hr>
-    <form id="port-form">
-        <input type="text" placeholder="Enter Port name" id="port_name" required>
-        <button class="btn btn-success" type="submit">Add Port</button>
-    </form>
-    <hr>
-    <form id="port-agent-form">
-        <input type="text" placeholder="Enter Port agent" id="port-agent-name" required>
-        <input type="text" placeholder="Enter Contact Person" id="port-agent-contact" required>
-        <input type="text" placeholder="Enter Address" id="port-agent-address" required>
-        <input type="text" placeholder="Enter Phone" id="port-agent-phone" required>
-        <input type="text" placeholder="Enter Email" id="port-agent-email" required>
-        <input type="text" placeholder="Enter City" id="port-agent-city" required>
-        <input type="text" placeholder="Enter State" id="port-agent-state" required>
-        <input type="text" placeholder="Enter Country" id="port-agent-country" required>
-        <button class="btn btn-success" type="submit">Add Port Agent</button>
-    </form>
-    <hr>
-    <form id="hospital-form">
-        <input type="text" placeholder="Enter Hospital" id="hospital-name" required>
-        <input type="text" placeholder="Enter Doctor name" id="doctor-name" required>
-        <input type="text" placeholder="Enter Address" id="doctor-address" required>
-        <input type="text" placeholder="Enter City" id="doctor-city" required>
-        <input type="text" placeholder="Enter State" id="doctor-state" required>
-        <input type="text" placeholder="Enter Phone" id="doctor-phone" required>
-        <input type="text" placeholder="Enter Email" id="doctor-email" required>
-        <input type="file" placeholder="Upload" id="doctor-upload" required>
-        <button class="btn btn-success" type="submit">Add Doctor</button>
-    </form>
-    <hr>
-    <form id="document-form">
-        <input type="text" placeholder="Enter Document Type" id="document-type" required>
-        <input type="checkbox" placeholder="Hide Expiry Date" id="hide-expiry-date" required>Hide Expiry Date
-        <button class="btn btn-success" type="submit">Add Document Type</button>
-    </form>
-    <hr>
-    <form id="vendor-form">
-        <input type="text" placeholder="Enter Vendor Name" id="vendor-name" required>
-        <input type="text" placeholder="Hide Vendor Address" id="vendor-address" required>
-        <button class="btn btn-success" type="submit">Add Vendor</button>
-    </form>
-    <hr>
     
+    <hr>
+    <form id="update-grade-form">
+        <input type="hidden" placeholder="Enter Grade ID" id="u_grade_id">
+        <input type="text" placeholder="Enter Grade" id="u_grade_name">
+
+        <!-- Add other fields specific to the Grade entity -->
+
+        <button class="btn btn-success" type="submit">Update Grade</button>
+    </form>
+<hr>
+    <div id="port-list">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Sno</th>
+                <th scope="col">Port Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody id="port-table"></tbody>
+    </table>
+</div>
+    <form id="port-form">
+    <input type="text" placeholder="Enter Port Name" id="port_name" required>
+    <button class="btn btn-success" type="submit">Add Port</button>
+    </form>
+
+    <hr>
+    <form id="update-port-form">
+        <input type="hidden" placeholder="Enter Port ID" id="u_port_id">
+        <input type="text" placeholder="Enter Port Name" id="u_port_name">
+
+        <!-- Add other fields specific to the Port entity -->
+
+        <button class="btn btn-success" type="submit">Update Port</button>
+    </form>
+    <hr>
+    <div id="port-agent-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Port Agent</th>
+                    <th scope="col">Contact Person</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="port-agent-table"></tbody>
+        </table>
+        <form id="port-agent-form">
+            <input type="text" placeholder="Enter Port agent" id="port-agent-name" required>
+            <input type="text" placeholder="Enter Contact Person" id="port-agent-contact" required>
+            <input type="text" placeholder="Enter Address" id="port-agent-address" required>
+            <input type="text" placeholder="Enter Phone" id="port-agent-phone" required>
+            <input type="text" placeholder="Enter Email" id="port-agent-email" required>
+            <input type="text" placeholder="Enter City" id="port-agent-city" required>
+            <input type="text" placeholder="Enter State" id="port-agent-state" required>
+            <input type="text" placeholder="Enter Country" id="port-agent-country" required>
+            <button class="btn btn-success" type="submit">Add Port Agent</button>
+        </form>
+    </div>
+    
+    <hr>
+    <form id="update-port-agent-form">
+        <input type="hidden" placeholder="Enter Port Agent ID" id="u_port_agent_id">
+        <input type="text" placeholder="Enter Port Agent Name" id="u_port_agent_name">
+        <input type="text" placeholder="Enter Contact Person" id="u_port_agent_contact">
+        <input type="text" placeholder="Enter Address" id="u_port_agent_address">
+        <input type="text" placeholder="Enter Phone" id="u_port_agent_phone">
+        <input type="text" placeholder="Enter Email" id="u_port_agent_email">
+        <input type="text" placeholder="Enter City" id="u_port_agent_city">
+        <input type="text" placeholder="Enter State" id="u_port_agent_state">
+        <input type="text" placeholder="Enter Country" id="u_port_agent_country">
+
+        <!-- Add other fields specific to the Port Agent entity -->
+
+        <button class="btn btn-success" type="submit">Update Port Agent</button>
+    </form>
+    <hr>
+    <div id="hospital-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Hospital</th>
+                    <th scope="col">Doctor Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">City</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Upload</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="hospital-table"></tbody>
+        </table>
+        <form id="hospital-form">
+            <input type="text" placeholder="Enter Hospital" id="hospital-name" required>
+            <input type="text" placeholder="Enter Doctor name" id="doctor-name" required>
+            <input type="text" placeholder="Enter Address" id="doctor-address" required>
+            <input type="text" placeholder="Enter City" id="doctor-city" required>
+            <input type="text" placeholder="Enter State" id="doctor-state" required>
+            <input type="text" placeholder="Enter Phone" id="doctor-phone" required>
+            <input type="text" placeholder="Enter Email" id="doctor-email" required>
+            <input type="file" placeholder="Upload" id="doctor-upload" required>
+            <button class="btn btn-success" type="submit">Add Hospital</button>
+        </form>
+    </div>
+    
+    <hr>
+    <form id="update-hospital-form">
+        <input type="hidden" placeholder="Enter Hospital ID" id="u_hospital_id">
+        <input type="text" placeholder="Enter Hospital Name" id="u_hospital_name">
+        <input type="text" placeholder="Enter Doctor Name" id="u_doctor_name">
+        <input type="text" placeholder="Enter Address" id="u_doctor_address">
+        <input type="text" placeholder="Enter City" id="u_doctor_city">
+        <input type="text" placeholder="Enter State" id="u_doctor_state">
+        <input type="text" placeholder="Enter Phone" id="u_doctor_phone">
+        <input type="text" placeholder="Enter Email" id="u_doctor_email">
+        <input type="file" placeholder="Upload" id="u_doctor_upload">
+
+        <!-- Add other fields specific to the Hospital entity -->
+
+        <button class="btn btn-success" type="submit">Update Hospital</button>
+    </form>
+    <hr>
+    <div id="document-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Document Type</th>
+                    <th scope="col">Hide Expiry Date</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="document-table"></tbody>
+        </table>
+        <form id="document-form">
+            <input type="text" placeholder="Enter Document Type" id="document-type" required>
+            <input type="checkbox" id="hide-expiry-date">Hide Expiry Date
+            <button class="btn btn-success" type="submit">Add Document Type</button>
+        </form>
+    </div>
+    
+    <hr>
+    <form id="update-document-type-form">
+        <input type="hidden" placeholder="Enter Document Type ID" id="u_document_type_id">
+        <input type="text" placeholder="Enter Document Type" id="u_document_type_name">
+        <input type="checkbox" id="u_hide_expiry_date">Hide Expiry Date
+
+        <!-- Add other fields specific to the Document Type entity -->
+
+        <button class="btn btn-success" type="submit">Update Document Type</button>
+    </form>
+    <hr>
+    <div id="vendor-list">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Sno</th>
+                    <th scope="col">Vendor Name</th>
+                    <th scope="col">Vendor Address</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody id="vendor-table"></tbody>
+        </table>
+        <form id="vendor-form">
+            <input type="text" placeholder="Enter Vendor Name" id="vendor-name" required>
+            <input type="text" placeholder="Enter Vendor Address" id="vendor-address" required>
+            <button class="btn btn-success" type="submit">Add Vendor</button>
+        </form>
+    </div>
+    
+    <hr>
+    <form id="update-vendor-form">
+        <input type="hidden" placeholder="Enter Vendor ID" id="u_vendor_id">
+        <input type="text" placeholder="Enter Vendor Name" id="u_vendor_name">
+        <input type="text" placeholder="Enter Vendor Address" id="u_vendor_address">
+
+        <!-- Add other fields specific to the Vendor entity -->
+
+        <button class="btn btn-success" type="submit">Update Vendor</button>
+    </form>
+<hr>
+ 
+
+
+
+</div>
+    </div>
+<div id="pushtobottomcenter" >
+    Nautilus Shipping India Pvt Ltd
+    <div id="datetime"></div>
+          
+    </div>
+
     <button id="back" class="btn btn-dark">  Go Back </button> 
     <script src="company.js"></script>
 </body>

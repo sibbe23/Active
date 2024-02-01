@@ -1,6 +1,6 @@
 // File: Vsl.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Vsl = sequelize.define('Vsl', {
     id: {
@@ -16,7 +16,7 @@ const Vsl = sequelize.define('Vsl', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    company: {
+    vsl_company: {
         type: DataTypes.STRING,
         allowNull: false,
     },

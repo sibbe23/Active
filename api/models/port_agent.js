@@ -1,6 +1,6 @@
 // File: PortAgent.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const PortAgent = sequelize.define('PortAgent', {
     id: {

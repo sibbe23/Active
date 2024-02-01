@@ -14,6 +14,10 @@ const Users = sequelize.define('Users', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  lastName:{
+    type:DataTypes.STRING,
+    allowNull:true
+  },
   userEmail: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -22,15 +26,28 @@ const Users = sequelize.define('Users', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  userPhone:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
+  disableUser:DataTypes.BOOLEAN,
   userGroup: DataTypes.STRING,
   userVendor: DataTypes.STRING,
   userClient: DataTypes.STRING,
-  disableUser: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  }
+  createdDate:{
+    type: DataTypes.STRING
+  },
+  readOnly:DataTypes.BOOLEAN,
+    Write:DataTypes.BOOLEAN,
+  
+    imports :DataTypes.BOOLEAN,
+    exports:DataTypes.BOOLEAN,
+    userManagement :DataTypes.BOOLEAN,
+    reports:DataTypes.BOOLEAN,
+  
 },{
-    tableName: 'Nemo_Users', // Specify your desired table name here
+    tableName: 'Users',
+    timestamps:false // Specify your desired table name here
   });
 
 module.exports = Users;

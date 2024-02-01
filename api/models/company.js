@@ -13,9 +13,9 @@ const Company = sequelize.define("company", {
         type:Sequelize.STRING,
         allowNull:false
     },
-    b_type:{
-        type:Sequelize.INTEGER,
-        allowNull:false
+    b_type: {
+        type: Sequelize.STRING,
+        allowNull: false,
     },
     company_name:{
         type:Sequelize.STRING,
@@ -44,6 +44,6 @@ const Company = sequelize.define("company", {
     }
 
     
-});
+},{timestamps:false});
 
 module.exports = Company

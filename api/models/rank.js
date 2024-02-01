@@ -1,14 +1,13 @@
-// File: Rank.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Rank = sequelize.define('Rank', {
-    
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
-    },rank: {
+    },
+    rank: {
         type: DataTypes.STRING,
         allowNull: false,
     },
@@ -21,7 +20,7 @@ const Rank = sequelize.define('Rank', {
         allowNull: false,
     },
 }, {
-    tableName: 'ranks',
+    tableName: 'Rank',
     timestamps: false,
 });
 

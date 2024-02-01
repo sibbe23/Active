@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <meta charset="UTF-8">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Add Candidate - Nsnemo</title>
+        <style>
+             body {
+                font-family: 'Arial', sans-serif;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+                background-color: #ffffff;
+            }
+    
+            #sidebar {
+                height: 100vh;
+                width: 250px;
+                position: fixed;
+                z-index: 1;
+                top: 0;
+                left: -250px; /* Initially hide the sidebar by moving it off-screen */
+                background-color: #f6f6f6;
+                padding-top: 45px;
+                transition: left 0.2s ease; /* Add smooth transition effect */
+                border-right: 1px solid lightgray;
+            }
+    
+            #sidebar a {
+                padding: 15px 20px;
+                text-decoration: none;
+                font-size: 15px;
+                color: rgb(0, 0, 0);
+                display: block;
+            }
+            #sidebar button{
+                padding: 15px 20px;
+                font-size: 15px;
+    
+                background-color: #f6f6f6;
+                border:none;
+                color: rgb(0, 0, 0);
+                width: 100%;
+                text-align: left;
+            }
+    
+            #sidebar a:hover {
+                border-left: 7px solid green;
+                background-color: #ffffff;
+            }
+            #sidebar button:hover {
+                background-color: #ffffff;
+    
+                border-left: 10px solid red;
+    
+            }
+             #sidebar #candidate{
+                border-left: 7px solid green;
+                background-color: #ffffff;
+            }
+          
+            #pushtobottomcenter {
+        position: fixed;
+        bottom: 0;
+        text-align: right;
+        width: 100%;
+        background-color: #f6f6f6;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        padding-right: 20px;
+        margin-left: 0%;
+        border-top: 1px solid lightgray;
+    }
+            
+            #content {
+                margin-left: 0; /* Adjust margin to 0 when the sidebar is hidden */
+                transition: margin-left 0.2s ease; /* Add smooth transition effect */
+            }
+            #content2 {
+                margin-left: 0; /* Adjust margin to 0 when the sidebar is hidden */
+                transition: margin-left 0.2s ease; /* Add smooth transition effect */
+                border-radius: 100%;
+            }
+            .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown.active .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: #333;
+        }
+
+        .dropdown-item:hover {
+            background-color: #f1f1f1;
+        }
+        </style>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    </head>
+<body style="margin-bottom: 25%;">
+    <div id="sidebar">
+        <div class="text-center ">
+            <img src="./nemo.png" style="width: 50px;" alt="Nemo Logo">
+        </div>
+        <div class="text-center fs-2 " style="margin: 30px;" id="user_name">Hi, </div>
+        <a href="../search/search.html" id="search"> <i class="fas fa-search"></i> &nbsp; Search</a>
+        <div id="adminSection" style="display: none;">
+            <a href="../user/user.html"><i class="fas fa-user-plus"></i> &nbsp; Create User</a>
+            <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+            <a href="../company/company.html"><i class="fas fa-building"></i> &nbsp; Add Details</a>
+            <a href="../report/report.html"><i class="fas fa-file-alt"></i> &nbsp; Generate Report</a>
+        </div>
+    
+        <!-- Vendor Section -->
+        <div id="vendorSection" style="display: none;">
+            <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+        </div>
+        <button type="submit" id="logout"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout from Nemo</button>
+    </div>
+    
+    <div id="content2">
+    <button id="toggleSidebar" class="btn btn-warning rounded-0  "> Toggle Menu</button>
+    </div>
+    
+    <div id="content" class="text-center mb-5" >
+    
+    
+    
+    <div id="form1" class="form-container" >
+                        <h1>Personal Details</h1>
+        <form id="candidate-form">
+            <input type="text" placeholder="Enter candidate fname" id="edit_candidate_fname" required>
+            <input type="text" placeholder="Enter candidate Iname" id="edit_candidate_Iname" required>
+            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_c_rank" class="form-label">Rank</label>
+                <select id="edit_candidate_c_rank" class="form-select" required>
+                    <option value="" disabled selected>-- Select Rank --</option>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>            <input type="date" placeholder="Enter available date" id="edit_candidate_avb_date" required>
+            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_nationality" class="form-label">Nationality</label>
+                <select id="edit_candidate_nationality" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>            <div class="mb-3 col-md-4">
+                <select id="edit_company_status" class="form-select" required>
+                    <option value="" disabled selected>-- Select Marital Status --</option>
+                    <option value="Married">Married</option>
+                    <option value="Single">Single</option>
+                    <option value="Widowed">Widowed</option>
+                    <option value="Divorced">Divorced</option>
+                </select>
+            </div>
+            <input type="date" placeholder="Enter candidate dob" id="edit_candidate_dob" required>
+            <input type="text" placeholder="Enter birth place" id="edit_candidate_birth_place" required>
+            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_work_nautilus" class="form-label">Worked with us?</label>
+                <select id="edit_candidate_work_nautilus" class="form-select" required>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_c_vessel" class="form-label">Select Vessel</label>
+                <select id="edit_candidate_c_vessel" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_experience" class="form-label">Experience</label>
+                <select id="edit_candidate_experience" class="form-select" required>
+                    <option value="" disabled selected>-- Select Experience --</option>
+                    <option value="<6 months"><6 months</option>
+                    <option value="6-12 months">6-12 months</option>
+                    <option value="12-24 months">12-24 months</option>
+                    <option value=">24 months">>24 months</option>
+                </select>
+            </div>           <div class="mb-3 col-md-4">
+                <label for="edit_candidate_zone" class="form-label">Zone</label>
+                <select id="edit_candidate_zone" class="form-select" required>
+                    <option value="" disabled selected>-- Select Zone --</option>
+                    <option value="East">East</option>
+                    <option value="West">West</option>
+                    <option value="North">North</option>
+                    <option value="South">South</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_grade" class="form-label"> Grade</label>
+                <select id="edit_candidate_grade" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+                        <input type="text" placeholder="Enter boiler suit size" id="edit_candidate_boiler_suit_size" required>
+            <input type="text" placeholder="Enter candidate safety shoe size" id="edit_candidate_safety_shoe_size" required>
+            <input type="text" placeholder="Enter candidate height" id="edit_candidate_height" required>
+            <input type="text" placeholder="Enter candidate weight" id="edit_candidate_weight" required>
+            <div class="mb-3 col-md-4">
+                <label for="edit_candidate_I_country" class="form-label">License Country</label>
+                <select id="edit_candidate_I_country" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>             <input type="text" placeholder="Enter candidate indos number" id="edit_candidate_indos_number" required>
+            <input type="text" placeholder="Enter company status" id="edit_candidate_company_status" required>
+            <input type="text" placeholder="Enter Group" id="edit_candidate_group" required>
+            <input type="text" placeholder="Enter Vendor" id="edit_candidate_vendor" required>
+            <input type="file" placeholder="Enter candidate photos" id="edit_candidate_photos" required>
+            <input type="file" placeholder="Enter candidate resume" id="edit_candidate_resume" required>
+            </div>
+            <div class="card">
+                <input type="text" placeholder="Enter candidate ad1" id="edit_candidate_c_ad1" required>
+                <input type="text" placeholder="Enter candidate city" id="edit_candidate_city" required>
+                <input type="text" placeholder="Enter candidate state" id="edit_candidate_c_state" required>
+                <input type="text" placeholder="Enter pin" id="edit_candidate_pin" required>
+                <input type="text" placeholder="Enter candidate mobile1" id="edit_candidate_c_mobi1" required>
+                <input type="email" placeholder="Enter candidate email1" id="edit_candidate_email1" required>
+                <input type="text" placeholder="Enter candidate tel1" id="edit_candidate_c_tel1" required>
+                <hr />
+            </div>
+            <div class="card">
+                <input type="text" placeholder="Enter candidate ad2" id="edit_candidate_c_ad2" required>
+                <input type="text" placeholder="Enter candidate p city" id="edit_candidate_p_city" required>
+                <input type="text" placeholder="Enter candidate p state" id="edit_candidate_p_state" required>
+                <input type="text" placeholder="Enter candidate p pin" id="edit_candidate_p_pin" required>
+                <input type="text" placeholder="Enter candidate mobile2" id="edit_candidate_c_mobi2" required>
+                <input type="text" placeholder="Enter candidate tel2" id="edit_candidate_c_tel2" required>
+                <input type="email" placeholder="Enter candidate email2" id="edit_candidate_email2" required>
+                <input type="hidden" placeholder="Enter active details" id="edit_candidate_active_details" required>
+                <input type="hidden" placeholder="Enter area code1" id="edit_candidate_area_code1" required>
+                <input type="hidden" placeholder="Enter area code2" id="edit_candidate_area_code2" required>
+                <input type="hidden" placeholder="Enter category" id="edit_candidate_category" required>
+                <input type="hidden" placeholder="Enter created by" id="edit_candidate_created_by" required>
+                <input type="hidden" placeholder="Enter created date" id="edit_candidate_created_date" required>
+                <input type="hidden" placeholder="Enter created time" id="edit_candidate_created_time" required>
+                <input type="hidden" placeholder="Enter edited by" id="edit_candidate_editedby" required>
+                <input type="hidden" placeholder="Enter candidate imp discussion" id="edit_candidate_imp_discussion" required>
+                <input type="hidden" placeholder="Enter candidate ipaddress" id="edit_candidate_ipadress" required>
+                <input type="hidden" placeholder="Enter candidate joined date" id="edit_candidate_joined_date" required>
+                <input type="hidden" placeholder="Enter candidate last company" id="edit_candidate_last_company" required>
+                <input type="hidden" placeholder="Enter candidate last salary" id="edit_candidate_last_salary" required>
+                <input type="hidden" placeholder="Enter candidate last date" id="edit_candidate_last_date" required>
+                <input type="hidden" placeholder="Enter candidate last time" id="edit_candidate_last_time" required>
+                <input type="hidden" placeholder="Enter candidate mobile code 1" id="edit_candidate_mobile_code1" required>
+                <input type="hidden" placeholder="Enter candidate mobile code 2" id="edit_candidate_mobile_code2" required>
+                <input type="hidden" placeholder="Enter candidate mobile status" id="edit_candidate_mobile_status" required>
+                <input type="hidden" placeholder="Enter candidate other mobile code" id="edit_candidate_other_mobile_code" required>
+                <input type="hidden" placeholder="Enter candidate other numbers" id="edit_candidate_other_numbers" required>
+                <input type="hidden" placeholder="Enter candidate p ad1" id="edit_candidate_p_ad1" required>
+                <input type="hidden" placeholder="Enter candidate p ad2" id="edit_candidate_p_ad2" required>
+                <input type="hidden" placeholder="Enter candidate p country" id="edit_candidate_p_country" required>
+                <input type="hidden" placeholder="Enter candidate p mobi1" id="edit_candidate_p_mobi1" required>
+                <input type="hidden" placeholder="Enter candidate p mobi2" id="edit_candidate_p_mobi2" required>
+                <input type="hidden" placeholder="Enter candidate p rank" id="edit_candidate_p_rank" required>
+                <input type="hidden" placeholder="Enter candidate p tel1" id="edit_candidate_p_tel1" required>
+                <input type="hidden" placeholder="Enter candidate p tel2" id="edit_candidate_p_tel2" required>
+                <input type="hidden" placeholder="Enter candidate ref check" id="edit_candidate_ref_check" required>
+                <input type="hidden" placeholder="Enter candidate resume upload date" id="edit_candidate_resume_upload_date" required>
+                <input type="hidden" placeholder="Enter candidate skype" id="edit_candidate_skype" required>
+                <input type="hidden" placeholder="Enter candidate stcw" id="edit_candidate_stcw" required>
+                <input type="hidden" placeholder="Enter candidate vendor id" id="edit_candidate_vendor_id" required>
+            </div>
+            <button type="submit" class="btn btn-success">Update Candidate</button>
+        </form>
+        
+        </div>
+        <div id="form2" class="form-container"  >
+            <div id="user_names" ></div>
+            <div id="discussionContainer" class="form-control "></div>
+                                                <h1 style="text-align: center;">Last Call</h1>
+                                                
+            <form id="discussionForm" class="card">
+                <label for="special_comments">Special Comments:</label>
+                <input type="text" id="special_comments" name="special_comments">
+            
+                <label for="avb_date">Available Date:</label>
+                <input type="date" id="avb_date" name="avb_date">
+            
+                <label for="last_salary">Last Salary:</label>
+                <input type="text" id="last_salary" name="last_salary">
+            
+                <label for="last_company">Last Company:</label>
+                <input type="text" id="last_company" name="last_company">
+            
+                <div class="mb-3 col-md-4">
+                    <label for="rank" class="form-label">Select Rank</label>
+                    <select id="rank" class="form-select" required>
+                        <!-- Options will be dynamically added using JavaScript -->
+                    </select>
+                </div>
+            
+                <div class="mb-3 col-md-4">
+                    <label for="vessel_types" class="form-label">Select Vessel</label>
+                    <select id="vessel_types" class="form-select" required>
+                        <!-- Options will be dynamically added using JavaScript -->
+                    </select>
+                </div>
+            
+                <label for="status">Status:</label>
+                <select id="status" name="status">
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+                
+                
+                <label for="reemploymentStatus">Re-Employment Status:</label>
+<select id="reemploymentStatus" name="reemploymentStatus">
+    <option value="" default selected disabled>-- Select NTBR -- </option>
+    <option value="notReemployedByNautilus">Not to be re-employed by Nautilus</option>
+    <option value="notReemployedByOwnersClients">Not to be re-employed by the owners/clients</option>
+</select>
+
+                <button type="submit">Submit</button>
+            </form>
+            <form id="discussionPlusForm" class="card">
+                <label for="proposed">Proposed:</label>
+                <input type="checkbox" id="proposed" name="proposed">
+            
+                <label for="approved">Approved:</label>
+                <input type="checkbox" id="approved" name="approved">
+            
+                <label for="joined">Joined:</label>
+                <input type="checkbox" id="joined" name="joined">
+            
+                <label for="rejected">Rejected:</label>
+                <input type="checkbox" id="rejected" name="rejected">
+            
+                <label for="set_reminder_checkbox">Set Reminder:</label>
+        <input type="checkbox" id="set_reminder_checkbox" name="set_reminder_checkbox">
+
+        <div id="set_reminder_input" style="display: none;">
+        <label for="set_reminder">Reminder:</label>
+        <input type="text" id="set_reminder" name="set_reminder">
+        </div>
+
+        <label for="special_comments_checkbox">Special Comments:</label>
+        <input type="checkbox" id="special_comments_checkbox" name="special_comments_checkbox">
+
+        <div id="special_comments_input" style="display: none;">
+        <label for="special_comments">Comments:</label>
+        <input type="text" id="special_comments" name="special_comments">
+    </div>
+
+    <label for="ref_check_checkbox">Reference Check:</label>
+    <input type="checkbox" id="ref_check_checkbox" name="ref_check_checkbox">
+
+    <div id="ref_check_input" style="display: none;">
+        <label for="ref_check">Reference Check:</label>
+        <input type="text" id="ref_check" name="ref_check">
+    </div>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    <div>
+
+
+        
+        <h1>Contract</h1>
+        <div class="table-responsive">
+            <table id="contractTable" class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th >Rank</th>
+                        <th >Company</th>
+                        <th >VSL Name</th>
+                        <th >Vessel Type</th>
+                        <th >Sign On Port</th>
+                        <th >Sign On</th>
+                        <th >Wages Start</th>
+                        <th >EOC</th>
+                        <th >Wages</th>
+                        <th >Currency</th>
+                        <th >Wages Type</th>
+                        <th >Sign Off</th>
+                        <th >Sign Off Port</th>
+                        <th >Reason for Sign Off</th>
+                        <th >AOA Number</th>
+                        <th >Emigrate Number</th>
+                        <th >Document</th>
+                        <th >AOA</th>
+                        <th >Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="contractTableBody"></tbody>
+            </table>
+        </div>
+        <div style="display: flex;justify-content: center;">
+
+        <form class="card" id="contractForm">
+            <div class="mb-3 col-md-4">
+                <label for="contract_rank" class="form-label">Rank</label>
+                <select id="contract_rank" class="form-select" required>
+                    <option value="" disabled selected>-- Select Rank --</option>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>           
+            <div class="mb-3 col-md-4">
+                <label for="contract_company" class="form-label">Company</label>
+                <select id="contract_company" class="form-select" required>
+                    <option value="" disabled selected>-- Select Company --</option>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>           
+            <div class="mb-3 col-md-4">
+                <label for="contract_vsl" class="form-label">Select Vessel</label>
+                <select id="contract_vsl" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="contract_vesseltype" class="form-label">Vessel type</label>
+                <select id="contract_vesseltype" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="contract_signonport" class="form-label">Sign on Port</label>
+                <select id="contract_signonport" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="signon " >Sign on </label>
+            <input name="signon" type="date" id="contract_signon"/>
+            <label for="wage" >Wages start</label>
+            <input name="wage" type="date" id="contract_wage_start"/>
+            <label for="eoc" >EOC</label>
+            <input name="eoc" type="date" id="contract_eoc"/>
+            <label for="wages" >Wages</label>
+            <input name="wages" type="text" id="contract_wages"/>
+            <label for="contract_currency">Currency</label>
+<select name="currency" id="contract_currency">
+    <option value="AED">AED</option>
+    <option value="BMD">BMD</option>
+    <option value="EUR">EUR</option>
+    <option value="GBP">GBP</option>
+    <option value="INR">INR</option>
+    <option value="MYR">MYR</option>
+    <option value="SGD">SGD</option>
+    <option value="USD">USD</option>
+</select>
+
+<label for="contract_wagestype">Wages Type</label>
+<select name="wagestype" id="contract_wagestype">
+    <option value="Nett">Nett</option>
+    <option value="Gross">Gross</option>
+    <option value="PerDay">Per Day</option>
+    <option value="PerMonth">Per Month</option>
+
+            <label for="signoff" >Sign off</label>
+            <input name="signoff" type="date" id="contract_signoff"/>
+            <div class="mb-3 col-md-4">
+                <label for="contract_signoffport" class="form-label">Sign off Port</label>
+                <select id="contract_signoffport" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="reason" >Reason for Sign off</label>
+            <input name="reason" type="text" id="contracts_reason"/>
+            <label for="doc" >Document</label>
+            <input name="doc" type="file" id="contract_document"/>
+            <label for="aoa" >AOA</label>
+            <input name="aoa" type="file" id="contract_aoa"/>
+            <label for="aoanum" >AOA number</label>
+            <input name="aoanum" type="text" id="contract_aoa_num"/>
+            <label for="enumber" >Emigrate Number</label>
+            <input name="enumber" type="text" id="contract_emigrate"/>
+            <button type="submit" >Add Contract</button>
+        </form>
+
+        <form class="card" id="editContractForm">
+            <div class="mb-3 col-md-4">
+                <input type="hidden" id="contractId"/>
+                <label for="editcontract_rank" class="form-label">Rank</label>
+                <select id="editcontract_rank" class="form-select" >
+                    <option value="" disabled selected>-- Select Rank --</option>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>           
+            <div class="mb-3 col-md-4">
+                <label for="editcontract_company" class="form-label">Company</label>
+                <select id="editcontract_company" class="form-select" >
+                    <option value="" disabled selected>-- Select Company --</option>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>           
+            <div class="mb-3 col-md-4">
+                <label for="editcontract_vsl" class="form-label">Select Vessel</label>
+                <select id="editcontract_vsl" class="form-select" >
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="editcontract_vesseltype" class="form-label">Vessel type</label>
+                <select id="editcontract_vesseltype" class="form-select">
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="editcontract_signonport" class="form-label">Sign on Port</label>
+                <select id="editcontract_signonport" class="form-select" >
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="signon " >Sign on </label>
+            <input name="signon" type="date" id="editcontract_signon"/>
+            <label for="wage" >Wages start</label>
+            <input name="wage" type="date" id="editcontract_wage_start"/>
+            <label for="eoc" >EOC</label>
+            <input name="eoc" type="date" id="editcontract_eoc"/>
+            <label for="wages" >Wages</label>
+            <input name="wages" type="text" id="editcontract_wages"/>
+            <label for="editcontract_currency">Currency</label>
+<select name="currency" id="editcontract_currency">
+    <option value="AED">AED</option>
+    <option value="BMD">BMD</option>
+    <option value="EUR">EUR</option>
+    <option value="GBP">GBP</option>
+    <option value="INR">INR</option>
+    <option value="MYR">MYR</option>
+    <option value="SGD">SGD</option>
+    <option value="USD">USD</option>
+</select>
+
+<label for="editcontract_wagestype">Wages Type</label>
+<select name="wagestype" id="editcontract_wagestype">
+    <option value="Nett">Nett</option>
+    <option value="Gross">Gross</option>
+    <option value="PerDay">Per Day</option>
+    <option value="PerMonth">Per Month</option>
+
+            <label for="signoff" >Sign off</label>
+            <input name="signoff" type="date" id="editcontract_signoff"/>
+            <div class="mb-3 col-md-4">
+                <label for="editcontract_signoffport" class="form-label">Sign off Port</label>
+                <select id="editcontract_signoffport" class="form-select" >
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="reason" >Reason for Sign off</label>
+            <input name="reason" type="text" id="editcontracts_reason"/>
+            <label for="doc" >Document</label>
+            <input name="doc" type="file" id="editcontract_document"/>
+            <label for="aoa" >AOA</label>
+            <input name="aoa" type="file" id="editcontract_aoa"/>
+            <label for="aoanum" >AOA number</label>
+            <input name="aoanum" type="text" id="editcontract_aoa_num"/>
+            <label for="enumber" >Emigrate Number</label>
+            <input name="enumber" type="text" id="editcontract_emigrate"/>
+            <button type="submit" >Edit Contract</button>
+        </form>
+        </div>
+    </div>
+    <div>
+        <h1>Document</h1>
+        <div class="table-responsive">
+            <table id="documentTable" class="table table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th style="border-top:5px solid blue;">Document</th>
+                        <th style="border-top:5px solid blue;">Document Number</th>
+                        <th style="border-top:5px solid blue;">Issue Date</th>
+                        <th style="border-top:5px solid blue;">Issue Place</th>
+                        <th style="border-top:5px solid blue;">Document Files</th>
+                        <th style="border-top:5px solid blue;"> STCW</th>
+                        <th style="border-top:5px solid blue;">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="documentTableBody"></tbody>
+            </table>
+        </div>
+        
+        <form class="card" id="docForm"> 
+            <div class="mb-3 col-md-4">
+                <label for="doc_document" class="form-label">Documents</label>
+                <select id="doc_document" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="docmtnum" >Document Number</label>
+            <input name="docmtnum" type="text" id="doc_document_num"/>
+            <label for="issue" >Issue Date</label>
+            <input name="issue" type="date" id="doc_issue_date"/>
+            <label for="place" >Issue Place</label>
+            <input name="place" type="text" id="doc_issue_place"/>
+            <label for="docfiles" >Document Files</label>
+            <input name="docfiles" type="file" id="doc_docfiles"/>
+            <label for="stcwCompliance">STCW Compliance</label>
+<select name="stcwCompliance" id="contract_stcwCompliance">
+    <option value="Yes">Yes</option>
+    <option value="No">No</option>
+</select>
+
+            <button type="submit" >Add Document</button>
+        </form>
+    </div>
+
+    <div>
+        <h1>Bank Details</h1>
+        <div class="table-responsive">
+            <table id="bankTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Bank Name</th>
+                        <th>Account Number</th>
+                        <th>Bank Address</th>
+                        <th>IFSC Code</th>
+                        <th>Swift Code</th>
+                        <th>Beneficiary</th>
+                        <th>Beneficiary Address</th>
+                        <th>PAN Number</th>
+                        <th>Passbook</th>
+                        <th>PAN Card</th>
+                        <th>NRI Bank Name</th>
+                        <th>NRI Account Number</th>
+                        <th>NRI Bank Address</th>
+                        <th>NRI IFSC Code</th>
+                        <th>NRI Swift Code</th>
+                        <th>NRI Beneficiary</th>
+                        <th>NRI Beneficiary Address</th>
+                        <th>NRI Passbook</th>
+                        <th>Actions</th>
+                        <!-- Add more table headers as needed -->
+                    </tr>
+                </thead>
+                <tbody id="bankTableBody"></tbody>
+            </table>
+        </div>
+        
+        
+        <form class="card" id="bank_form">
+            <label for="bankname" >Bank Name</label>
+            <input name="bankname" type="text" id="bank_name"/>
+            <label for="accnum" >Account number</label>
+            <input name="accnum" type="text" id="bank_acc_num"/>
+            <label for="banaddr" >Bank Address</label>
+            <input name="bankaddr" type="text" id="bank_acc_addr"/>
+            <label for="ifsc" >IFSC code</label>
+            <input name="ifsc" type="text" id="bank_ifsc"/>
+            <label for="swift" >Swift code</label>
+            <input name="swift" type="text" id="bank_swift"/>
+            <label for="benef" >Benificiary</label>
+            <input name="benef" type="text" id="bank_beneficiary"/>
+            <label for="addr" > Address</label>
+            <input name="addr" type="text" id="bank_addr"/>
+            <label for="pan_num" >Pan number</label>
+            <input name="pan_num" type="text" id="bank_pan"/>
+            <label for="pan_card" >Pan card</label>
+            <input name="pan_card" type="file" id="bank_pan_card"/>
+
+            <label for="statement" >Passbook</label>
+            <input name="statement" type="file" id="bank_passbook"/>
+
+            
+            <label for="nri_bankname" >NRI Bank Name</label>
+            <input name="nri_bankname" type="text" id="nri_bank_name"/>
+            <label for="nri_accnum" >NRI Account number</label>
+            <input name="nri_accnum" type="text" id="nri_bank_acc_num"/>
+            <label for="nri_banaddr" >NRI Bank Address</label>
+            <input name="nri_bankaddr" type="text" id="nri_bank_acc_addr"/>
+            <label for="nri_ifsc" >NRI IFSC code</label>
+            <input name="nri_ifsc" type="text" id="nri_bank_ifsc"/>
+            <label for="nri_swift" >NRI Swift code</label>
+            <input name="nri_swift" type="text" id="nri_bank_swift"/>
+            <label for="nri_benef" >NRI Benificiary</label>
+            <input name="nri_benef" type="text" id="nri_bank_beneficiary"/>
+            <label for="nri_addr" > NRI Address</label>
+            <input name="nri_addr" type="text" id="nri_bank_addr"/>
+            <label for="nri_statement" >NRI Passbook</label>
+            <input name="nri_statement" type="file" id="nri_bank_passbook"/>
+
+            <button type="submit" >Add Bank Details</button>
+        </form>
+    </div>
+    <div>
+        <h1>Travel</h1>
+        <div class="table-responsive">
+            <table id="travelTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Travel Date</th>
+                        <th>Travel From</th>
+                        <th>Travel To</th>
+                        <th>Travel Mode</th>
+                        <th>Travel Status</th>
+                        <th>Ticket Number</th>
+                        <th>Agent Name</th>
+                        <th>Port Agent</th>
+                        <th>Travel Amount</th>
+                        <th>Actions</th>
+                        <!-- Add more table headers as needed -->
+                    </tr>
+                </thead>
+                <tbody id="travelTableBody"></tbody>
+            </table>
+        </div>
+        
+        
+        <form class="card" id="travel_form">
+            <label for="date" >Travel Date</label>
+            <input name="date" type="date" id="travel_date"/>
+            <label for="from" >Travel To</label>
+            <input name="from" type="text" id="travel_from"/>
+            <label for="to" >Travel To</label>
+            <input name="to" type="text" id="travel_to"/>
+            <label for="mode">Travel Mode:</label>
+<select name="mode" id="travel_mode">
+    <option value="bus">Bus</option>
+    <option value="train">Train</option>
+    <option value="air">Air</option>
+    <option value="cab">Cab</option>
+</select>
+
+<label for="status">Travel Status:</label>
+<select name="status" id="travel_status">
+    <option value="booked">Booked</option>
+    <option value="cancelled">Cancelled</option>
+    <option value="travelling">Travelling</option>
+    <option value="travelled">Travelled</option>
+</select>
+
+            <label for="ticket" >Ticket number</label>
+            <input name="ticket" type="text" id="travel_ticket"/>
+            <label for="agent" >Agent name</label>
+            <input name="agent" type="text" id="travel_agent_name"/>
+            <div class="mb-3 col-md-4">
+                <label for="travel_port_agent" class="form-label">Port Agent</label>
+                <select id="travel_port_agent" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="amount" >Amount</label>
+            <input name="amount" type="text" id="travel_amount"/>
+            <button type="submit" >Add Travel</button>
+        </form>
+    </div>
+    <div>
+        <h1>Hospital</h1>
+        <div class="table-responsive">
+            <table id="hospitalTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Hospital Name</th>
+                        <th>Place</th>
+                        <th>Date</th>
+                        <th>Expiry Date</th>
+                        <th>Done By</th>
+                        <th>Status</th>
+                        <th>Amount</th>
+                        <th>Upload File</th>
+                        <th>Actions</th>
+                        <!-- Add more table headers as needed -->
+                    </tr>
+                </thead>
+                <tbody id="hospitalTableBody"></tbody>
+            </table>
+        </div>
+        
+        
+        <form class="card" id="hospital_form">
+            <div class="mb-3 col-md-4">
+                <label for="hospital_name" class="form-label">Hospital Name</label>
+                <select id="hospital_name" class="form-select" required>
+                    <!-- Options will be dynamically added using JavaScript -->
+                </select>
+            </div>
+            <label for="place" >Place</label>
+            <input name="place" type="text" id="hospital_place"/>
+            <label for="date" >Date</label>
+            <input name="date" type="date" id="hospital_date"/>
+            <label for="expdate" > Expiry Date</label>
+            <input name="expdate" type="date" id="hospital_exp_date"/>
+            <label for="done">Done by</label>
+<select name="done" id="hospital_done">
+    <option value="office">Office</option>
+    <option value="agent">Agent</option>
+    <option value="self">Self</option>
+</select>
+
+<label for="status">Status</label>
+<select name="status" id="hospital_status">
+    <option value="fit">Fit</option>
+    <option value="unfit">Unfit</option>
+</select>
+
+            <label for="amt" >Amount</label>
+            <input name="amt" type="text" id="hospital_amount"/>
+            <label for="upload" >Upload</label>
+            <input name="upload" type="file" id="hospital_upload"/>
+            <button type="submit" >Add Medical</button>
+        </form>
+    </div>
+    <div>
+        <h1>NKD</h1>
+        <div class="table-responsive">
+            <table id="nkdTable" class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Kin Name</th>
+                        <th>Kin Relationship</th>
+                        <th>Kin Contact</th>
+                        <th>Contact Address</th>
+                        <th>Priority</th>
+                        <th>Actions</th>
+                        <!-- Add more table headers as needed -->
+                    </tr>
+                </thead>
+                <tbody id="nkdTableBody"></tbody>
+            </table>
+        </div>
+        
+        
+        <form class="card" id="nkd_form">
+            <label for="kinname" >Kin Name</label>
+            <input name="kinname" type="text" id="nkd_kin_name"/>
+            <label for="relation">Kin Relationship</label>
+<select name="relation" id="nkd_kin_relationship">
+    <option value="FATHER">FATHER</option>
+    <option value="MOTHER">MOTHER</option>
+    <option value="SON">SON</option>
+    <option value="DAUGHTER">DAUGHTER</option>
+    <option value="BROTHER">BROTHER</option>
+    <option value="SISTER">SISTER</option>
+    <option value="HUSBAND">HUSBAND</option>
+    <option value="WIFE">WIFE</option>
+    <option value="MOTHER-IN-LAW">MOTHER-IN-LAW</option>
+    <option value="FATHER-IN-LAW">FATHER-IN-LAW</option>
+    <option value="UNCLE">UNCLE</option>
+    <option value="AUNT">AUNT</option>
+    <option value="NEPHEW">NEPHEW</option>
+    <option value="NIECE">NIECE</option>
+</select>
+
+            <label for="contact" >Kin Contact Number </label>
+            <input name="contact" type="text" id="nkd_kin_contact"/>
+            <label for="addr" >Kin contact Address</label>
+            <input name="addr" type="text" id="nkd_contact_address"/>
+            <label for="priority" >Priority</label>
+            <input name="priority" type="text" id="nkd_priority" />
+            <button type="submit">Add NKD</button>
+        </form>
+    </div>
+    </div>
+    <div id="pushtobottomcenter" >
+        Nautilus Shipping India Pvt Ltd
+        <div id="datetime"></div>
+              
+        </div>
+    <script src="others.js"></script>
+</body>
+</html>

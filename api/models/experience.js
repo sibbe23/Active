@@ -1,6 +1,6 @@
 // File: Experience.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Experience = sequelize.define('Experience', {
     id: {

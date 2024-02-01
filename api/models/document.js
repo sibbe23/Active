@@ -1,6 +1,6 @@
 // File: Document.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Document = sequelize.define('Document', {
     id: {
@@ -14,7 +14,7 @@ const Document = sequelize.define('Document', {
     },
     hideExpiryDate: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
+        allowNull: true,
     },
 }, {
     tableName: 'documents',

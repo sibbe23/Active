@@ -7,91 +7,273 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add Candidate - Nsnemo</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        #sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: -250px; /* Initially hide the sidebar by moving it off-screen */
+            background-color: #f6f6f6;
+            padding-top: 45px;
+            transition: left 0.2s ease; /* Add smooth transition effect */
+            border-right: 1px solid lightgray;
+        }
+
+        #sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 15px;
+            color: rgb(0, 0, 0);
+            display: block;
+        }
+        #sidebar button{
+            padding: 15px 20px;
+            font-size: 15px;
+
+            background-color: #f6f6f6;
+            border:none;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            text-align: left;
+        }
+
+        #sidebar a:hover {
+            border-left: 7px solid green;
+            background-color: #ffffff;
+        }
+        #sidebar button:hover {
+            background-color: #ffffff;
+
+            border-left: 10px solid red;
+
+        }
+         #sidebar #candidate{
+            border-left: 7px solid green;
+            background-color: #ffffff;
+        }
+      
+        #pushtobottomcenter {
+    position: fixed;
+    bottom: 0;
+    text-align: right;
+    width: 100%;
+    background-color: #f6f6f6;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-right: 20px;
+    margin-left: 0%;
+    border-top: 1px solid lightgray;
+}
+        
+        #content {
+            margin-left: 0; /* Adjust margin to 0 when the sidebar is hidden */
+            transition: margin-left 0.2s ease; /* Add smooth transition effect */
+        }
+        #content2 {
+            margin-left: 0; /* Adjust margin to 0 when the sidebar is hidden */
+            transition: margin-left 0.2s ease; /* Add smooth transition effect */
+            border-radius: 100%;
+        }
+    </style>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 </head>
 <body>
+    <div id="sidebar">
+        <div class="text-center ">
+            <img src="./nemo.png" style="width: 50px;" alt="Nemo Logo">
+        </div>
+        <div class="text-center fs-2 " style="margin: 30px;" id="user_name">Hi, </div>
+        <a href="../search/search.html" id="search"> <i class="fas fa-search"></i> &nbsp; Search</a>
+        <div id="adminSection" style="display: none;">
+            <a href="../user/user.html"><i class="fas fa-user-plus"></i> &nbsp; Create User</a>
+            <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+            <a href="../company/company.html"><i class="fas fa-building"></i> &nbsp; Add Details</a>
+            <a href="../report/report.html"><i class="fas fa-file-alt"></i> &nbsp; Generate Report</a>
+        </div>
+    
+        <!-- Vendor Section -->
+        <div id="vendorSection" style="display: none;">
+            <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+        </div>
+        <button type="submit" id="logout"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout from Nemo</button>
+    </div>
+    
+    <div id="content2">
+    <button id="toggleSidebar" class="btn btn-warning rounded-0  "> Toggle Menu</button>
+    </div>
+    
+    <div id="content" class="text-center mb-5" >
+    
     <h1 class="text-center"> Add new Candidate</h1>
 
     <form id="view-candidates">
         <div id="candidate-list"></div>
         <button type="submit" class="btn btn-primary" >View Candidates</button>
     </form>
-    <form id="candidate-form">
-        <input type="number" placeholder="Enter active details" id="candidate_active_details" required>
-        <input type="text" placeholder="Enter area code1" id="candidate_area_code1" required>
-        <input type="text" placeholder="Enter area code2" id="candidate_area_code2" required>
-        <input type="date" placeholder="Enter available date" id="candidate_avb_date" required>
-        <input type="text" placeholder="Enter birth place" id="candidate_birth_place" required>
-        <input type="text" placeholder="Enter boiler suit size" id="candidate_boiler_suit_size" required>
-        <input type="number" placeholder="Enter category" id="candidate_category" required>
-        <input type="text" placeholder="Enter company status" id="candidate_company_status" required>
-        <input type="text" placeholder="Enter company status" id="company_status" required>
-        <input type="text" placeholder="Enter created by" id="candidate_created_by" required>
-        
-        <input type="date" placeholder="Enter created date" id="candidate_created_date" required>
-        <input type="time" placeholder="Enter created time" id="candidate_created_time" required>
-        <input type="text" placeholder="Enter candidate ad1" id="candidate_c_ad1" required>
-        <input type="text" placeholder="Enter candidate ad2" id="candidate_c_ad2" required>
-        <input type="text" placeholder="Enter candidate city" id="candidate_city" required>
-        <input type="text" placeholder="Enter candidate mobile1" id="candidate_c_mobi1" required>
-        <input type="text" placeholder="Enter candidate mobile2" id="candidate_c_mobi2" required>
-        <input type="text" placeholder="Enter pin" id="candidate_pin" required>
-        <input type="text" placeholder="Enter candidate rank" id="candidate_c_rank" required>
-        <input type="text" placeholder="Enter candidate state" id="candidate_c_state" required>
-        <input type="text" placeholder="Enter candidate tel1" id="candidate_c_tel1" required>
-        <input type="text" placeholder="Enter candidate tel2" id="candidate_c_tel2" required>
-        <input type="text" placeholder="Enter candidate vessel" id="candidate_c_vessel" required>
-        <input type="date" placeholder="Enter candidate dob" id="candidate_dob" required>
-        <input type="text" placeholder="Enter edited by" id="candidate_editedby" required>
-        <input type="email" placeholder="Enter candidate email1" id="candidate_email1" required>
-        <input type="email" placeholder="Enter candidate email2" id="candidate_email2" required>
-        <input type="text" placeholder="Enter candidate experience" id="candidate_experience" required>
+    <div class="card"> 
+    <form id="candidate-form" >
         <input type="text" placeholder="Enter candidate fname" id="candidate_fname" required>
-        <input type="text" placeholder="Enter candidate grade" id="candidate_grade" required>
-        <input type="text" placeholder="Enter candidate height" id="candidate_height" required>
-        <input type="text" placeholder="Enter candidate imp discussion" id="candidate_imp_discussion" required>
-        <input type="text" placeholder="Enter candidate indos number" id="candidate_indos_number" required>
-        <input type="text" placeholder="Enter candidate ipaddress" id="candidate_ipadress" required>
-        <input type="date" placeholder="Enter candidate joined date" id="candidate_joined_date" required>
-        <input type="text" placeholder="Enter candidate last company" id="candidate_last_company" required>
-        <input type="text" placeholder="Enter candidate last salary" id="candidate_last_salary" required>
-        <input type="date" placeholder="Enter candidate last date" id="candidate_last_date" required>
-        <input type="text" placeholder="Enter candidate last time" id="candidate_last_time" required>
         <input type="text" placeholder="Enter candidate Iname" id="candidate_Iname" required>
-        <input type="text" placeholder="Enter candidate I country" id="candidate_I_country" required>
-        <input type="text" placeholder="Enter candidate mem id" id="candidate_mem_id" required>
-        <input type="text" placeholder="Enter candidate mobile code 1" id="candidate_mobile_code1" required>
-        <input type="text" placeholder="Enter candidate mobile code 2" id="candidate_mobile_code2" required>
-        <input type="text" placeholder="Enter candidate mobile status" id="candidate_mobile_status" required>
-        <input type="text" placeholder="Enter candidate nationality" id="candidate_nationality" required>
-        <input type="text" placeholder="Enter candidate other mobile code" id="candidate_other_mobile_code" required>
-        <input type="text" placeholder="Enter candidate other numbers" id="candidate_other_numbers" required>
-        <input type="file" placeholder="Enter candidate photos" id="candidate_photos" required>
-        <input type="text" placeholder="Enter candidate p ad1" id="candidate_p_ad1" required>
-        <input type="text" placeholder="Enter candidate p ad2" id="candidate_p_ad2" required>
-        <input type="text" placeholder="Enter candidate p city" id="candidate_p_city" required>
-        <input type="text" placeholder="Enter candidate p country" id="candidate_p_country" required>
-    
-        <input type="text" placeholder="Enter candidate p mobi1" id="candidate_p_mobi1" required>    
-        <input type="text" placeholder="Enter candidate p mobi2" id="candidate_p_mobi2" required>    
-        <input type="text" placeholder="Enter candidate p pin" id="candidate_p_pin" required>    
-        <input type="text" placeholder="Enter candidate p rank" id="candidate_p_rank" required>    
-        <input type="text" placeholder="Enter candidate p state" id="candidate_p_state" required>    
-        <input type="text" placeholder="Enter candidate p tel1" id="candidate_p_tel1" required>    
-        <input type="text" placeholder="Enter candidate p tel2" id="candidate_p_tel2" required>    
-        <input type="text" placeholder="Enter candidate ref check" id="candidate_ref_check" required>    
-        <input type="file" placeholder="Enter candidate resume" id="candidate_resume" required>  
-        <input type="date" placeholder="Enter candidate resume upload date" id="candidate_resume_upload_date" required>    
+        <div class="mb-3 col-md-4">
+            <label for="candidate_c_rank" class="form-label">Rank</label>
+            <select id="candidate_c_rank" class="form-select" required>
+                <option value="" disabled selected>-- Select Rank --</option>
+                <!-- Options will be dynamically added using JavaScript -->
+            </select>
+        </div>
+                <input type="date" placeholder="Enter available date" id="candidate_avb_date" required>
+                <div class="mb-3 col-md-4">
+                    <label for="candidate_nationality" class="form-label">Nationality</label>
+                    <select id="candidate_nationality" class="form-select" required>
+                        <!-- Options will be dynamically added using JavaScript -->
+                    </select>
+                </div>        <div class="mb-3 col-md-4">
+            <select id="company_status" class="form-select" required>
+                <option value="" disabled selected>-- Select Marital Status --</option>
+                <option value="Married">Married</option>
+                <option value="Single">Single</option>
+                <option value="Widowed">Widowed</option>
+                <option value="Divorced">Divorced</option>
+            </select>
+        </div>
+                <input type="date" placeholder="Enter candidate dob" id="candidate_dob" required>
+        <input type="text" placeholder="Enter birth place" id="candidate_birth_place" required>
+        <div class="mb-3 col-md-4">
+            <label for="candidate_work_nautilus" class="form-label">Worked with us?</label>
+            <select id="candidate_work_nautilus" class="form-select" required>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label for="candidate_c_vessel" class="form-label">Select Vessel</label>
+            <select id="candidate_c_vessel" class="form-select" required>
+                <!-- Options will be dynamically added using JavaScript -->
+            </select>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label for="candidate_experience" class="form-label">Experience</label>
+            <select id="candidate_experience" class="form-select" required>
+                <option value="" disabled selected>-- Select Experience --</option>
+                <option value="<6 months"><6 months</option>
+                <option value="6-12 months">6-12 months</option>
+                <option value="12-24 months">12-24 months</option>
+                <option value=">24 months">>24 months</option>
+            </select>
+        </div>
+        <div class="mb-3 col-md-4">
+            <label for="candidate_zone" class="form-label">Zone</label>
+            <select id="candidate_zone" class="form-select" required>
+                <option value="" disabled selected>-- Select Zone --</option>
+                <option value="East">East</option>
+                <option value="West">West</option>
+                <option value="North">North</option>
+                <option value="South">South</option>
+            </select>
+        </div>
+                <div class="mb-3 col-md-4">
+                    <label for="candidate_grade" class="form-label"> Grade</label>
+                    <select id="candidate_grade" class="form-select" required>
+                        <!-- Options will be dynamically added using JavaScript -->
+                    </select>
+                </div>
+                
+        <input type="text" placeholder="Enter boiler suit size" id="candidate_boiler_suit_size" required>
         <input type="text" placeholder="Enter candidate safety shoe size" id="candidate_safety_shoe_size" required>    
-        <input type="text" placeholder="Enter candidate skype" id="candidate_skype" required>   
-        <input type="number" placeholder="Enter candidate stcw" id="candidate_stcw" required>  
-        <input type="text" placeholder="Enter candidate vendor id" id="candidate_vendor_id" required>    
+        <input type="text" placeholder="Enter candidate height" id="candidate_height" required>
         <input type="text" placeholder="Enter candidate weight" id="candidate_weight" required>    
-        <input type="text" placeholder="Enter candidate work nautilus" id="candidate_work_nautilus" required>    
-        <input type="text" placeholder="Enter candidate zone" id="candidate_zone" required>    
+
+        <div class="mb-3 col-md-4">
+            <label for="candidate_I_country" class="form-label">License Country</label>
+            <select id="candidate_I_country" class="form-select" required>
+                <!-- Options will be dynamically added using JavaScript -->
+            </select>
+        </div>        <input type="text" placeholder="Enter candidate indos number" id="candidate_indos_number" required>
+        <input type="text" placeholder="Enter company status" id="candidate_company_status" required>
+        <input type="text" placeholder="Enter Group" id="candidate_group" required>
+        <input type="text" placeholder="Enter Vendor" id="candidate_vendor" required>
+        <input type="file" placeholder="Enter candidate photos" id="candidate_photos" required>
+        <input type="file" placeholder="Enter candidate resume" id="candidate_resume" required>
+    </div>
+        <div class="card">  
+        <input type="text" placeholder="Enter candidate ad1" id="candidate_c_ad1" required>
+        <input type="text" placeholder="Enter candidate city" id="candidate_city" required>
+        <input type="text" placeholder="Enter candidate state" id="candidate_c_state" required>
+        <input type="text" placeholder="Enter pin" id="candidate_pin" required>
+        <input type="text" placeholder="Enter candidate mobile1" id="candidate_c_mobi1" required>
+        <input type="text" placeholder="Enter candidate tel1" id="candidate_c_tel1" required>
+        <input type="email" placeholder="Enter candidate email1" id="candidate_email1" required>
+        <hr /></div>
+        <div class="card" >
+        <input type="text" placeholder="Enter candidate ad2" id="candidate_c_ad2" required>
+        <input type="text" placeholder="Enter candidate p city" id="candidate_p_city" required>
+        <input type="text" placeholder="Enter candidate p state" id="candidate_p_state" required>    
+        <input type="text" placeholder="Enter candidate p pin" id="candidate_p_pin" required>    
+        <input type="text" placeholder="Enter candidate mobile2" id="candidate_c_mobi2" required>
+        <input type="text" placeholder="Enter candidate tel2" id="candidate_c_tel2" required>
+        <input type="email" placeholder="Enter candidate email2" id="candidate_email2" required>
+
+
+        <input type="hidden" placeholder="Enter active details" id="candidate_active_details" required>
+        <input type="hidden" placeholder="Enter area code1" id="candidate_area_code1" required>
+        <input type="hidden" placeholder="Enter area code2" id="candidate_area_code2" required>
+        <input type="hidden" placeholder="Enter category" id="candidate_category" required>
+        <input type="hidden" placeholder="Enter created by" id="candidate_created_by" required>
+        
+        <input type="hidden" placeholder="Enter created date" id="candidate_created_date" required>
+        <input type="hidden" placeholder="Enter created time" id="candidate_created_time" required>
+        <input type="hidden" placeholder="Enter edited by" id="candidate_editedby" required>
+        <input type="hidden" placeholder="Enter candidate imp discussion" id="candidate_imp_discussion" required>
+        <input type="hidden" placeholder="Enter candidate ipaddress" id="candidate_ipadress" required>
+        <input type="hidden" placeholder="Enter candidate joined date" id="candidate_joined_date" required>
+        <input type="hidden" placeholder="Enter candidate last company" id="candidate_last_company" required>
+        <input type="hidden" placeholder="Enter candidate last salary" id="candidate_last_salary" required>
+        <input type="hidden" placeholder="Enter candidate last date" id="candidate_last_date" required>
+        <input type="hidden" placeholder="Enter candidate last time" id="candidate_last_time" required>
+        <input type="hidden" placeholder="Enter candidate mobile code 1" id="candidate_mobile_code1" required>
+        <input type="hidden" placeholder="Enter candidate mobile code 2" id="candidate_mobile_code2" required>
+        <input type="hidden" placeholder="Enter candidate mobile status" id="candidate_mobile_status" required>
+        <input type="hidden" placeholder="Enter candidate other mobile code" id="candidate_other_mobile_code" required>
+        <input type="hidden" placeholder="Enter candidate other numbers" id="candidate_other_numbers" required>
+        <input type="hidden" placeholder="Enter candidate p ad1" id="candidate_p_ad1" required>
+        <input type="hidden" placeholder="Enter candidate p ad2" id="candidate_p_ad2" required>
+        <input type="hidden" placeholder="Enter candidate p country" id="candidate_p_country" required>
+    
+        <input type="hidden" placeholder="Enter candidate p mobi1" id="candidate_p_mobi1" required>    
+        <input type="hidden" placeholder="Enter candidate p mobi2" id="candidate_p_mobi2" required>    
+        <input type="hidden" placeholder="Enter candidate p rank" id="candidate_p_rank" required>    
+        <input type="hidden" placeholder="Enter candidate p tel1" id="candidate_p_tel1" required>    
+        <input type="hidden" placeholder="Enter candidate p tel2" id="candidate_p_tel2" required>    
+        <input type="hidden" placeholder="Enter candidate ref check" id="candidate_ref_check" required>    
+        <input type="hidden" placeholder="Enter candidate resume upload date" id="candidate_resume_upload_date" required>    
+        <input type="hidden" placeholder="Enter candidate skype" id="candidate_skype" required>   
+        <input type="hidden" placeholder="Enter candidate stcw" id="candidate_stcw" required>  
+        <input type="hidden" placeholder="Enter candidate vendor id" id="candidate_vendor_id" required>    
+        
+            </div>
+
+
+        
 
         <button type="submit" class="btn btn-success">Add Candidate</button>
     </form>
-    <button id="back" class="btn btn-dark">  Go Back </button> 
+</div>
+<div id="pushtobottomcenter" >
+    Nautilus Shipping India Pvt Ltd
+    <div id="datetime"></div>
+          
+    </div>
     <script src="candidate.js"></script>
 </body>
 </html>

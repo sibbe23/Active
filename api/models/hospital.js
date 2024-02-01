@@ -1,6 +1,6 @@
 // File: Hospital.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Hospital = sequelize.define('Hospital', {
     id: {

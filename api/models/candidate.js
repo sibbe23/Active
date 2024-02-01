@@ -1,8 +1,8 @@
 const Sequelize = require('sequelize');
 const sequelize = require('../util/database');
 
-const Candidate = sequelize.define('candidate', {
-    candidate_id: {
+const Candidate = sequelize.define('Candidate', {
+    candidateId: {
         type: Sequelize.INTEGER,
         allowNull: false,
         primaryKey: true,
@@ -10,283 +10,298 @@ const Candidate = sequelize.define('candidate', {
     },
     active_details: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     area_code1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     area_code2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     avb_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true,
+
     },
     birth_place: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     boiler_suit_size: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     category: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
     company_status: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     createdby: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     cr_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull:true
     },
     cr_time: {
-        type: Sequelize.TIME,
-        allowNull: false
+        type: Sequelize.STRING,
+        allowNull: true
     },
     c_ad1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_ad2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_city: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_mobi1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_mobi2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_pin: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_rank: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_state: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_tel1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_tel2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     c_vessel: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     dob: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     },
     editedby: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     email1: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     email2: {
         type: Sequelize.STRING,
-        allowNull: false,
+        allowNull: true,
     },
     experience: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     fname: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     grade: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     height: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     imp_discussion: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     indos_number: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
+        unique: true 
     },
     ipadress: {
         type: Sequelize.STRING,
         allowNull: true,
-        defaultValue:"ip"
+        defaultValue:""
     },
     joined_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     },
     last_company: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     last_salary: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
-    last_date: {
+    las_date: {
         type: Sequelize.DATE,
-        allowNull: false,
-        defaultValue:"0"
+        allowNull: true,
     },
-    last_time: {
+    las_time: {
         type: Sequelize.STRING,
-        allowNull: false,
-        defaultValue:"0"
+        allowNull: true,
+        defaultValue:"00:00:00"
     },
     lname: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     l_country: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
-    mem_id: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
+
     mobile_code1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     mobile_code2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     m_status: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     nationality: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true,
     },
+    ntbr:{
+        type:  Sequelize.STRING,
+        allowNull: true
+      },
     other_mobile_code: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     other_numbers: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     photos: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_ad1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_ad2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_city: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_country: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_mobi1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_mobi2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_pin: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_rank: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_state: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_tel1: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     p_tel2: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     ref_check: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     resume: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     resume_upload_date: {
         type: Sequelize.DATE,
-        allowNull: false
+        allowNull: true
     },
     safety_shoe_size: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     skype: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     stcw: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        allowNull: true
     },
-    vendor_id: {
-        type: Sequelize.STRING,
-        allowNull: false
-    },
+ 
     weight: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     work_nautilus: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
     },
     zone: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: true
+    },
+    group:{
+        type:Sequelize.STRING,
+        allowNull:true
+    },
+    vendor:{
+        type:Sequelize.STRING,
+        allowNull:true
+    },
+    password:{
+        type:Sequelize.STRING,
+        allowNull:true
+    },
+    nemo_source:{
+        type:Sequelize.STRING,
+        allowNull:true,
     }
-});
+},{timestamps:false});
 
 module.exports = Candidate;

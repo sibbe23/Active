@@ -1,6 +1,6 @@
 // File: Vessel.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Vessel = sequelize.define('Vessel', {
     id: {

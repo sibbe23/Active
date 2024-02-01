@@ -1,6 +1,6 @@
 // File: Port.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Port = sequelize.define('Port', {
     id: {

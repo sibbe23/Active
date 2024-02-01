@@ -1,39 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search - Nsnemo</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: #ffffff;
+        }
+
+        #sidebar {
+            height: 100vh;
+            width: 250px;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: -250px;
+            background-color: #f6f6f6;
+            padding-top: 45px;
+            transition: left 0.2s ease;
+            border-right: 1px solid lightgray;
+        }
+
+        #sidebar a {
+            padding: 15px 20px;
+            text-decoration: none;
+            font-size: 15px;
+            color: rgb(0, 0, 0);
+            display: block;
+        }
+
+        #sidebar button {
+            padding: 15px 20px;
+            font-size: 15px;
+            background-color: #f6f6f6;
+            border: none;
+            color: rgb(0, 0, 0);
+            width: 100%;
+            text-align: left;
+        }
+
+        #sidebar a:hover {
+            border-left: 7px solid green;
+            background-color: #ffffff;
+        }
+
+        #sidebar button:hover {
+            background-color: #ffffff;
+            border-left: 10px solid red;
+        }
+
+        #sidebar #search {
+            border-left: 7px solid green;
+            background-color: #ffffff;
+        }
+
+        #pushtobottomcenter {
+            position: fixed;
+            bottom: 0;
+            text-align: right;
+            width: 100%;
+            background-color: #f6f6f6;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            padding-right: 20px;
+            margin-left: 0%;
+            border-top: 1px solid lightgray;
+        }
+
+        #content {
+            margin-left: 0;
+            transition: margin-left 0.2s ease;
+        }
+
+        #content2 {
+            margin-left: 0;
+            transition: margin-left 0.2s ease;
+            border-radius: 100%;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
-    <h1 class="text-center"> Search</h1> 
-    <form id="view-user">
-        <div id="user-list"></div>
-        <input type="text" id="nemoId" placeholder="enter Nemo ID">
-        <input type="text" id="status" placeholder="enter Status">
-        <input type="text" id="zone" placeholder="enter Zone">
-        <input type="text" id="name" placeholder="enter Name">
-        <input type="text" id="availableFrom" placeholder="enter Available From">
-        <input type="text" id="businessType" placeholder="enter Business Type">
-        <input type="text" id="rank" placeholder="enter Rank">
-        <input type="text" id="availableTo" placeholder="enter Available to ">
-        <input type="text" id="documents" placeholder="enter Documents">
-        <input type="text" id="vessel" placeholder="enter Vessel">
-        <input type="text" id="ageAbove" placeholder="enter Age above">
-        <input type="text" id="documentNumber" placeholder="enter Document number">
-        <input type="text" id="experience" placeholder="enter Experience">
-        <input type="text" id="ageBelow" placeholder="enter Age Below">
-        <input type="text" id="group" placeholder="enter Group">
-        <input type="text" id="license" placeholder="enter License">
-        <input type="text" id="licenseCountry" placeholder="enter License Country">
-        
-        <button type="submit" class="btn btn-primary">Search</button>
-    </form>
+    <div id="sidebar">
+        <div class="text-center ">
+            <img src="./nemo.png" style="width: 50px;" alt="Nemo Logo">
+        </div>
+        <div class="text-center fs-2 " style="margin: 30px;" id="user_name">Hi, </div>
+        <a href="../search/search.html" id="search"> <i class="fas fa-search"></i> &nbsp; Search</a>
+        <a href="../user/user.html"><i class="fas fa-user-plus"></i> &nbsp; Create User</a>
+        <a href="../candidate/candidate.html"><i class="fas fa-user-plus"></i> &nbsp; Add Candidate</a>
+        <a href="../company/company.html"><i class="fas fa-building"></i> &nbsp; Add Details</a>
+        <a href="../report/report.html"><i class="fas fa-file-alt"></i> &nbsp; Generate Report</a>
+        <button type="submit" id="logout"><i class="fas fa-sign-out-alt"></i> &nbsp; Logout from Nemo</button>
+    </div>
+
+    <div id="content2">
+        <button id="toggleSidebar" class="btn btn-warning rounded-0  "> Toggle Menu</button>
+    </div>
+
+    <div id="content"  style="margin-bottom: 10%;">
+        <h1 class="text-center "> Search</h1>
+        <!-- <form id="view-user">
+            <div class="container mt-2 p-4 mb-2" style="border-top:5px solid blue; border-bottom :1px solid lightgray;border-right:1px solid lightgray;border-left:1px solid lightgray">
+                <div class="row">
+                    <div class="col-md-3 mb-1">
+                        <label for="nemoId" class="form-label">Nemo ID :</label>
+                        <input type="text" id="nemoId" class="form-control" placeholder="Enter Nemo ID">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="status" class="form-label">Status :</label>
+                        <input type="text" id="status" class="form-control" placeholder="Enter Status">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="zone" class="form-label">Zone :</label>
+                        <input type="text" id="zone" class="form-control" placeholder="Enter Zone">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="name" class="form-label">Name :</label>
+                        <input type="text" id="name" class="form-control" placeholder="Enter Name">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-1">
+                        <label for="availableFrom" class="form-label">Available From :</label>
+                        <input type="text" id="availableFrom" class="form-control" placeholder="Enter Available From">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="businessType" class="form-label">Business Type :</label>
+                        <input type="text" id="businessType" class="form-control"
+                            placeholder="Enter Business Type">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="rank" class="form-label">Rank :</label>
+                        <input type="text" id="rank" class="form-control" placeholder="Enter Rank">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="availableTo" class="form-label">Available To :</label>
+                        <input type="text" id="availableTo" class="form-control" placeholder="Enter Available To">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-1">
+                        <label for="documents" class="form-label">Documents :</label>
+                        <input type="text" id="documents" class="form-control" placeholder="Enter Documents">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="vessel" class="form-label">Vessel :</label>
+                        <input type="text" id="vessel" class="form-control" placeholder="Enter Vessel">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="ageAbove" class="form-label">Age Above :</label>
+                        <input type="text" id="ageAbove" class="form-control" placeholder="Enter Age above">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="documentNumber" class="form-label">Document Number :</label>
+                        <input type="text" id="documentNumber" class="form-control"
+                            placeholder="Enter Document number">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-1">
+                        <label for="experience" class="form-label">Experience :</label>
+                        <input type="text" id="experience" class="form-control" placeholder="Enter Experience">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="ageBelow" class="form-label">Age Below :</label>
+                        <input type="text" id="ageBelow" class="form-control" placeholder="Enter Age Below">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="group" class="form-label">Group :</label>
+                        <input type="text" id="group" class="form-control" placeholder="Enter Group">
+                    </div>
+                    <div class="col-md-3 mb-1">
+                        <label for="license" class="form-label">License :</label>
+                        <input type="text" id="license" class="form-control" placeholder="Enter License">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3 mb-1">
+                        <label for="licenseCountry" class="form-label">License Country :</label>
+                        <input type="text" id="licenseCountry" class="form-control"
+                            placeholder="Enter License Country">
+                    </div>
+                    
+
+                   
+                </div>
+                <div class="text-center">
+                <button type="submit" class="btn btn-primary w-25 h-25">Search</button></div>
+            </div>
+
+        </form> -->
+        <h1>Search Results</h1>
+  <div id="searchResults"></div>
+    </div>
     
-    <button id="back" class="btn btn-dark">Go Back</button> 
+
+    <div id="pushtobottomcenter">
+        Nautilus Shipping India Pvt Ltd
+        <div id="datetime"></div>
+    </div>
+
     <script src="search.js"></script>
 </body>
+
 </html>

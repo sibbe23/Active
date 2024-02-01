@@ -1,6 +1,6 @@
 // File: Vendor.js
 const { DataTypes } = require('sequelize');
-const sequelize = require('../database/connection');
+const sequelize = require('../util/database');
 
 const Vendor = sequelize.define('Vendor', {
     
