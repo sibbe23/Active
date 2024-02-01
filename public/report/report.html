@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report - Portage Bill</title>
+</head>
+<body>
+    <h1 class="text-center">Report | Portage Bill</h1> 
+    <form id="report-form">
+        <label for="reportTypes">Type of Reports</label>
+        <select id="reportTypes" name="reportTypes" required>
+        <option value="userList">User List</option>
+        <option value="anotherType">Another Type</option>
+        <!-- Add other report types as needed -->
+    </select>
+
+        <label for="fromDate">From Date</label>
+        <input type="date" id="fromDate" name="fromDate" required>
+        
+        <label for="toDate">To Date</label>
+        <input type="date" id="toDate" name="toDate" required>
+
+  
+
+
+        <label for="reportType">Type</label>
+        <select id="reportType" name="reportType" required>
+            <option value="userList">User List</option>
+            <!-- Add other report types as needed -->
+        </select>
+
+        <!-- Additional filters -->
+        <div id="additionalFilters">
+            <input type="checkbox" id="chkNemoId"> <label for="chkNemoId">Nemo ID</label>
+
+            <input type="checkbox" id="chkName"> <label for="chkName">Name</label>
+
+            <input type="checkbox" id="chkRank"> <label for="chkRank">Rank</label>
+
+            <input type="checkbox" id="chkVesselType"> <label for="chkVesselType">Type of Vessel</label>
+
+            <input type="checkbox" id="chkAddress"> <label for="chkAddress">Address</label>
+
+            <input type="checkbox" id="chkCity"> <label for="chkCity">City</label>
+
+            <input type="checkbox" id="chkNationality"> <label for="chkNationality">Nationality</label>
+
+            <input type="checkbox" id="chkContactNumber"> <label for="chkContactNumber">Contact Number</label>
+
+            <input type="checkbox" id="chkPrevCompany"> <label for="chkPrevCompany">Prev Company</label>
+
+            <input type="checkbox" id="chkEmail"> <label for="chkEmail">Email</label>
+
+            <input type="checkbox" id="chkLastSalary"> <label for="chkLastSalary">Last Salary</label>
+
+            <input type="checkbox" id="chkExperience"> <label for="chkExperience">Experience</label>
+
+            <input type="checkbox" id="chkDOB"> <label for="chkDOB">DOB</label>
+
+            <input type="checkbox" id="chkAvailability"> <label for="chkAvailability">Availability</label>
+
+            <input type="checkbox" id="chkHeight"> <label for="chkHeight">Height</label>
+
+            <input type="checkbox" id="chkWeight"> <label for="chkWeight">Weight</label>
+
+            <input type="checkbox" id="chkSafetyShoeSize"> <label for="chkSafetyShoeSize">Safety Shoe Size</label>
+
+            <input type="checkbox" id="chkBoilerSuitSize"> <label for="chkBoilerSuitSize">Boiler Suit Size</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Generate Report</button>
+    </form>
+
+    <button id="back" class="btn btn-dark">Go Back</button> 
+
+    <script src="report.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Company - Nsnemo</title>
+</head>
+<body>
+    <h1 class="text-center"> Add new Company</h1> 
+    <form id="view-company">
+        <div id="company-list"></div>
+        <button type="submit" class="btn btn-primary" >View Company</button>
+    </form>
+    <form id="company-form">
+        <input type="text" placeholder="Enter company name" id="company_name" required>
+        <input type="text" placeholder="Enter b_type" id="company_b_type" required>
+        <input type="text" placeholder="Enter contact person" id="company_contact" required>
+        <input type="email" placeholder="Enter email" id="company_email" required>
+        <input type="text" placeholder="Enter address" id="company_address" required>
+        <input type="text" placeholder="Enter management" id="company_management" required>
+        <input type="tel" placeholder="Enter phone" id="company_phone" required>
+        <input type="text" placeholder="Enter last update" id="company_last_update" required>
+        <button class="btn btn-success" type="submit">Add Company</button>
+    </form>
+<hr>
+    <form id="vessel-form">
+        <input type="text" placeholder="Enter vessel name" id="vessel_name" required>
+        <button class="btn btn-success" type="submit">Add Vessel</button>
+    </form>
+<hr>
+    <form id="vsl-form">
+        <input type="text" placeholder="Enter vessel name" id="vessel_name_vsl" required>
+        <input type="text" placeholder="Enter vessel type" id="vessel_type" required>
+        <input type="text" placeholder="Enter Company" id="company" required>
+        <input type="text" placeholder="Enter IMO number" id="imo_number" required>
+        <input type="text" placeholder="Enter Vessel flag" id="vessel_flag" required>
+        <button class="btn btn-success" type="submit">Add VSL name</button>
+    </form>
+    <hr>
+    <form id="exp-form">
+        <input type="text" placeholder="Enter Experience" id="exp" required>
+        <button class="btn btn-success" type="submit">Add Experience</button>
+    </form>
+<hr>
+    <form id="rank-form">
+        <input type="text" placeholder="Enter Rank" id="rank" required>
+        <input type="text" placeholder="Enter Rank Order" id="rank_order" required>
+        <input type="text" placeholder="Enter Category" id="category" required>
+        <button class="btn btn-success" type="submit">Add Rank</button>
+    </form>
+    <hr>
+    <form id="grade-form">
+        <input type="text" placeholder="Enter Experience" id="grade_exp" required>
+        <button class="btn btn-success" type="submit">Add Grade</button>
+    </form>
+    <hr>
+    <form id="port-form">
+        <input type="text" placeholder="Enter Port name" id="port_name" required>
+        <button class="btn btn-success" type="submit">Add Port</button>
+    </form>
+    <hr>
+    <form id="port-agent-form">
+        <input type="text" placeholder="Enter Port agent" id="port-agent-name" required>
+        <input type="text" placeholder="Enter Contact Person" id="port-agent-contact" required>
+        <input type="text" placeholder="Enter Address" id="port-agent-address" required>
+        <input type="text" placeholder="Enter Phone" id="port-agent-phone" required>
+        <input type="text" placeholder="Enter Email" id="port-agent-email" required>
+        <input type="text" placeholder="Enter City" id="port-agent-city" required>
+        <input type="text" placeholder="Enter State" id="port-agent-state" required>
+        <input type="text" placeholder="Enter Country" id="port-agent-country" required>
+        <button class="btn btn-success" type="submit">Add Port Agent</button>
+    </form>
+    <hr>
+    <form id="hospital-form">
+        <input type="text" placeholder="Enter Hospital" id="hospital-name" required>
+        <input type="text" placeholder="Enter Doctor name" id="doctor-name" required>
+        <input type="text" placeholder="Enter Address" id="doctor-address" required>
+        <input type="text" placeholder="Enter City" id="doctor-city" required>
+        <input type="text" placeholder="Enter State" id="doctor-state" required>
+        <input type="text" placeholder="Enter Phone" id="doctor-phone" required>
+        <input type="text" placeholder="Enter Email" id="doctor-email" required>
+        <input type="file" placeholder="Upload" id="doctor-upload" required>
+        <button class="btn btn-success" type="submit">Add Doctor</button>
+    </form>
+    <hr>
+    <form id="document-form">
+        <input type="text" placeholder="Enter Document Type" id="document-type" required>
+        <input type="checkbox" placeholder="Hide Expiry Date" id="hide-expiry-date" required>Hide Expiry Date
+        <button class="btn btn-success" type="submit">Add Document Type</button>
+    </form>
+    <hr>
+    <form id="vendor-form">
+        <input type="text" placeholder="Enter Vendor Name" id="vendor-name" required>
+        <input type="text" placeholder="Hide Vendor Address" id="vendor-address" required>
+        <button class="btn btn-success" type="submit">Add Vendor</button>
+    </form>
+    <hr>
+    
+    <button id="back" class="btn btn-dark">  Go Back </button> 
+    <script src="company.js"></script>
+</body>
+</html>
