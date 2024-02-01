@@ -509,6 +509,28 @@ document.getElementById('travelForm').addEventListener('submit', async function 
     window.location.href = url;
 });
 
+document.getElementById('updateForm').addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    // Collect form data
+    const med_id = document.getElementById('med_id').value;
+    const hospital_name = document.getElementById('hospital_name').value;
+    const hospital_place = document.getElementById('hospital_place').value;
+    const hospital_date = document.getElementById('hospital_date').value;
+    const hospital_exp_date = document.getElementById('hospital_exp_date').value;
+    const hospital_done = document.getElementById('hospital_done').value;
+    const hospital_status = document.getElementById('hospital_status').value;
+    const hospital_amount = document.getElementById('hospital_amount').value;
+    const hospital_upload = document.getElementById('hospital_upload').value;
+
+    // Construct the URL with query parameters
+    var url = `edit-c-medicals.html?id=${med_id}&hospitalName=${hospital_name}&place=${hospital_place}&date=${hospital_date}&expiry_date=${hospital_exp_date}&done_by=${hospital_done}&status=${hospital_status}&amount=${hospital_amount}&upload=${hospital_upload}`;
+
+    // Redirect to the edit-medical.html page
+    window.location.href = url;
+});
+
+
 document.getElementById('edit_nkd_form').addEventListener('submit', function (e) {
     e.preventDefault();
 

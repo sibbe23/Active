@@ -409,13 +409,17 @@
                 <div data-i18n="Account Settings">User</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
+               <li class="menu-item">
                   <a href="add-user.html" class="menu-link">
                     <div data-i18n="Account">Manage</div>
                   </a>
                 </li>
-              </ul>
-            </li>
+                <li class="menu-item">
+                  <a href="add-userdata.html" class="menu-link">
+                    <div data-i18n="Account">Add</div>
+                  </a>
+                </li>
+              </ul></li>
             
 
            
@@ -569,24 +573,25 @@ id='logout'>
           <div class="container-fluid">
             
             <div>
-                    <div class="content-wrapper bg-white mt-3 rounded-3">
+                    <div class="content-wrapper  mt-3 rounded-3">
                         <div class="w-100 mt-3">
                 
-                            <div class="container">
-                                <h1 class="text-center">Vessel Table</h1>
-                                <div id="pagination-controls"></div>
+                            <div class="">
+                              <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Vessel Table</h4>
                 
                                 <div class="table-responsive">
-                                    <table id="vessel-table" class="table table-sm table-striped table-bordered ">
+                                    <table id="vessel-table" class="table table-sm table-striped table-bordered text-center " style="font-size: 12px;">
                                         <thead>
                                             <tr>
-                                                <th scope="col">Sno</th>
-                                                <th scope="col">Vessel Name</th>
-                                                <th scope="col">Actions</th>
+                                                <th scope="col" class="col-1" style="font-size: 8px;">Sno</th>
+                                                <th scope="col" class="col-auto" style="font-size: 8px;">Vessel Name</th>
+                                                <th scope="col" class="col-1" style="font-size: 8px;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody id="vessel-list"></tbody>
                                     </table>
+                                    <div id="pagination-controls"></div>
+
                             </div>
                 
                         </div>
@@ -600,26 +605,27 @@ id='logout'>
                 </div>
                 
             </div>
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper mt-3 rounded-3">
               <div class="w-100 mt-3">
-                  <div class="container">
-                      <h1 class="text-center">Vessel Type Table</h1>
-                      <div id="pagination-controls-vsl"></div>
-                      <div class="table-responsive">
-                          <table id="vsl-table" class="table table-sm table-striped table-bordered ">
+                  <div class="">
+                    <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3" >Vessel Type Table</h4>
+                      <div class="table-responsive text-center">
+                          <table id="vsl-table" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
                               <thead>
                                   <tr>
-                                      <th scope="col">Sno</th>
-                                      <th scope="col">Vessel Name</th>
-                                      <th scope="col">Vessel Type</th>
-                                      <th scope="col">Company</th>
-                                      <th scope="col">IMO Number</th>
-                                      <th scope="col">Vessel Flag</th>
-                                      <th scope="col">Actions</th>
+                                      <th scope="col" class="col-1" style="font-size: 8px;" >Sno</th>
+                                      <th scope="col" style="font-size: 8px;">Vessel Name</th>
+                                      <th scope="col" style="font-size: 8px;">Vessel Type</th>
+                                      <th scope="col" style="font-size: 8px;">Company</th>
+                                      <th scope="col" style="font-size: 8px;">IMO Number</th>
+                                      <th scope="col" style="font-size: 8px;">Vessel Flag</th>
+                                      <th scope="col" class="col-1" style="font-size: 8px;">Actions</th>
                                   </tr>
                               </thead>
                               <tbody id="vsl-list"></tbody>
                           </table>
+                          <div id="pagination-controls-vsl"></div>
+
                       </div>
                   </div>
               </div>

@@ -46,17 +46,13 @@ if (queryParams.readOnly==='true') {
     document.getElementById('u_read_only').checked = false;
 }
 
-if (queryParams.readWrite === 'true') {
-    document.getElementById('u_read_write').checked = true;
+if (queryParams.Write === 'true') {
+    document.getElementById('u_write').checked = true;
 } else {
-    document.getElementById('u_read_write').checked = false;
+    document.getElementById('u_write').checked = false;
 }
 
-if (queryParams.deletes==='true') {
-    document.getElementById('u_delete').checked = true;
-} else {
-    document.getElementById('u_delete').checked = false;
-}
+
 
 if (queryParams.imports==='true') {
     document.getElementById('u_import').checked = true;
@@ -82,11 +78,7 @@ if (queryParams.reports==='true') {
     document.getElementById('u_reports').checked = false;
 }
 
-if (queryParams.allReports==='true') {
-    document.getElementById('u_all_reports').checked = true;
-} else {
-    document.getElementById('u_all_reports').checked = false;
-}
+
 
 // Check the 'disable_user' checkbox if needed
 if (queryParams.disableUser==='true') {
@@ -198,12 +190,12 @@ document.getElementById('e_user-form').addEventListener('submit', async function
         createdDate: document.getElementById('user_created_date').value,
         disableUser: document.getElementById('disable_user').checked,
         readOnly:document.getElementById('u_read_only').checked,
-        deletes:document.getElementById('u_delete').checked,
+        Write:document.getElementById('u_write').checked,
+
         imports:document.getElementById('u_import').checked,
         exports:document.getElementById('u_export').checked,
         userManagement:document.getElementById('u_user_management').checked,
         reports:document.getElementById('u_reports').checked,
-        allReports:document.getElementById('u_all_reports').checked
     };
 
     try {

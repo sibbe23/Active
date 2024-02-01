@@ -218,6 +218,7 @@ res.send("welcome")});
 // });
 
 app.post('/search', async (req, res) => {
+
     const searchValue = req.body.search;
 
     try {
@@ -501,6 +502,32 @@ app.post('/search', async (req, res) => {
 //     }
 //   });
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.post('/searchspl', async (req, res) => {
     try {
       const { nemoId, name, rank, vsl, experience, grade, status, license, zone, avb_date, las_date } = req.body;

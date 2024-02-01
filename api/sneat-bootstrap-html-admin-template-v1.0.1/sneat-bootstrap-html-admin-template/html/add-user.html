@@ -409,7 +409,12 @@
                     <div data-i18n="Account">Manage</div>
                   </a>
                 </li>
-              </ul>
+                <li class="menu-item">
+                  <a href="add-userdata.html" class="menu-link">
+                    <div data-i18n="Account">Add</div>
+                  </a>
+                </li>
+              </ul> 
             </li>
             
 
@@ -626,144 +631,7 @@ id='logout'>
             
             
             
-            <div class="w-100 mt-3 card" >
-                    
-        
-              <div class="card-body">
-                <h5 class="card-title">Add User</h5>
-                <hr />
-        
-                <form id="user-form">
-                    <div class="row g-3">
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating">
-                                <input type="text" placeholder="Enter username" id="f_name" class="form-control" required>
-                                <label for="f_name">First name</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating">
-                                <input type="text" placeholder="Enter username" id="l_name" class="form-control" required>
-                                <label for="l_name">Last name</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating ">
-                                <input type="email" placeholder="Enter email" id="user_email" class="form-control" required>
-                                <label for="user_email">Email</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating">
-                                <input type="password" placeholder="Enter password" id="user_password" class="form-control" required>
-                                <label for="user_password">Password</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating">
-                                <input type="password" placeholder="Confirm password" id="user_c_password" class="form-control" required>
-                                <label for="user_c_password">Confirm</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2 ">
-                            <div class="form-floating">
-                                <input type="tel" placeholder="Enter phone" id="user_phone" class="form-control" required>
-                                <label for="user_phone">Phone</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating ">
-                                <select id="user_group" class="form-select" required>
-                                    <option value="" disabled selected>-- Select Role --</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="staff">Staff</option>
-                                    <option value="vendor">Vendor</option>
-                                    <option value="client">Client</option>
-                                </select>
-                                <label for="user_group">Group</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2">
-                            <div class="form-floating ">
-                                <select class="form-select" id="user_vendor" required>
-                                    <!-- Options will be dynamically added using JavaScript -->
-                                </select>
-                                <label for="user_vendor">Vendor:</label>
-                            </div>
-                        </div>
-                        <div class="col-md-4 mt-2 ">
-                            <div class="form-floating  ">
-                                <select class="form-select" id="user_client" required>
-                                    <!-- Options will be dynamically added using JavaScript -->
-                                </select>
-                                <label for="user_client">Client :</label>
-                            </div>
-                        </div>
-                        <div class="col mb-0 mt-2">
-                            <div class="form-floating ">
-                                <input type="date" placeholder="Enter Date" id="user_created_date" class="form-control" required>
-                                <label for="user_created_date">Created Date</label>
-                            </div>
-                        </div>
-                        
-                    </div>
-        
-                    <div class="row  mt-2 m-1 border border-1 ms-0 me-0 p-3 mb-2 rounded-2">
-                      <h5 class="col-12">Permissions</h5>
-                      <hr class="col-12">
-                      <div class="row me-4 ms-2">
-                          <div class="col-md-3 form-check">
-                              <input type="checkbox" id="u_read_only" name="u_read_only" class="form-check-input">
-                              <label class="form-check-label" style="font-size: 12px;" for="e_read_only">Read only</label>
-                          </div>
-                          <div class="col-md-3 form-check">
-                              <input type="checkbox" id="u_write" name="u_write" class="form-check-input">
-                              <label class="form-check-label" style="font-size: 12px;" for="u_write">Write</label>
-                          </div>
-                          
-                          <div class="col-md-3 form-check">
-                              <input type="checkbox" id="u_import" name="u_import" class="form-check-input">
-                              <label class="form-check-label" style="font-size: 12px;" for="e_import">Import</label>
-                          </div>
-                          <div class="col-md-3 form-check">
-                              <input type="checkbox" id="u_export" name="u_export" class="form-check-input">
-                              <label class="form-check-label" style="font-size: 12px;" for="e_export">Export</label>
-                          </div>
-                          <div class="col-md-3 form-check">
-                              <input type="checkbox" id="u_user_management" name="u_user_management" class="form-check-input">
-                              <label class="form-check-label" style="font-size: 12px;" for="e_user_management">User management</label>
-                          </div>
-                          <div class="col-md-3 form-check">
-                              <input type="checkbox" id="u_reports" name="e_reports" class="form-check-input">
-                              <label class="form-check-label" style="font-size: 12px;" for="e_reports">Reports</label>
-                          </div>
-                          
-                      </div>
-                  </div>
-                  <div class=" col-4 border  rounded-3 p-3 mb-3" style="width: 200px;height:58px">
-                    <div class="form-check ">
-                      <input type="checkbox" id="disable_user">  Disable User?
-                    </div>
-              </div>
-              
-        
-                    <button class="btn btn-success" type="submit">Add User</button>
-                </form>
-            </div>
             
-            
-            
-            
-            
-                            
-                    
-
-
-            <div class="content-wrapper">
-               
-                    
-                </div>
-            </div>
         </div>
         
           

@@ -8,7 +8,7 @@ document.getElementById('search_btn').addEventListener('click', async function (
     else
     try {
       // Send an asynchronous request to the server using Axios with async/await
-      const response = await axios.post('http://localhost:3000/search', { search: searchValue });
+      const response = await axios.post('http://localhost:3000/search', { search: searchValue },{headers:{'Authorization':token}});
       
       // Handle the response from the server (e.g., display search results)
       console.log(response.data);
@@ -58,7 +58,7 @@ document.getElementById('search_btn').addEventListener('click', async function (
       };
 
       // Make a POST request using Axios
-      axios.post('http://localhost:3000/searchspl', searchData)
+      axios.post('http://localhost:3000/searchspl', searchData,{headers:{'Authorization':token}})
         .then(function (response) {
           // Handle the successful response
           const searchResults = response.data;

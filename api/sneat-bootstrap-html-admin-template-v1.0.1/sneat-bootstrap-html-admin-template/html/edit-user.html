@@ -404,13 +404,17 @@
                 <div data-i18n="Account Settings">User</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
+               <li class="menu-item">
                   <a href="add-user.html" class="menu-link">
                     <div data-i18n="Account">Manage</div>
                   </a>
                 </li>
-              </ul>
-            </li>
+                <li class="menu-item">
+                  <a href="add-userdata.html" class="menu-link">
+                    <div data-i18n="Account">Add</div>
+                  </a>
+                </li>
+              </ul></li>
             
 
            
@@ -718,13 +722,10 @@ id='logout'>
                                 <label class="form-check-label" style="font-size: 12px;" for="u_read_only">Read only</label>
                             </div>
                             <div class="col-md-3 form-check">
-                                <input type="checkbox" id="u_read_write" name="u_read_write" class="form-check-input">
-                                <label class="form-check-label" style="font-size: 12px;" for="u_read_write">Read/Write</label>
+                                <input type="checkbox" id="u_write" name="u_write" class="form-check-input">
+                                <label class="form-check-label" style="font-size: 12px;" for="u_write">Read/Write</label>
                             </div>
-                            <div class="col-md-3 form-check">
-                                <input type="checkbox" id="u_delete" name="u_delete" class="form-check-input">
-                                <label class="form-check-label" style="font-size: 12px;" for="u_delete">Delete</label>
-                            </div>
+                           
                             <div class="col-md-3 form-check">
                                 <input type="checkbox" id="u_import" name="u_import" class="form-check-input">
                                 <label class="form-check-label" style="font-size: 12px;" for="u_import">Import</label>
@@ -741,10 +742,7 @@ id='logout'>
                                 <input type="checkbox" id="u_reports" name="u_reports" class="form-check-input">
                                 <label class="form-check-label" style="font-size: 12px;" for="u_reports">Reports</label>
                             </div>
-                            <div class="col-md-3 form-check">
-                                <input type="checkbox" id="u_all_reports" name="u_all_reports" class="form-check-input">
-                                <label class="form-check-label" style="font-size: 12px;" for="u_all_reports">All-Reports</label>
-                            </div>
+                           
                         </div>
                     </div>
                   <div class=" col-4 border  rounded-3 p-3 mb-3" style="width: 200px;height:58px">

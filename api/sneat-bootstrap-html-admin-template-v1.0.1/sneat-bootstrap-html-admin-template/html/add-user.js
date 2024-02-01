@@ -30,61 +30,68 @@ async function createCompanyDropdown() {
 
 
 document.addEventListener('DOMContentLoaded', async function () {
-await createCompanyDropdown()
-await createVendorDropdown()
+// await createCompanyDropdown()
+// await createVendorDropdown()
 await displayUsers()
+const hasUserManagement = decodedToken.userManagement;
+        console.log(hasUserManagement)
+        if (hasUserManagement) {
+          document.getElementById('userManagementSection').style.display = 'block';
+          document.getElementById('userManagementSections').style.display = 'block';
+    
+        }
 
-document.getElementById('user-form').addEventListener('submit', async (event) => {
-    event.preventDefault();
+// document.getElementById('user-form').addEventListener('submit', async (event) => {
+//     event.preventDefault();
 
-    const userName = document.getElementById('f_name').value;
-    const lastName = document.getElementById('l_name').value;
-    const userEmail = document.getElementById('user_email').value;
-    const userPassword = document.getElementById('user_password').value;
-    const userCPassword = document.getElementById('user_c_password').value;
-    const userPhone = document.getElementById('user_phone').value;
-    const userGroup = document.getElementById('user_group').value;
-    const userVendor = document.getElementById('user_vendor').value;
-    const userClient = document.getElementById('user_client').value;
-    const createdDate = document.getElementById('user_created_date').value;
-    const disableUser = document.getElementById('disable_user').checked;
-    const readOnly = document.getElementById('u_read_only').checked;
-    const Write = document.getElementById('u_write').checked;
-    const imports = document.getElementById('u_import').checked;
-    const exports = document.getElementById('u_export').checked;
-    const userManagement = document.getElementById('u_user_management').checked;
-    const reports = document.getElementById('u_reports').checked;
+//     const userName = document.getElementById('f_name').value;
+//     const lastName = document.getElementById('l_name').value;
+//     const userEmail = document.getElementById('user_email').value;
+//     const userPassword = document.getElementById('user_password').value;
+//     const userCPassword = document.getElementById('user_c_password').value;
+//     const userPhone = document.getElementById('user_phone').value;
+//     const userGroup = document.getElementById('user_group').value;
+//     const userVendor = document.getElementById('user_vendor').value;
+//     const userClient = document.getElementById('user_client').value;
+//     const createdDate = document.getElementById('user_created_date').value;
+//     const disableUser = document.getElementById('disable_user').checked;
+//     const readOnly = document.getElementById('u_read_only').checked;
+//     const Write = document.getElementById('u_write').checked;
+//     const imports = document.getElementById('u_import').checked;
+//     const exports = document.getElementById('u_export').checked;
+//     const userManagement = document.getElementById('u_user_management').checked;
+//     const reports = document.getElementById('u_reports').checked;
 
-    const formData = {
-        userName,
-        lastName,
-        userEmail,
-        userPassword,
-        userCPassword,
-        userPhone,
-        userGroup,
-        userVendor,
-        userClient,
-        createdDate,
-        disableUser,
-        readOnly,
-        Write,
-        imports,
-        exports,
-        userManagement,
-        reports,
-    };
-    console.log(formData);
+//     const formData = {
+//         userName,
+//         lastName,
+//         userEmail,
+//         userPassword,
+//         userCPassword,
+//         userPhone,
+//         userGroup,
+//         userVendor,
+//         userClient,
+//         createdDate,
+//         disableUser,
+//         readOnly,
+//         Write,
+//         imports,
+//         exports,
+//         userManagement,
+//         reports,
+//     };
+//     console.log(formData);
 
-    try {
-        const response = await axios.post('http://localhost:3000/user/create-user', formData, { headers: { "Authorization": token } });
-        // Handle the server response here
-        console.log(response.data);
-    } catch (error) {
-        // Handle errors here
-        console.error('Error:', error);
-    }
-});
+//     try {
+//         const response = await axios.post('http://localhost:3000/user/create-user', formData, { headers: { "Authorization": token } });
+//         // Handle the server response here
+//         console.log(response.data);
+//     } catch (error) {
+//         // Handle errors here
+//         console.error('Error:', error);
+//     }
+// });
 
 
 })
@@ -148,7 +155,7 @@ async function displayUsers() {
                 <td style="font-size:13px">${user.disableUser}</td>
                 <td style="font-size:13px">
                     <div class="row me-1 ms-1">
-                        <button class="btn btn-outline-secondary btn-sm col mb-1" onclick="editUser(${user.id},'${user.userName}', '${user.lastName}', '${user.userEmail}','${user.userPassword}', '${user.userPhone}', '${user.userGroup}', '${user.userVendor}', '${user.userClient}', '${user.createdDate}', ${user.disableUser}, ${user.readOnly}, ${user.readWrite}, ${user.deletes}, ${user.imports}, ${user.exports}, ${user.userManagement}, ${user.reports}, ${user.allReports}, event)">E</button>
+                        <button class="btn btn-outline-secondary btn-sm col mb-1" onclick="editUser(${user.id},'${user.userName}', '${user.lastName}', '${user.userEmail}','${user.userPassword}', '${user.userPhone}', '${user.userGroup}', '${user.userVendor}', '${user.userClient}', '${user.createdDate}', ${user.disableUser}, ${user.readOnly}, ${user.Write}, ${user.imports}, ${user.exports}, ${user.userManagement}, ${user.reports}, event)">E</button>
                         <button class="btn btn-outline-danger btn-sm col mb-1" onclick="deleteUser(${user.id})">D</button>
                     </div>
                 </td>
@@ -167,12 +174,12 @@ async function displayUsers() {
 
     // Handling form submission
 
-    async function editUser(id, userName, lastName, userEmail, userPassword, userPhone, userGroup, userVendor, userClient, createdDate, disableUser, readOnly, readWrite, deletes, imports, exports, userManagement, reports, allReports, event) {
+    async function editUser(id, userName, lastName, userEmail, userPassword, userPhone, userGroup, userVendor, userClient, createdDate, disableUser, readOnly, Write, imports, exports, userManagement, reports, event) {
         event.preventDefault();
         console.log('Edit clicked for user ID:', id);
-console.log(id, userName, lastName, userEmail, userPassword, userPhone, userGroup, userVendor, userClient, createdDate, disableUser, readOnly, readWrite, deletes, imports, exports, userManagement, reports, allReports)
+console.log(id, userName, lastName, userEmail, userPassword, userPhone, userGroup, userVendor, userClient, createdDate, disableUser, readOnly, Write, imports, exports, userManagement, reports)
         // Redirect to the edit page with user details as query parameters
-        window.location.href = `edit-user.html?id=${id}&userName=${userName}&lastName=${lastName}&userEmail=${userEmail}&userPassword=${userPassword}&userPhone=${userPhone}&userGroup=${userGroup}&userVendor=${userVendor}&userClient=${userClient}&createdDate=${createdDate}&disableUser=${disableUser}&readOnly=${readOnly}&readWrite=${readWrite}&deletes=${deletes}&imports=${imports}&exports=${exports}&userManagement=${userManagement}&reports=${reports}&allReports=${allReports}`;
+        window.location.href = `edit-user.html?id=${id}&userName=${userName}&lastName=${lastName}&userEmail=${userEmail}&userPassword=${userPassword}&userPhone=${userPhone}&userGroup=${userGroup}&userVendor=${userVendor}&userClient=${userClient}&createdDate=${createdDate}&disableUser=${disableUser}&readOnly=${readOnly}&Write=${Write}&imports=${imports}&exports=${exports}&userManagement=${userManagement}&reports=${reports}`;
     }
     
     async function deleteUser(id) {
@@ -204,3 +211,17 @@ console.log(id, userName, lastName, userEmail, userPassword, userPhone, userGrou
         // For example, redirect to a login page
         window.location.href = './loginpage.html';
     });
+
+        
+
+    
+    
+    
+    function decodeToken(token) {
+        // Implementation depends on your JWT library
+        // Here, we're using a simple base64 decode
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace('-', '+').replace('_', '/');
+        return JSON.parse(atob(base64));
+    }
+    const decodedToken = decodeToken(token);

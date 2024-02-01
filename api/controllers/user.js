@@ -1,10 +1,9 @@
 const User = require('../models/user'); 
 const bcrypt = require("bcrypt")
 const jwt=require("jsonwebtoken")
+const sequelize=require('../util/database')
 
 
-const search =async(req,res)=>{
-}
 
 function generateAccessToken(id, userName, 
   disableUser, 
@@ -20,6 +19,7 @@ function generateAccessToken(id, userName,
 
 
 const create_user = async (req, res, next) => {
+  const t = await sequelize.transaction();
   try {
     const {
       userName,
@@ -70,10 +70,11 @@ const create_user = async (req, res, next) => {
           exports,
           userManagement,
           reports,
-        });
-
+        },{transaction:t});
+        await t.commit();
         res.status(201).json({ message: "Successfully Created New User", user: newUser });
       } catch (err) {
+        await t.rollback();
         console.error("Error creating user:", err);
         res.status(500).json({
           message: "Error creating user",
@@ -93,6 +94,7 @@ const create_user = async (req, res, next) => {
   // Endpoint to edit a user
 // Endpoint to edit a user
 const edit_user = async (req, res) => {
+  const t = await sequelize.transaction();
   const userId = req.params.id;
   console.log(req.body);
 
@@ -282,7 +284,6 @@ try {
 module.exports = {
   create_user,
   edit_user,
-  search,
   login,
   view_user,
   delete_user,

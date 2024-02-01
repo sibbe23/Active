@@ -11,7 +11,7 @@ router.post("/login", userControllers.login)
 router.put('/update-user/:id', userControllers.edit_user);
 router.delete('/delete-user/:id', userControllers.delete_user);
 
-router.post('/search', userControllers.search);
+// router.post('/search', userControllers.search);
 // router.post('/searchAll', userControllers.searchAll);
 router.get("/view-user",userAuthentication.authenticate,userControllers.view_user)
 

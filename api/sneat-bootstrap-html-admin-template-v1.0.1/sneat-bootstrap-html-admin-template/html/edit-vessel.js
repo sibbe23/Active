@@ -17,10 +17,10 @@ async function displayVessels(page = 1, limit = 10) {
                 <td>${sno + index}</td>
                 <td>${vessel.vesselName}</td>
                 <td>
-                    <button class="btn border-0" onclick="editVessel('${vessel.id}','${vessel.vesselName}',event)">
+                    <button class="btn border-0 m-0 p-0" onclick="editVessel('${vessel.id}','${vessel.vesselName}',event)">
                         <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn border-0" onclick="deleteVessel('${vessel.id}',event)">
+                    <button class="btn border-0 m-0 p-0" onclick="deleteVessel('${vessel.id}',event)">
                         <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -30,9 +30,60 @@ async function displayVessels(page = 1, limit = 10) {
 
         // Display pagination controls
         const paginationControls = document.getElementById("pagination-controls");
-        paginationControls.innerHTML = `<button class="btn btn-primary " onclick="displayVessels(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''}>Previous</button>
-                                       <span>Page ${page}</span>
-                                       <button class="btn btn-primary " onclick="displayVessels(${page + 1}, ${limit})" ${vesselResponse.data.vessels.length < limit ? 'disabled' : ''}>Next</button>`;
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayVessels(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayVessels(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Maximum number of buttons to display (including ellipsis)
+        const maxButtons = 4;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(vesselResponse.data.totalPages); i++) {
+            if (
+                i === 1 ||                                  // First page
+                i === Math.ceil(vesselResponse.data.totalPages) ||  // Last page
+                (i >= page - 1 && i <= page + maxButtons - 2) // Displayed pages around the current page
+            ) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="displayVessels(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + maxButtons - 1) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(vesselResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayVessels(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(vesselResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayVessels(${Math.ceil(vesselResponse.data.totalPages)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing ${page} of ${Math.ceil(vesselResponse.data.totalPages)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to paginationControls
+        paginationControls.innerHTML = paginationHTML;
     } catch (error) {
         console.error('Error:', error);
     }
@@ -135,10 +186,10 @@ async function displayVesselTypes(page = 1, limit = 10) {
                 <td>${vslType.imoNumber}</td>
                 <td>${vslType.vesselFlag}</td>
                 <td>
-                    <button class="btn border-0" onclick="editVesselType('${vslType.id}','${vslType.vesselName}','${vslType.vesselType}','${vslType.vsl_company}','${vslType.imoNumber}','${vslType.vesselFlag}', event)">
+                    <button class="btn border-0 p-0 m-0" onclick="editVesselType('${vslType.id}','${vslType.vesselName}','${vslType.vesselType}','${vslType.vsl_company}','${vslType.imoNumber}','${vslType.vesselFlag}', event)">
                         <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn border-0" onclick="deleteVesselType('${vslType.id}', event)">
+                    <button class="btn border-0 p-0 m-0" onclick="deleteVesselType('${vslType.id}', event)">
                         <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -148,9 +199,61 @@ async function displayVesselTypes(page = 1, limit = 10) {
 
         // Display pagination controls
         const paginationControlsVsl = document.getElementById("pagination-controls-vsl");
-        paginationControlsVsl.innerHTML = `<button class="btn btn-primary" onclick="displayVesselTypes(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''}>Previous</button>
-                                           <span>Page ${page}</span>
-                                           <button class="btn btn-primary" onclick="displayVesselTypes(${page + 1}, ${limit})" ${vslTypeResponse.data.vsls.length < limit ? 'disabled' : ''}>Next</button>`;
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayVesselTypes(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayVesselTypes(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Maximum number of buttons to display (including ellipsis)
+        const maxButtons = 4;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(vslTypeResponse.data.totalPages); i++) {
+            if (
+                i === 1 ||                                  // First page
+                i === Math.ceil(vslTypeResponse.data.totalPages) ||  // Last page
+                (i >= page - 1 && i <= page + maxButtons - 2) // Displayed pages around the current page
+            ) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="displayVesselTypes(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + maxButtons - 1) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(vslTypeResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayVesselTypes(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(vslTypeResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayVesselTypes(${Math.ceil(vslTypeResponse.data.totalPages)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing ${page} of ${Math.ceil(vslTypeResponse.data.totalPages)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to paginationControls
+        paginationControlsVsl.innerHTML = paginationHTML;
+
     } catch (error) {
         console.error('Error:', error);
     }
