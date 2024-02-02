@@ -79,9 +79,14 @@ async function fetchAndDisplayDocumentDetails(candidateId) {
                 <td>${doc.document_files}</td>
                 <td>${doc.stcw}</td>
                 <td>
-                    <button onclick="editDocument('${doc.id}','${doc.document}','${doc.document_number}','${doc.issue_date}','${doc.issue_place}','${doc.document_files}','${doc.stcw}')">Edit</button>
-                    <button onclick="deleteDocument('${doc.id}')">Delete</button>
-                </td>
+                <button class="btn border-0 m-0 p-0" onclick="editDocument('${doc.id}','${doc.document}','${doc.document_number}','${doc.issue_date}','${doc.issue_place}','${doc.document_files}','${doc.stcw}', event)">
+                    <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+                </button>
+                <button class="btn border-0 m-0 p-0" onclick="deleteDocument('${doc.id}', event)">
+                    <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+                </button>
+            </td>
+            
             `;
 
             documentTableBody.appendChild(row);
@@ -148,3 +153,27 @@ document.getElementById('logout').addEventListener('click', function() {
     // For example, redirect to a login page
     window.location.href = './loginpage.html';
 });
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

@@ -65,7 +65,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="indexpage.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -457,6 +457,7 @@
           <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
+            style="z-index: 2;"
           >
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -464,7 +465,7 @@
               </a>
             </div>
 
-            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+            <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse" >
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
@@ -494,13 +495,13 @@
                 </li> -->
 
                 <!-- User -->
-                <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                <li class="nav-item navbar-dropdown dropdown-user dropdown" >
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                       <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
-                  <ul class="dropdown-menu dropdown-menu-end">
+                  <ul class="dropdown-menu dropdown-menu-end" >
                     <li>
                       <a class="dropdown-item" href="#">
                         <div class="d-flex">
@@ -561,35 +562,35 @@
           <!-- Content wrapper -->
           <div class="container-fluid">
 
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper mt-3 rounded-3">
                 <div class="w-100 mt-3">
-                    <div class="container">
-                        <h1 class="text-center">Bank Table</h1>
+                    <div class="">
+                      <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Bank table</h4>
                         <div id="pagination-controls"></div>
             
                         <div class="table-responsive">
-                            <table id="bankTable" class="table table-sm table-bordered table-striped">
+                            <table id="bankTable" class="table table-sm table-bordered table-striped" style="font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th>Bank Name</th>
-                                        <th>Account Number</th>
-                                        <th>Bank Address</th>
-                                        <th>IFSC Code</th>
-                                        <th>Swift Code</th>
-                                        <th>Beneficiary</th>
-                                        <th>Beneficiary Address</th>
-                                        <th>PAN Number</th>
-                                        <th>Passbook</th>
-                                        <th>PAN Card</th>
-                                        <th>NRI Bank Name</th>
-                                        <th>NRI Account Number</th>
-                                        <th>NRI Bank Address</th>
-                                        <th>NRI IFSC Code</th>
-                                        <th>NRI Swift Code</th>
-                                        <th>NRI Beneficiary</th>
-                                        <th>NRI Beneficiary Address</th>
-                                        <th>NRI Passbook</th>
-                                        <th>Actions</th>
+                                        <th  style="font-size: 8px;">Bank Name</th>
+                                        <th  style="font-size: 8px;">Account Number</th>
+                                        <th  style="font-size: 8px;">Bank Address</th>
+                                        <th  style="font-size: 8px;">IFSC Code</th>
+                                        <th  style="font-size: 8px;">Swift Code</th>
+                                        <th  style="font-size: 8px;">Beneficiary</th>
+                                        <th  style="font-size: 8px;">Beneficiary Address</th>
+                                        <th  style="font-size: 8px;">PAN Number</th>
+                                        <th style="font-size: 8px;">Passbook</th>
+                                        <th  style="font-size: 8px;">PAN Card</th>
+                                        <th  style="font-size: 8px;">NRI Bank Name</th>
+                                        <th  style="font-size: 8px;">NRI Account Number</th>
+                                        <th  style="font-size: 8px;">NRI Bank Address</th>
+                                        <th  style="font-size: 8px;">NRI IFSC Code</th>
+                                        <th  style="font-size: 8px;">NRI Swift Code</th>
+                                        <th  style="font-size: 8px;">NRI Beneficiary</th>
+                                        <th  style="font-size: 8px;">NRI Beneficiary Address</th>
+                                        <th  style="font-size: 8px;">NRI Passbook</th>
+                                        <th  style="font-size: 8px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="bankTableBody">
@@ -793,11 +794,12 @@
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
-              <div class="text-center  p-4 m-2">
-                Nautilus Shipping
-                <div id="datetime"></div>
+              <div class="d-flex justify-content-between p-1 m-3 " >
+                  
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
               </div>
-            </footer>
+          </footer>
             <!-- / Footer -->
             
 

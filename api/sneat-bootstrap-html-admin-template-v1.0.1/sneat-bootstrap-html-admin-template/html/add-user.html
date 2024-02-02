@@ -65,7 +65,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="indexpage.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -571,12 +571,11 @@ id='logout'>
             <div class="content-wrapper ">
                 <div class="w-100 mt-3">
                   
-                    <div class="container-fluid  m-0 ">
-                        <div class="row  ms-0">
-                            <div class="col-auto mt-2 p-0" style="height:auto">
-                                <h5 class=" text-dark  ms-0 mb-1 border p-2  ">User Table</h5>
-                            </div>
-                            <div class="col-1 mt-2 h-auto ms-0 ps-0  ">
+                    <div class="">
+                        <div >
+                              <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">User Table</h4>
+                            
+                            <!-- <div class="col-1 mt-2 h-auto ms-0 ps-0  ">
                                 <div class="btn-group">
                                     <button
                                         type="button"
@@ -584,43 +583,42 @@ id='logout'>
                                         aria-expanded="false"
                                         style="height: 38px;"
                                     >
-                                        <!-- <i class="bx bx-dots-vertical-rounded"></i> -->
                                     </button>
                                     <ul class="dropdown-menu dropdown-menu-start">
                                         <li><a class="dropdown-item" href="./view-user.html">Add User</a></li>
 
-                                        <!-- Add more dropdown items if needed -->
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     
                         <!-- Your User Table HTML goes here -->
                     
                     
-                        <div id="pagination-controls"></div>
                       
-                        <div class="table-responsive">
-                          <table id="user-table" class="table table-sm table-bordered table-striped">
-                              <thead>
+                        <div class="table-responsive m-o p-0 text-center " >
+                          <table id="user-table" class="table table-sm table-bordered table-striped" >
+                              <thead >
                                   <tr>
-                                      <th>Sno</th>
-                                      <th>ID</th>
-                                      <th>First Name</th>
-                                      <th>Last Name</th>
-                                      <th>Email</th>
-                                      <th>Password</th>
-                                      <th>Phone</th>
-                                      <th>Group</th>
-                                      <th>Vendor</th>
-                                      <th>Client</th>
-                                      <th>Created Date</th>
-                                      <th>Active</th>
-                                      <th>E/D</th>
+                                      <th class="col-1" style="font-size: 8px;">Sno</th>
+                                      <th style="font-size: 8px;">ID</th>
+                                      <th style="font-size: 8px;">First Name</th>
+                                      <th style="font-size: 8px;">Last Name</th>
+                                      <th  style="font-size: 8px;">Email</th>
+                                      <th style="font-size: 8px;">Password</th>
+                                      <th style="font-size: 8px;">Phone</th>
+                                      <th style="font-size: 8px;">Group</th>
+                                      <th style="font-size: 8px;">Vendor</th>
+                                      <th style="font-size: 8px;">Client</th>
+                                      <th style="font-size: 8px;">Created Date</th>
+                                      <th style="font-size: 8px;">Active</th>
+                                      <th class="col-1" style="font-size: 8px;">E/D</th>
                                   </tr>
                               </thead>
                               <tbody id="user-list"></tbody>
                           </table>
+                          <div id="pagination-controls"></div>
+
                       </div>
                       
                       
@@ -641,11 +639,12 @@ id='logout'>
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
-              <div class="text-end p-4 m-2">
-                Nautilus Shipping
-                <div id="datetime"></div>
+              <div class="d-flex justify-content-between p-1 m-3 " >
+                  
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
               </div>
-            </footer>
+          </footer>
             <!-- / Footer -->
             
 

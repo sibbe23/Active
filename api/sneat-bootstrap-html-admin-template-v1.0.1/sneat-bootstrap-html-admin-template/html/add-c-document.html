@@ -65,7 +65,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="indexpage.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -567,37 +567,38 @@ id='logout'>
           <!-- Content wrapper -->
           <div class="container-fluid">
 
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper mt-3 rounded-3">
                 <div class="w-100 mt-3">
-                    <div class="container">
-                        <h1 class="text-center">Document Table</h1>
-                        <div id="pagination-controls"></div>
+                    <div class="">
+                      <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Document table</h4>
             
-                        <div class="table-responsive">
-                            <table id="documentTable" class="table table-sm table-striped table-bordered ">
+                        <div class="table-responsive text-center">
+                            <table id="documentTable" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Document</th>
-                                        <th scope="col">Document Number</th>
-                                        <th scope="col">Issue Date</th>
-                                        <th scope="col">Issue Place</th>
-                                        <th scope="col">Document Files</th>
-                                        <th scope="col">STCW</th>
+                                        <th scope="col"  style="font-size: 8px;">Document</th>
+                                        <th scope="col"  style="font-size: 8px;">Document Number</th>
+                                        <th scope="col"  style="font-size: 8px;">Issue Date</th>
+                                        <th scope="col"  style="font-size: 8px;">Issue Place</th>
+                                        <th scope="col"  style="font-size: 8px;">Document Files</th>
+                                        <th scope="col"  style="font-size: 8px;">STCW</th>
                                         <!-- Add more columns if needed -->
-                                        <th scope="col">Actions</th>
+                                        <th scope="col"  style="font-size: 8px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="documentTableBody">
                                     <!-- Add more rows for additional entries -->
                                 </tbody>
                             </table>
+                            <div id="pagination-controls"></div>
+
                         </div>
                     </div>
                 </div>
             </div>
             
             
-            <div class="w-100 mt-3 card" >
+            <div class="w-100  card" >
                     <div class="m-4">
                         <div class="col-lg-3 mt-3">
                             <div class="btn-group">
@@ -628,7 +629,7 @@ id='logout'>
 
             <div class="content-wrapper">
                 <!-- Content -->
-                <div class="w-100 mt-3">
+                <div class="w-100 ">
                     <form id="documentForm" >
                         <div class="m-4">
                             <h5 class="card-header">Add Document</h5>
@@ -681,11 +682,12 @@ id='logout'>
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
-              <div class="text-end p-4 m-2">
-                Nautilus Shipping
-                <div id="datetime"></div>
+              <div class="d-flex justify-content-between p-1 m-3 " >
+                  
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
               </div>
-            </footer>
+          </footer>
             <!-- / Footer -->
             
 

@@ -141,19 +141,19 @@ async function displayUsers() {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-                <td style="font-size:13px">${sno}</td>
-                <td style="font-size:13px">${user.id}</td>
-                <td style="font-size:13px">${user.userName}</td>
-                <td style="font-size:13px">${user.lastName}</td>
-                <td style="font-size:13px">${user.userEmail}</td>
+                <td style="font-size:12px">${sno}</td>
+                <td style="font-size:12px">${user.id}</td>
+                <td style="font-size:12px">${user.userName}</td>
+                <td style="font-size:12px">${user.lastName}</td>
+                <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 2ch; font-size:13px;">${user.userEmail}</td>
                 <td style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 2ch; font-size:13px;">${user.userPassword}</td>
-                <td style="font-size:13px">${user.userPhone}</td>
-                <td style="font-size:13px">${user.userGroup}</td>
-                <td style="font-size:13px">${user.userVendor}</td>
-                <td style="font-size:13px">${user.userClient}</td>
-                <td style="font-size:13px;">${user.createdDate}</td>
-                <td style="font-size:13px">${user.disableUser}</td>
-                <td style="font-size:13px">
+                <td style="font-size:12px">${user.userPhone}</td>
+                <td style="font-size:12px">${user.userGroup}</td>
+                <td style="font-size:12px">${user.userVendor}</td>
+                <td style="font-size:12px">${user.userClient}</td>
+                <td style="font-size:12px;">${user.createdDate}</td>
+                <td style="font-size:12px">${user.disableUser}</td>
+                <td style="font-size:12px">
                     <div class="row me-1 ms-1">
                         <button class="btn btn-outline-secondary btn-sm col mb-1" onclick="editUser(${user.id},'${user.userName}', '${user.lastName}', '${user.userEmail}','${user.userPassword}', '${user.userPhone}', '${user.userGroup}', '${user.userVendor}', '${user.userClient}', '${user.createdDate}', ${user.disableUser}, ${user.readOnly}, ${user.Write}, ${user.imports}, ${user.exports}, ${user.userManagement}, ${user.reports}, event)">E</button>
                         <button class="btn btn-outline-danger btn-sm col mb-1" onclick="deleteUser(${user.id})">D</button>
@@ -225,3 +225,27 @@ console.log(id, userName, lastName, userEmail, userPassword, userPhone, userGrou
         return JSON.parse(atob(base64));
     }
     const decodedToken = decodeToken(token);
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

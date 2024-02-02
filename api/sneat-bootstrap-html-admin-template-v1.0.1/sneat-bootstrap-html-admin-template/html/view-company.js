@@ -1,12 +1,7 @@
 
 const token = localStorage.getItem('token');
 
-function formatDate(dateString) {
-    // Assuming dateString is in the format "YYYY-MM-DD HH:mm:ss"
-    const date = new Date(dateString);
-    const formattedDate = date.toISOString().split('T')[0];
-    return formattedDate;
-  }
+
 window.onload = async function () {
    try{
     displayCompanies()

@@ -214,9 +214,14 @@ async function fetchAndDisplayCrewPlannerDetails() {
                 <td>${crewPlanner.otherInfo}</td>
                 <td>${crewPlanner.status}</td>
                 <td>
-                    <button onclick="editCrewPlanner('${crewPlanner.id}', '${crewPlanner.rank}', '${crewPlanner.client}', '${crewPlanner.vesselType}', '${crewPlanner.vesselName}', '${crewPlanner.cocAccepted}', '${crewPlanner.trading}', '${crewPlanner.wages}', '${crewPlanner.doj}', '${crewPlanner.otherInfo}', '${crewPlanner.status}', event)">Edit</button>
-                    <button onclick="deleteCrewPlanner('${crewPlanner.id}')">Delete</button>
-                </td>
+                <button class="btn border-0 m-0 p-0" onclick="editCrewPlanner('${crewPlanner.id}', '${crewPlanner.rank}', '${crewPlanner.client}', '${crewPlanner.vesselType}', '${crewPlanner.vesselName}', '${crewPlanner.cocAccepted}', '${crewPlanner.trading}', '${crewPlanner.wages}', '${crewPlanner.doj}', '${crewPlanner.otherInfo}', '${crewPlanner.status}', event)">
+                    <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+                </button>
+                <button class="btn border-0 m-0 p-0" onclick="deleteCrewPlanner('${crewPlanner.id}')">
+                    <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+                </button>
+            </td>
+            
                 `;
 
                 crewPlannerTableBody.appendChild(row);
@@ -288,3 +293,27 @@ function decodeToken(token) {
     return JSON.parse(atob(base64));
 }
 const decodedToken = decodeToken(token);
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

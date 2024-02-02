@@ -42,9 +42,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                 <td>${hospital.amount}</td>
                 <td>${hospital.upload}</td>
                 <td>
-                <button onclick="editMedical('${hospital.id}', '${hospital.hospitalName}', '${hospital.place}', '${hospital.date}', '${hospital.expiry_date}', '${hospital.done_by}', '${hospital.status}', '${hospital.amount}', '${hospital.upload}')">Edit</button>      
-                 <button onclick="deleteMedical('${hospital.id}')">Delete</button>
-                </td>
+                <button class="btn border-0 m-0 p-0" onclick="editMedical('${hospital.id}', '${hospital.hospitalName}', '${hospital.place}', '${hospital.date}', '${hospital.expiry_date}', '${hospital.done_by}', '${hospital.status}', '${hospital.amount}', '${hospital.upload}')">
+                    <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+                </button>
+                <button class="btn border-0 m-0 p-0" onclick="deleteMedical('${hospital.id}')">
+                    <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+                </button>
+            </td>
+            
             `;
             hospitalTableBody.appendChild(row);
         });
@@ -164,3 +169,27 @@ document.addEventListener('DOMContentLoaded', async function () {
         // For example, redirect to a login page
         window.location.href = './loginpage.html';
     });
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

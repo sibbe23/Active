@@ -91,10 +91,15 @@ async function fetchAndDisplayBankDetails(candidateId) {
             <td>${bank.nri_beneficiary_addr}</td>
             <td>${bank.nri_passbook}</td>
             
-                <td>
-                <button onclick="editBank('${bank.id}','${bank.bank_name}','${bank.account_num}','${bank.bank_addr}','${bank.ifsc_code}','${bank.swift_code}','${bank.beneficiary}','${bank.beneficiary_addr}','${bank.pan_num}','${bank.passbook}','${bank.pan_card}','${bank.nri_bank_name}','${bank.nri_account_num}','${bank.nri_bank_addr}','${bank.nri_ifsc_code}','${bank.nri_swift_code}','${bank.nri_beneficiary}','${bank.nri_beneficiary_addr}','${bank.nri_passbook}',event)">Edit</button>
-                <button onclick="deleteBank('${bank.id}')">Delete</button>
-                </td>
+            <td>
+            <button class="btn border-0 m-0 p-0" onclick="editBank('${bank.id}','${bank.bank_name}','${bank.account_num}','${bank.bank_addr}','${bank.ifsc_code}','${bank.swift_code}','${bank.beneficiary}','${bank.beneficiary_addr}','${bank.pan_num}','${bank.passbook}','${bank.pan_card}','${bank.nri_bank_name}','${bank.nri_account_num}','${bank.nri_bank_addr}','${bank.nri_ifsc_code}','${bank.nri_swift_code}','${bank.nri_beneficiary}','${bank.nri_beneficiary_addr}','${bank.nri_passbook}', event)">
+                <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+            </button>
+            <button class="btn border-0 m-0 p-0" onclick="deleteBank('${bank.id}', event)">
+                <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+            </button>
+        </td>
+        
             `;
 
             bankTableBody.appendChild(row);
@@ -207,3 +212,27 @@ const storedName = localStorage.getItem('username');
         // For example, redirect to a login page
         window.location.href = './loginpage.html';
     });
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

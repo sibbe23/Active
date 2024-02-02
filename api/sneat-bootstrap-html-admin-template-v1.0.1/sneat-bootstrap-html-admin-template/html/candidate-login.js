@@ -23,7 +23,7 @@ document.getElementById('candidate_login').addEventListener('submit', async func
     localStorage.setItem('cmemId',cmemId)
     
     
-    window.location.href='./candidate-index.html'
+    window.location.href='./candidate-indexpage.html'
     // Handle success (if needed)
 
   } catch (error) {
@@ -32,3 +32,26 @@ document.getElementById('candidate_login').addEventListener('submit', async func
   }
 });
 
+
+function updateDateTime() {
+  const dateTimeElement = document.getElementById('datetime');
+  const now = new Date();
+
+  const options = {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true,
+      month: 'short',
+      day: 'numeric',
+      ordinal: 'numeric',
+  };
+
+  const dateTimeString = now.toLocaleString('en-US', options);
+
+  dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

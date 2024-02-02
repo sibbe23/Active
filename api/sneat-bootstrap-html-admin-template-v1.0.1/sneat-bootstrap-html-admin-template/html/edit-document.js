@@ -1,39 +1,97 @@
 const token = localStorage.getItem('token')
 let currentPage=1;
-async function displayDocument(page=1,limit=10) {
+async function displayDocument(page = 1, limit = 10) {
     try {
-        const portResponse = await axios.get(`http://localhost:3000/others/view-document?page=${page}&limit=${limit}`,{headers:{"Authorization":token}});
-        const portTable = document.getElementById("document-table");
-        portTable.innerHTML = "";
+        const documentResponse = await axios.get(`http://localhost:3000/others/view-document?page=${page}&limit=${limit}`, { headers: { "Authorization": token } });
+        console.log('Document Response:', documentResponse);
+
+        const documentTable = document.getElementById("document-table");
+        documentTable.innerHTML = "";
         let sno = (page - 1) * limit + 1;
-        // Add each VSL to the table
-        portResponse.data.documents.forEach((port,index) => {
+
+        // Add each document to the table
+        documentResponse.data.documents.forEach((documents, index) => {  // Change here
             const row = document.createElement("tr");
             row.innerHTML = `
-            <td>${sno+index}</td>
-            <td>${port.documentType}</td>
-            <td>${port.hideExpiryDate}</td>
-            
-            <td>
-                <button class="btn " onclick="editDocument('${port.id}','${port.documentType}','${port.hideExpiryDate}',event)">                        <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
-                </button>
-                <button class="btn " onclick="deleteDocument('${port.id}',event)">                        <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
-                </button>
-            </td>
-        `;
+                <td>${sno + index}</td>
+                <td>${documents.documentType}</td>  
+                <td>${documents.hideExpiryDate}</td>  
+                <td>
+                    <button class="btn m-0 p-0" onclick="editDocument('${documents.id}','${documents.documentType}','${documents.hideExpiryDate}',event)">  
+                        <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+                    </button>
+                    <button class="btn m-0 p-0" onclick="deleteDocument('${documents.id}',event)">  
+                        <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+                    </button>
+                </td>
+            `;
 
-            portTable.appendChild(row);
-            
-        })
-        const paginationControls = document.getElementById("pagination-controls");
-        paginationControls.innerHTML = `<button class="btn btn-primary" onclick="displayDocument(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''}>Previous</button>
-                                       <span>Page ${page}</span>
-                                       <button class="btn btn-primary" onclick="displayDocument(${page + 1}, ${limit})" ${portResponse.data.documents.length < limit ? 'disabled' : ''}>Next</button>`;
+            documentTable.appendChild(row);
+        });
+
+        // Display pagination controls for documents
+        const documentPaginationControls = document.getElementById("pagination-controls");
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayDocument(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayDocument(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Maximum number of buttons to display (including ellipsis)
+        const maxButtons = 4;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(documentResponse.data.totalPages); i++) {
+            if (
+                i === 1 ||                                  // First page
+                i === Math.ceil(documentResponse.data.totalPages) ||  // Last page
+                (i >= page - 1 && i <= page + maxButtons - 2) // Displayed pages around the current page
+            ) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="displayDocument(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + maxButtons - 1) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(documentResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayDocument(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(documentResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayDocument(${Math.ceil(documentResponse.data.totalPages)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing ${page} of ${Math.ceil(documentResponse.data.totalPages)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to documentPaginationControls
+        documentPaginationControls.innerHTML = paginationHTML;
 
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
+
 
 window.onload=async function(){
     displayDocument();
@@ -105,3 +163,27 @@ function decodeToken(token) {
     return JSON.parse(atob(base64));
 }
 const decodedToken = decodeToken(token);
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

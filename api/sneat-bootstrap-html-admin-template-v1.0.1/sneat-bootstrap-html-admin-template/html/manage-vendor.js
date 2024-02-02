@@ -1,27 +1,26 @@
 const token = localStorage.getItem('token')
 // Fetch and display vendors
-async function fetchAndDisplayVendors() {
+async function fetchAndDisplayVendors(page = 1, limit = 10) {
     try {
         const token = localStorage.getItem('token');
 
         // Fetch vendor data from the server using Axios with async/await
-        const response = await axios.get('http://localhost:3000/others/view-vendor', {
+        const response = await axios.get(`http://localhost:3000/others/view-vendor?page=${page}&limit=${limit}`, {
             headers: { "Authorization": token }
         });
 
         // Extract vendors from the response
         const vendors = response.data;
 
-        // Display vendors in the table
-        displayVendors(vendors);
+        // Display vendors in the table with pagination
+        displayVendors(vendors, page, limit);
     } catch (error) {
         console.error('Error fetching vendors', error);
     }
 }
 
-// Display vendors in the table
-// Display vendors in the table
-function displayVendors(response) {
+// Display vendors in the table with pagination
+function displayVendors(response, page, limit) {
     const vendorListElement = document.getElementById('vendor-list');
 
     // Clear existing rows
@@ -31,24 +30,95 @@ function displayVendors(response) {
     if (response.vendors) {
         const vendors = response.vendors;
 
-        // Iterate over vendors and create table rows
-        vendors.forEach(vendor => {
+        // Calculate start and end index for pagination
+        const startIndex = (page - 1) * limit;
+        const endIndex = startIndex + limit;
+
+        // Display vendors within the specified range
+        const paginatedVendors = vendors.slice(startIndex, endIndex);
+
+        // Iterate over paginated vendors and create table rows
+        paginatedVendors.forEach(vendor => {
             const row = document.createElement('tr');
             row.innerHTML = `
                 <td>${vendor.id}</td>
                 <td>${vendor.vendorName}</td>
                 <td>${vendor.vendorAddress}</td>
                 <td>
-                    <button onclick="editVendor('${vendor.id}','${vendor.vendorName}','${vendor.vendorAddress}',event)">Edit</button>
-                    <button onclick="deleteVendor(${vendor.id})">Delete</button>
-                </td>
+    <button class="btn border-0 m-0 p-0" onclick="editVendor('${vendor.id}','${vendor.vendorName}','${vendor.vendorAddress}',event)">
+        <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+    </button>
+    <button class="btn border-0 m-0 p-0" onclick="deleteVendor('${vendor.id}',event)">
+        <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+    </button>
+</td>
+
             `;
             vendorListElement.appendChild(row);
         });
+
+        // Display pagination controls
+        const paginationControls = document.getElementById("pagination-controls");
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="fetchAndDisplayVendors(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="fetchAndDisplayVendors(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Maximum number of buttons to display (including ellipsis)
+        const maxButtons = 4;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(vendors.length / limit); i++) {
+            if (
+                i === 1 ||                                  // First page
+                i === Math.ceil(vendors.length / limit) ||  // Last page
+                (i >= page - 1 && i <= page + maxButtons - 2) // Displayed pages around the current page
+            ) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="fetchAndDisplayVendors(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + maxButtons - 1) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(vendors.length / limit) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="fetchAndDisplayVendors(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(vendors.length / limit) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="fetchAndDisplayVendors(${Math.ceil(vendors.length / limit)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing page ${page} of ${Math.ceil(vendors.length / limit)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to paginationControls
+        paginationControls.innerHTML = paginationHTML;
     } else {
         console.error('No "vendors" key found in the response:', response);
     }
 }
+
+// Call the fetchAndDisplayVendors function when the page loads
 
 // Call the fetchAndDisplayVendors function when the page loads
 document.addEventListener('DOMContentLoaded', () => {
@@ -153,3 +223,27 @@ function decodeToken(token) {
     return JSON.parse(atob(base64));
 }
 const decodedToken = decodeToken(token);
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

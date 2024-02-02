@@ -103,12 +103,15 @@ document.addEventListener('DOMContentLoaded', async function () {
                 row.insertCell(3).innerText = nkd.kin_contact_address;
                 row.insertCell(4).innerText = nkd.kin_priority;
                 const editButton = document.createElement('button');
-                editButton.textContent = 'Edit';
+                editButton.className = 'btn border-0 m-0 p-0';
+                editButton.innerHTML = '<i class="fa fa-pencil" onMouseOver="this.style.color=\'seagreen\'" onMouseOut="this.style.color=\'gray\'"></i>';
                 editButton.addEventListener('click', () => editNkd(nkd.id, nkd.kin_name, nkd.kin_relation, nkd.kin_contact_number, nkd.kin_contact_address, nkd.kin_priority));
-    
+                
                 const deleteButton = document.createElement('button');
-                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn border-0 m-0 p-0';
+                deleteButton.innerHTML = '<i class="fa fa-trash" onMouseOver="this.style.color=\'red\'" onMouseOut="this.style.color=\'gray\'"></i>';
                 deleteButton.addEventListener('click', () => deleteNkd(nkd.id));
+                
     
                 // Add buttons to the row
                 const cell = row.insertCell(5);
@@ -157,3 +160,27 @@ document.addEventListener('DOMContentLoaded', async function () {
         // For example, redirect to a login page
         window.location.href = './loginpage.html';
     });
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

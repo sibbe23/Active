@@ -26,13 +26,13 @@ async function fetchAndDisplayContractDetails(candidateId) {
                 <td>${contract.vslName}</td>
                 <td>${contract.vesselType}</td>
                 <td>${contract.sign_on_port}</td>
-                <td>${contract.sign_on}</td>
-                <td>${contract.wage_start}</td>
-                <td>${contract.eoc}</td>
+                <td>${formatDate(contract.sign_on)}</td>
+                <td>${formatDate(contract.wage_start)}</td>
+                <td>${formatDate(contract.eoc)}</td>
                 <td>${contract.wages}</td>
                 <td>${contract.currency}</td>
                 <td>${contract.wages_types}</td>
-                <td>${contract.sign_off}</td>
+                <td>${formatDate(contract.sign_off)}</td>
                 <td>${contract.sign_off_port}</td>
                 <td>${contract.reason_for_sign_off}</td>
                 <td>${contract.aoa_number}</td>
@@ -40,10 +40,14 @@ async function fetchAndDisplayContractDetails(candidateId) {
                 <td>${contract.documents}</td>
                 <td>${contract.aoa}</td>
                 <td>
-        <button onclick="editContract('${contract.id}','${contract.rank}','${contract.company}','${contract.vslName}','${contract.vesselType}','${contract.sign_on_port}','${contract.sign_on}','${contract.wage_start}','${contract.eoc}','${contract.wages}','${contract.currency}','${contract.wages_types}','${contract.sign_off}','${contract.sign_off_port}','${contract.reason_for_sign_off}','${contract.aoa_number}','${contract.emigrate_number}','${contract.documents}','${contract.aoa}',event)">Edit</button>
-        <button onclick="deleteContract(${contract.id})">Delete</button>
-    </td>
-                <!-- Add more cells as needed -->
+                <button class="btn border-0 m-0 p-0" onclick="editContract('${contract.id}','${contract.rank}','${contract.company}','${contract.vslName}','${contract.vesselType}','${contract.sign_on_port}','${contract.sign_on}','${contract.wage_start}','${contract.eoc}','${contract.wages}','${contract.currency}','${contract.wages_types}','${contract.sign_off}','${contract.sign_off_port}','${contract.reason_for_sign_off}','${contract.aoa_number}','${contract.emigrate_number}','${contract.documents}','${contract.aoa}',event)">
+                    <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+                </button>
+                <button class="btn border-0 m-0 p-0" onclick="deleteContract('${contract.id}',event)">
+                    <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+                </button>
+            </td>
+            
             `;
 
             // Append the row to the table body
@@ -366,3 +370,34 @@ document.getElementById('logout').addEventListener('click', function() {
     // For example, redirect to a login page
     window.location.href = './loginpage.html';
 });
+
+function formatDate(dateString) {
+    // Assuming dateString is in the format "YYYY-MM-DD HH:mm:ss"
+    const date = new Date(dateString);
+    const formattedDate = date.toISOString().split('T')[0];
+    return formattedDate;
+  }
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

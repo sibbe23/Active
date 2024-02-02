@@ -65,7 +65,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="indexpage.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -462,6 +462,8 @@
           <nav
             class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
             id="layout-navbar"
+            style="z-index: 2;"
+
           >
             <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
               <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
@@ -567,25 +569,25 @@ id='logout'>
           <!-- Content wrapper -->
           <div class="container-fluid">
 
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper mt-3 rounded-3">
                 <div class="w-100 mt-3">
-                    <div class="container">
-                        <h1 class="text-center">Medical Table</h1>
+                    <div class="">
+                      <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Medical table</h4>
                         <div id="pagination-controls"></div>
             
-                        <div class="table-responsive">
-                            <table id="hospitalTable" class="table table-sm table-bordered table-striped">
+                        <div class="table-responsive text-center">
+                            <table id="hospitalTable" class="table table-sm table-bordered table-striped"  style="font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th>Hospital Name</th>
-                                        <th>Place</th>
-                                        <th>Date</th>
-                                        <th>Expiry Date</th>
-                                        <th>Done By</th>
-                                        <th>Status</th>
-                                        <th>Amount</th>
-                                        <th>Upload File</th>
-                                        <th>Actions</th>
+                                        <th style="font-size: 8px;">Hospital Name</th>
+                                        <th style="font-size: 8px;">Place</th>
+                                        <th style="font-size: 8px;">Date</th>
+                                        <th style="font-size: 8px;">Expiry Date</th>
+                                        <th style="font-size: 8px;">Done By</th>
+                                        <th style="font-size: 8px;">Status</th>
+                                        <th style="font-size: 8px;">Amount</th>
+                                        <th style="font-size: 8px;">Upload File</th>
+                                        <th style="font-size: 8px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="hospitalTableBody"></tbody>
@@ -688,11 +690,12 @@ id='logout'>
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
-              <div class="text-end p-4 m-2">
-                Nautilus Shipping
-                <div id="datetime"></div>
+              <div class="d-flex justify-content-between p-1 m-3 " >
+                  
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
               </div>
-            </footer>
+          </footer>
             <!-- / Footer -->
             
 

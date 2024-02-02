@@ -59,9 +59,14 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <td>${travel.portAgent}</td>
                         <td>${travel.travel_amount}</td>
                         <td>
-                    <button onclick="editTravel('${travel.id}','${travel.travel_date}','${travel.travel_from}','${travel.travel_to}','${travel.travel_mode}','${travel.travel_status}','${travel.ticket_number}','${travel.agent_name}','${travel.portAgent}','${travel.travel_amount}',event)">Edit</button>
-                    <button onclick="deleteTravel('${travel.id}')">Delete</button>
-                </td>
+                        <button class="btn border-0 m-0 p-0" onclick="editTravel('${travel.id}','${travel.travel_date}','${travel.travel_from}','${travel.travel_to}','${travel.travel_mode}','${travel.travel_status}','${travel.ticket_number}','${travel.agent_name}','${travel.portAgent}','${travel.travel_amount}',event)">
+                            <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+                        </button>
+                        <button class="btn border-0 m-0 p-0" onclick="deleteTravel('${travel.id}')">
+                            <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+                        </button>
+                    </td>
+                    
                     `;
                     travelTableBody.appendChild(row);
                 });
@@ -175,3 +180,27 @@ async function deleteTravel(travelId) {
     }
 }
 // ...
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

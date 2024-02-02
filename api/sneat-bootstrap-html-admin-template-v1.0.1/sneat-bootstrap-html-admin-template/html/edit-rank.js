@@ -5,6 +5,8 @@ async function displayRank(page = 1, limit = 10) {
     try {
         // Fetch ranks from the server with pagination parameters
         const rankResponse = await axios.get(`http://localhost:3000/others/view-rank?page=${page}&limit=${limit}`, { headers: { "Authorization": token } });
+        console.log('Rank Response:', rankResponse);
+
         const rankTable = document.getElementById("rank-table");
 
         // Clear existing rows
@@ -20,10 +22,10 @@ async function displayRank(page = 1, limit = 10) {
                 <td>${rank.rankOrder}</td>
                 <td>${rank.category}</td>
                 <td>
-                    <button class="btn border-0" onclick="editRank('${rank.id}','${rank.rank}','${rank.rankOrder}','${rank.category}',event)">
+                    <button class="btn border-0 m-0 p-0" onclick="editRank('${rank.id}','${rank.rank}','${rank.rankOrder}','${rank.category}',event)">
                         <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn border-0" onclick="deleteRank('${rank.id}',event)">
+                    <button class="btn border-0 m-0 p-0" onclick="deleteRank('${rank.id}',event)">
                         <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -32,14 +34,67 @@ async function displayRank(page = 1, limit = 10) {
         });
 
         // Display pagination controls
-        const paginationControls = document.getElementById("pagination-controls");
-        paginationControls.innerHTML = `<button class="btn btn-primary " onclick="displayRank(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''}>Previous</button>
-                                       <span>Page ${page}</span>
-                                       <button class="btn btn-primary " onclick="displayRank(${page + 1}, ${limit})" ${rankResponse.data.ranks.length < limit ? 'disabled' : ''}>Next</button>`;
+        const paginationControlsRank = document.getElementById("pagination-controls");
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayRank(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayRank(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Maximum number of buttons to display (including ellipsis)
+        const maxButtons = 4;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(rankResponse.data.totalPages); i++) {
+            if (
+                i === 1 ||                                  // First page
+                i === Math.ceil(rankResponse.data.totalPages) ||  // Last page
+                (i >= page - 1 && i <= page + maxButtons - 2) // Displayed pages around the current page
+            ) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="displayRank(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + maxButtons - 1) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(rankResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayRank(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(rankResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayRank(${Math.ceil(rankResponse.data.totalPages)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing ${page} of ${Math.ceil(rankResponse.data.totalPages)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to paginationControlsRank
+        paginationControlsRank.innerHTML = paginationHTML;
+
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
 
 
 
@@ -109,3 +164,27 @@ document.getElementById('logout').addEventListener('click', function() {
     // For example, redirect to a login page
     window.location.href = './loginpage.html';
 });
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);

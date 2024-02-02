@@ -65,7 +65,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="indexpage.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -571,29 +571,37 @@ id='logout'>
           <!-- Content wrapper -->
           <div class="container-fluid">
 
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper mt-3 rounded-3">
                 <div class="w-100 mt-3">
-                    <div class="container">
-                        <h1 class="text-center">Document Table</h1>
-                        <div id="pagination-controls"></div>
+                    <div class="">
+                      <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Document Table</h4>
             
-                        <div class="table-responsive">
-                            <table id="document-list" class="table table-sm table-striped table-bordered ">
+                        <div class="table-responsive text-center ">
+                            <table id="document-list" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th scope="col">Sno</th>
-                                        <th scope="col">Document Type</th>
-                                        <th scope="col">Hide Expiry Date</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col" class="col-1" style="font-size: 8px;">Sno</th>
+                                        <th scope="col" style="font-size: 8px;">Document Type</th>
+                                        <th scope="col" style="font-size: 8px;">Hide Expiry Date</th>
+                                        <th scope="col" class="col-1" style="font-size: 8px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="document-table"></tbody>
                             </table>
+                            <div id="pagination-controls"></div>
+
                         </div>
                     </div>
                 </div>
             </div>
             
+            <footer class="content-footer footer bg-footer-theme">
+              <div class="d-flex justify-content-between p-1 m-3 " >
+                  
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
+              </div>
+          </footer>
 
             <div class="content-wrapper">
               <!-- Content -->
@@ -648,12 +656,7 @@ id='logout'>
                       <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="text-end p-4 m-2">
-                Nautilus Shipping
-                <div id="datetime"></div>
-              </div>
-            </footer>
+           
             <!-- / Footer -->
             
 

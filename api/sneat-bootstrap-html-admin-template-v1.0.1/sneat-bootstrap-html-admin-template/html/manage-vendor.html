@@ -65,7 +65,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <a href="indexpage.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -567,26 +567,27 @@ id='logout'>
           <!-- Content wrapper -->
           <div class="container-fluid">
 
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper  mt-3 rounded-3">
                 <div class="w-100 mt-3">
-                    <div class="container">
-                        <h1 class="text-center">Vendor List</h1>
-                        <div id="pagination-controls"></div>
+                    <div class="">
+                      <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Vendor List</h4>
                 
-                        <div class="table-responsive">
-                            <table id="vendor-table" class="table table-sm table-bordered table-striped">
+                        <div class="table-responsive text-center">
+                            <table id="vendor-table" class="table table-sm table-bordered table-striped" style="font-size: 12px;">
                                 <thead>
                                     <tr>
-                                        <th>Vendor ID</th>
+                                        <th class="col-1" style="font-size: 8px;">Vendor ID</th>
                                         <th>Vendor Name</th>
                                         <th>Vendor Address</th>
-                                        <th>Actions</th>
+                                        <th class="col-1" style="font-size: 8px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="vendor-list">
                                     
                                 </tbody>
                             </table>
+                            <div id="pagination-controls"></div>
+
                         </div>
                     </div>
                 </div>
@@ -596,11 +597,11 @@ id='logout'>
             
             
             
-            <div class="w-100 mt-3 card" >
+            <div class="w-100 mt-3 card p-4" >
                     
         
-                <div class="container mt-5">
-                    <h2 class="mb-4">Add Vendor</h2>
+                <div class="container ">
+                    <h2 class="">Add Vendor</h2>
                     <form  id="addVendorForm">
                         <div class="row mb-3">
                             <div class="col-md-6">
@@ -636,11 +637,12 @@ id='logout'>
 
             <!-- Footer -->
             <footer class="content-footer footer bg-footer-theme">
-              <div class="text-end p-4 m-2">
-                Nautilus Shipping
-                <div id="datetime"></div>
+              <div class="d-flex justify-content-between p-1 m-3 " >
+                  
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
               </div>
-            </footer>
+          </footer>
             <!-- / Footer -->
             
 

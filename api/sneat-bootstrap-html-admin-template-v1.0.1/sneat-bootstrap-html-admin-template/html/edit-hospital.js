@@ -5,6 +5,8 @@ async function displayHospital(page = 1, limit = 10) {
     try {
         // Fetch hospitals from the server with pagination parameters
         const hospitalResponse = await axios.get(`http://localhost:3000/others/view-hospital?page=${page}&limit=${limit}`, { headers: { "Authorization": token } });
+        console.log('Hospital Response:', hospitalResponse);
+
         const hospitalTable = document.getElementById("hospital-table");
 
         // Clear existing rows
@@ -25,10 +27,10 @@ async function displayHospital(page = 1, limit = 10) {
                 <td>${hospital.doctorEmail}</td>
                 <td>${hospital.doctorUpload}</td>
                 <td>
-                    <button class="btn" onclick="editHospital('${hospital.id}','${hospital.hospitalName}','${hospital.doctorName}','${hospital.doctorAddress}','${hospital.doctorCity}','${hospital.doctorState}','${hospital.doctorPhone}','${hospital.doctorEmail}','${hospital.doctorUpload}',event)">
+                    <button class="btn m-0 p-0" onclick="editHospital('${hospital.id}','${hospital.hospitalName}','${hospital.doctorName}','${hospital.doctorAddress}','${hospital.doctorCity}','${hospital.doctorState}','${hospital.doctorPhone}','${hospital.doctorEmail}','${hospital.doctorUpload}',event)">
                         <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn" onclick="deleteHospital('${hospital.id}',event)">
+                    <button class="btn m-0 p-0" onclick="deleteHospital('${hospital.id}',event)">
                         <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -38,13 +40,66 @@ async function displayHospital(page = 1, limit = 10) {
 
         // Display pagination controls for hospitals
         const hospitalPaginationControls = document.getElementById("pagination-controls");
-        hospitalPaginationControls.innerHTML = `<button class="btn btn-primary " onclick="displayHospital(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''}>Previous</button>
-                                                <span>Page ${page}</span>
-                                                <button class="btn btn-primary " onclick="displayHospital(${page + 1}, ${limit})" ${hospitalResponse.data.hospitals.length < limit ? 'disabled' : ''}>Next</button>`;
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayHospital(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayHospital(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Maximum number of buttons to display (including ellipsis)
+        const maxButtons = 4;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(hospitalResponse.data.totalPages); i++) {
+            if (
+                i === 1 ||                                  // First page
+                i === Math.ceil(hospitalResponse.data.totalPages) ||  // Last page
+                (i >= page - 1 && i <= page + maxButtons - 2) // Displayed pages around the current page
+            ) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="displayHospital(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + maxButtons - 1) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(hospitalResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayHospital(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(hospitalResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayHospital(${Math.ceil(hospitalResponse.data.totalPages)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing ${page} of ${Math.ceil(hospitalResponse.data.totalPages)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to hospitalPaginationControls
+        hospitalPaginationControls.innerHTML = paginationHTML;
+
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
 
 
 window.onload = async function () {
@@ -126,3 +181,27 @@ document.getElementById('logout').addEventListener('click', function() {
     // For example, redirect to a login page
     window.location.href = './loginpage.html';
 });
+
+
+function updateDateTime() {
+    const dateTimeElement = document.getElementById('datetime');
+    const now = new Date();
+
+    const options = {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true,
+        month: 'short',
+        day: 'numeric',
+        ordinal: 'numeric',
+    };
+
+    const dateTimeString = now.toLocaleString('en-US', options);
+
+    dateTimeElement.textContent = dateTimeString;
+}
+
+// Update date and time initially and every second
+updateDateTime();
+setInterval(updateDateTime, 1000);
