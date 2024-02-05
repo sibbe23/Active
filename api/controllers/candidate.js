@@ -9,11 +9,13 @@ const Discussion_plus = require('../models/discussionplus')
 const User = require('../models/user')
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const sequelize = require('../util/database')
 
 const validate = (inputString) => inputString !== undefined && inputString.length !== 0;
 
 const add_candidate = async (req, res) => {
     try {
+        const t = await sequelize.transaction(); // Start transaction
         const {
             active_details,
             area_code1,
@@ -99,10 +101,11 @@ const add_candidate = async (req, res) => {
             where: {
                 email1: email1,
                 // Add more conditions if needed for uniqueness
-            }
+            },transaction: t,
         });
 
         if (existingCandidate) {
+            await t.rollback();
             return res.status(409).json({ message: "Duplicate Entry", success: false });
         }
 
@@ -185,9 +188,12 @@ const add_candidate = async (req, res) => {
                 password,
                 nemo_source,
                 userId:userId
-            });
+            }, { transaction: t });
+            await t.commit();
             res.status(201).json({ message: "Successfully Created New Candidate!", success: true });
         } catch (err) {
+            await t.rollback();
+
             console.log(err);
             res.status(500).json({ error: err, message: "Internal Server Error", success: false });
         }

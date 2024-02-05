@@ -1367,470 +1367,230 @@ id='logout'>
                                 </div>
                     
                                 <!-- Contract Content -->
+                                
                                 <div id="contractContent" style="display: none;">
-                                        <form id="contractForm" class="m-4">
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="hidden" id="contractId">
-                                                        <input type="text" id="editcontract_rank" class="form-control">
 
-                                                          <label for="editcontract_rank" class="form-label">Rank</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="text" id="editcontract_company" class="form-control">
-
-                                                          <label for="editcontract_company" class="form-label">Company</label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="text" id="editcontract_vsl" class="form-control">
-
-                                                          <label for="editcontract_vsl" class="form-label">Select Vessel</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="text" id="editcontract_vesseltype" class="form-control">
-
-                                                          <label for="editcontract_vesseltype" class="form-label">Vessel type</label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="text" id="editcontract_signonport" class="form-control">
-
-                                                          <label for="editcontract_signonport" class="form-label">Sign on Port</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="signon" type="date" id="editcontract_signon" class="form-control"/>
-                                                          <label for="editcontract_signon">Sign on</label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="wage" type="date" id="editcontract_wage_start" class="form-control"/>
-                                                          <label for="editcontract_wage_start">Wages start</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="eoc" type="date" id="editcontract_eoc" class="form-control"/>
-                                                          <label for="editcontract_eoc">EOC</label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="wages" type="text" id="editcontract_wages" class="form-control"/>
-                                                          <label for="editcontract_wages">Wages</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="text" id="editcontract_currency" class="form-control">
-
-                                                          <label for="editcontract_currency">Currency</label>
-                
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input type="text" id="editcontract_wagestype" class="form-control">
-
-                                                          <label for="editcontract_wagestype">Wages Type</label>
-                
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="signoff" type="date" id="editcontract_signoff" class="form-control"/>
-                                                          <label for="editcontract_signoff">Sign off</label>
-                
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                        <input name="signoff" type="text" id="editcontract_signoffport" class="form-control"/>
-
-                                                          <label for="editcontract_signoffport" class="form-label">Sign off Port</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="reason" type="text" id="editcontracts_reason" class="form-control"/>
-                                                          <label for="editcontracts_reason">Reason for Sign off</label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="doc" type="file" id="editcontract_document" class="form-control"/>
-                                                          <label for="editcontract_document">Document</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="aoa" type="file" id="editcontract_aoa" class="form-control"/>
-                                                          <label for="editcontract_aoa">AOA</label>
-                                                      </div>
-                                                  </div>
-                                              </div>
-                          
-                                              <div class="row mb-3">
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="aoanum" type="text" id="editcontract_aoa_num" class="form-control"/>
-                                                          <label for="editcontract_aoa_num">AOA</label>
-                                                      </div>
-                                                  </div>
-                                                  <div class="col-md-6">
-                                                      <div class="form-floating">
-                                                          <input name="enumber" type="text" id="editcontract_emigrate" class="form-control"/>
-                                                          <label for="editcontract_emigrate">Emigrate Number</label>
-                                                      </div>
-                                                      
-                                                  </div>
-
-                                              </div>
-                                              <div class="col-md-6">
-                                                <button type="submit" class="btn btn-primary">Edit Contract</button>
-                                                
-                                          </div> 
-
-                                  </form>
+                                  <div class="content-wrapper mt-3 rounded-3">
+                                    <div class="w-100 mt-3">
+                                        <div class="">
+                                          <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Contract table</h4>
+                                
+                                            <div class="table-responsive text-center">
+                                              <table id="contractTable" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
+                                                  <thead>
+                                                      <tr>
+                                                          
+                                                          <th scope="col"  style="font-size: 8px;">Rank</th>
+                                                          <th scope="col" style="font-size: 8px;">Company</th>
+                                                          <th scope="col" style="font-size: 8px;">VSL Name</th>
+                                                          <th scope="col" style="font-size: 8px;">Vessel Type</th>
+                                                          <th scope="col" style="font-size: 8px;">SignOn Port</th>
+                                                          <th scope="col" style="font-size: 8px;">SignOn</th>
+                                                          <th scope="col" style="font-size: 8px;">Wages Start</th>
+                                                          <th scope="col" style="font-size: 8px;">EOC</th>
+                                                          <th scope="col" style="font-size: 8px;">Wages</th>
+                                                          <th scope="col" style="font-size: 8px;">Currency</th>
+                                                          <th scope="col" style="font-size: 8px;">Wages Type</th>
+                                                          <th scope="col" style="font-size: 8px;">SignOff</th>
+                                                          <th scope="col" style="font-size: 8px;">SignOff Port</th>
+                                                          <th scope="col" style="font-size: 8px;">Signoff Reason</th>
+                                                          <th scope="col" style="font-size: 8px;">AOA Number</th>
+                                                          <th scope="col"  style="font-size: 8px;">Emigrate Number</th>
+                                                          <th scope="col" style="font-size: 8px;">Document</th>
+                                                          <th scope="col"style="font-size: 8px;">AOA</th>
+                                                          <th scope="col" style="font-size: 8px;">Actions</th>
+                                                      </tr>
+                                                  </thead>
+                                                  <tbody id="contractTableBody">
+                                                      <!-- Add more rows for additional entries -->
+                                                  </tbody>
+                                              </table>
+                                              <div id="pagination-controls"></div>
+                    
+                                          </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                    
+                    
                                 </div>
                     
                                 <!-- Document Content -->
                                 <div id="documentContent" style="display: none;">
-                                    <form id="editdocForm">
-                                        <div class="m-4">
-                                            <div class="mb-3">
-                                              <input type="hidden" id="doc_id">
-                                                <label for="documents">Document:</label>
-                                                <input type="text" class="form-control" id="documents" name="document" required>
+                                  <div class="content-wrapper mt-3 rounded-3">
+                                    <div class="w-100 mt-3">
+                                        <div class="">
+                                          <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Document table</h4>
+                                
+                                            <div class="table-responsive text-center">
+                                                <table id="documentTable" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col"  style="font-size: 8px;">Document</th>
+                                                            <th scope="col"  style="font-size: 8px;">Document Number</th>
+                                                            <th scope="col"  style="font-size: 8px;">Issue Date</th>
+                                                            <th scope="col"  style="font-size: 8px;">Issue Place</th>
+                                                            <th scope="col"  style="font-size: 8px;">Document Files</th>
+                                                            <th scope="col"  style="font-size: 8px;">STCW</th>
+                                                            <!-- Add more columns if needed -->
+                                                            <th scope="col"  style="font-size: 8px;">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="documentTableBody">
+                                                        <!-- Add more rows for additional entries -->
+                                                    </tbody>
+                                                </table>
+                                                <div id="pagination-controls"></div>
+                    
                                             </div>
-                                            <div class="mb-3">
-                                                <label for="document_number">Document Number:</label>
-                                                <input type="text" class="form-control" id="document_number" name="document_number" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="issue_date">Issue Date:</label>
-                                                <input type="date" class="form-control" id="issue_date" name="issue_date" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="issue_place">Issue Place:</label>
-                                                <input type="text" class="form-control" id="issue_place" name="issue_place" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="document_files">Document Files:</label>
-                                                <input type="text" class="form-control" id="document_files" name="document_files" required>
-                                            </div>
-                                            <div class="mb-3">
-                                              <label for="stcw">STCW:</label>
-                                              <input type="text" id="stcw" class="form-control ">
-                                          </div>
-                                          <button type="submit" class="btn btn-primary">Edit Document</button>
-
                                         </div>
-                                    </form>
+                                    </div>
+                                </div>
+                                   
                                 </div>
                     
                                 <!-- Bank Content -->
                                 <div id="bankContent" style="display: none;">
-                                    <form  id="bankForm" class="m-4">
-                                        <input type="hidden" id="bank_id">
-              
-                                          <!-- Bank Details -->
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                <input type="hidden" id="bank_id">
-
-                                                  <label for="bank_name" class="form-label">Bank Name</label>
-                                                  <input name="bank_name" type="text" id="bank_name" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="account_num" class="form-label">Account number</label>
-                                                  <input name="account_num" type="text" id="account_num" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="bank_addr" class="form-label">Bank Address</label>
-                                                  <input name="bank_addr" type="text" id="bank_addr" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="ifsc_code" class="form-label">IFSC code</label>
-                                                  <input name="ifsc_code" type="text" id="ifsc_code" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="swift_code" class="form-label">Swift code</label>
-                                                  <input name="swift_code" type="text" id="swift_code" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="beneficiary" class="form-label">Benificiary</label>
-                                                  <input name="beneficiary" type="text" id="beneficiary" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="beneficiary_addr" class="form-label">Address</label>
-                                                  <input name="beneficiary_addr" type="text" id="beneficiary_addr" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="pan_num" class="form-label">Pan number</label>
-                                                  <input name="pan_num" type="text" id="pan_num" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="passbook" class="form-label">Pan card</label>
-                                                  <input name="passbook" type="file" id="passbook" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="pan_card" class="form-label">Passbook</label>
-                                                  <input name="pan_card" type="file" id="pan_card" class="form-control" required/>
-                                              </div>
-                                          </div>
-                                          <hr>
-                                          <!-- NRI Bank Details -->
-                                          <h5 class=" mt-4 card-body"> NRI Bank Details</h5>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="nri_bank_name" class="form-label">NRI Bank Name</label>
-                                                  <input name="nri_bank_name" type="text" id="nri_bank_name" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="nri_account_num" class="form-label">NRI Account number</label>
-                                                  <input name="nri_account_num" type="text" id="nri_account_num" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="nri_bank_addr" class="form-label">NRI Bank Address</label>
-                                                  <input name="nri_bank_addr" type="text" id="nri_bank_addr" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="nri_ifsc_code" class="form-label">NRI IFSC code</label>
-                                                  <input name="nri_ifsc_code" type="text" id="nri_ifsc_code" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="nri_swift_code" class="form-label">NRI Swift code</label>
-                                                  <input name="nri_swift_code" type="text" id="nri_swift_code" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="nri_beneficiary" class="form-label">NRI Benificiary</label>
-                                                  <input name="nri_beneficiary" type="text" id="nri_beneficiary" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <div class="row mb-3">
-                                              <div class="col-md-6">
-                                                  <label for="nri_beneficiary_addr" class="form-label">NRI Address</label>
-                                                  <input name="nri_beneficiary_addr" type="text" id="nri_beneficiary_addr" class="form-control" required/>
-                                              </div>
-                                              <div class="col-md-6">
-                                                  <label for="nri_passbook" class="form-label">NRI Passbook</label>
-                                                  <input name="nri_passbook" type="file" id="nri_passbook" class="form-control" required/>
-                                              </div>
-                                          </div>
-                              
-                                          <button type="submit" class="btn btn-primary ">Edit Bank</button>
-                                      </form>
+                                  <div class="content-wrapper mt-3 rounded-3">
+                                    <div class="w-100 mt-3">
+                                        <div class="">
+                                          <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Bank table</h4>
+                                            <div id="pagination-controls"></div>
+                                
+                                            <div class="table-responsive">
+                                                <table id="bankTable" class="table table-sm table-bordered table-striped" style="font-size: 12px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th  style="font-size: 8px;">Bank Name</th>
+                                                            <th  style="font-size: 8px;">Account Number</th>
+                                                            <th  style="font-size: 8px;">Bank Address</th>
+                                                            <th  style="font-size: 8px;">IFSC Code</th>
+                                                            <th  style="font-size: 8px;">Swift Code</th>
+                                                            <th  style="font-size: 8px;">Beneficiary</th>
+                                                            <th  style="font-size: 8px;">Beneficiary Address</th>
+                                                            <th  style="font-size: 8px;">PAN Number</th>
+                                                            <th style="font-size: 8px;">Passbook</th>
+                                                            <th  style="font-size: 8px;">PAN Card</th>
+                                                            <th  style="font-size: 8px;">NRI Bank Name</th>
+                                                            <th  style="font-size: 8px;">NRI Account Number</th>
+                                                            <th  style="font-size: 8px;">NRI Bank Address</th>
+                                                            <th  style="font-size: 8px;">NRI IFSC Code</th>
+                                                            <th  style="font-size: 8px;">NRI Swift Code</th>
+                                                            <th  style="font-size: 8px;">NRI Beneficiary</th>
+                                                            <th  style="font-size: 8px;">NRI Beneficiary Address</th>
+                                                            <th  style="font-size: 8px;">NRI Passbook</th>
+                                                            <th  style="font-size: 8px;">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="bankTableBody">
+                    
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
                                 </div>
                     
                                 <!-- Travel Content -->
                                 <div id="travelContent" style="display: none;">
-                                    <form id="travelForm" class="m-4">
-                                        <div class="mb-3">
-                                          <input type="hidden" id="travel_id">
-
-                                            <label for="travel_date" class="form-label">Travel Date</label>
-                                            <input name="date" type="date" id="travel_date" class="form-control"/>
+                                  <div class="content-wrapper mt-3 rounded-3">
+                                    <div class="w-100 mt-3">
+                                        <div class="">
+                                          <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Travel table</h4>
+                                
+                                            <div class="table-responsive">
+                                                <table id="travelTable" class="table table-sm table-bordered table-striped" style="font-size: 12px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="font-size: 8px;">Travel Date</th>
+                                                            <th style="font-size: 8px;">Travel From</th>
+                                                            <th style="font-size: 8px;">Travel To</th>
+                                                            <th style="font-size: 8px;">Travel Mode</th>
+                                                            <th style="font-size: 8px;">Travel Status</th>
+                                                            <th style="font-size: 8px;">Ticket Number</th>
+                                                            <th style="font-size: 8px;">Agent Name</th>
+                                                            <th style="font-size: 8px;">Port Agent</th>
+                                                            <th style="font-size: 8px;">Travel Amount</th>
+                                                            <th style="font-size: 8px;">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="travelTableBody"></tbody>
+                                                </table>
+                                                <div id="pagination-controls"></div>
+                    
+                                            </div>
+                                            
                                         </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_from" class="form-label">Travel From</label>
-                                            <input name="from" type="text" id="travel_from" class="form-control"/>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_to" class="form-label">Travel To</label>
-                                            <input name="to" type="text" id="travel_to" class="form-control"/>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_mode" class="form-label">Travel Mode:</label>
-                                            <select name="mode" id="travel_mode" class="form-select">
-                                                <option value="bus">Bus</option>
-                                                <option value="train">Train</option>
-                                                <option value="air">Air</option>
-                                                <option value="cab">Cab</option>
-                                            </select>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_status" class="form-label">Travel Status:</label>
-                                            <select name="status" id="travel_status" class="form-select">
-                                                <option value="booked">Booked</option>
-                                                <option value="cancelled">Cancelled</option>
-                                                <option value="travelling">Travelling</option>
-                                                <option value="travelled">Travelled</option>
-                                            </select>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_ticket" class="form-label">Ticket Number</label>
-                                            <input name="ticket" type="text" id="travel_ticket" class="form-control"/>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_agent_name" class="form-label">Agent Name</label>
-                                            <input name="agent" type="text" id="travel_agent_name" class="form-control"/>
-                                        </div>
-                            
-                                        <div class="mb-3 ">
-                                            <label for="travel_port_agent" class="form-label">Port Agent</label>
-                                            <input type="text" id="travel_port_agent" class="form-control">
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="travel_amount" class="form-label">Amount</label>
-                                            <input name="amount" type="text" id="travel_amount" class="form-control"/>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary ">Edit Travel</button>
-                                    </form>
+                                    </div>
+                                </div>
                                 </div>
                     
                                 <!-- Medical Content -->
                                 <div id="medicalContent" style="display: none;">
-                                    <form id="updateForm" class="m-4">
-                                      <input type="hidden" id="med_id">
-
-                                        <div class="row">
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_name" class="form-label">Hospital Name</label>
-                                                <input id="hospital_name" type="text" class="form-control ">
-
-                                            </div>
+                                  <div class="content-wrapper mt-3 rounded-3">
+                                    <div class="w-100 mt-3">
+                                        <div class="">
+                                          <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Medical table</h4>
+                                            <div id="pagination-controls"></div>
                                 
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_place" class="form-label">Place</label>
-                                                <input name="place" type="text" id="hospital_place" class="form-control" />
+                                            <div class="table-responsive text-center">
+                                                <table id="hospitalTable" class="table table-sm table-bordered table-striped"  style="font-size: 12px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="font-size: 8px;">Hospital Name</th>
+                                                            <th style="font-size: 8px;">Place</th>
+                                                            <th style="font-size: 8px;">Date</th>
+                                                            <th style="font-size: 8px;">Expiry Date</th>
+                                                            <th style="font-size: 8px;">Done By</th>
+                                                            <th style="font-size: 8px;">Status</th>
+                                                            <th style="font-size: 8px;">Amount</th>
+                                                            <th style="font-size: 8px;">Upload File</th>
+                                                            <th style="font-size: 8px;">Actions</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="hospitalTableBody"></tbody>
+                                                </table>
                                             </div>
+                                            
                                         </div>
-                                
-                                        <div class="row">
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_date" class="form-label">Date</label>
-                                                <input name="date" type="date" id="hospital_date" class="form-control" />
-                                            </div>
-                                
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_exp_date" class="form-label">Expiry Date</label>
-                                                <input name="expdate" type="date" id="hospital_exp_date" class="form-control" />
-                                            </div>
-                                        </div>
-                                
-                                        <div class="row">
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_done" class="form-label">Done by</label>
-                                                <input name="place" type="text" id="hospital_done" class="form-control" />
-
-                                            </div>
-                                
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_status" class="form-label">Status</label>
-                                                <input name="place" type="text" id="hospital_status" class="form-control" />
-
-                                            </div>
-                                        </div>
-                                
-                                        <div class="row">
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_amount" class="form-label">Amount</label>
-                                                <input name="amt" type="text" id="hospital_amount" class="form-control" />
-                                            </div>
-                                
-                                            <div class="mb-3 col-md-6">
-                                                <label for="hospital_upload" class="form-label">Upload</label>
-                                                <input name="upload" type="file" id="hospital_upload" class="form-control" />
-                                            </div>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Edit Medical</button>
-
-                                    </form>
+                                    </div>
+                                </div>
                                 </div>
                                 
                     
                                 <!-- NKD Content -->
                                 <div id="nkdContent" style="display: none;">
-                                    <form id="edit_nkd_form" class="m-4">
-                                        <div class="mb-3">
-                                          <input type="hidden" id="nkd_id">
-                                            <label for="nkd_kin_name" class="form-label">Kin Name</label>
-                                            <input name="kinname" type="text" id="nkd_kin_name" class="form-control"/>
+                                  <div class="content-wrapper mt-3 rounded-3">
+                                    <div class="w-100 mt-3 ">
+                                        <div class="">
+                                          <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">NKD table</h4>
+                                            <div id="pagination-controls"></div>
+                                
+                                            <div class="table-responsive text-center">
+                                                <table id="nkdTable" class="table table-sm table-bordered table-striped" style="font-size: 12px;">
+                                                    <thead>
+                                                        <tr>
+                                                            <th style="font-size: 8px;">Kin Name</th>
+                                                            <th style="font-size: 8px;">Kin Relationship</th>
+                                                            <th style="font-size: 8px;">Kin Contact</th>
+                                                            <th style="font-size: 8px;">Contact Address</th>
+                                                            <th style="font-size: 8px;">Priority</th>
+                                                            <th style="font-size: 8px;">Actions</th>
+                                                            <!-- Add more table headers as needed -->
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="nkdTableBody"></tbody>
+                                                </table>
+                                            </div>
+                                            
                                         </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="nkd_kin_relationship" class="form-label">Kin Relationship</label>
-                                            <input name="contact" type="text" id="nkd_kin_relationship" class="form-control"/>
-
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="nkd_kin_contact" class="form-label">Kin Contact Number</label>
-                                            <input name="contact" type="text" id="nkd_kin_contact" class="form-control"/>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                            <label for="nkd_contact_address" class="form-label">Kin Contact Address</label>
-                                            <input name="addr" type="text" id="nkd_contact_address" class="form-control"/>
-                                        </div>
-                            
-                                        <div class="mb-3">
-                                          <label for="priority">Priority:</label>
-                                          <input name="contact" type="text" id="priority" class="form-control"/>
-
-                                      </div>
-                            
-                                      <button type="submit" class="btn btn-primary">Edit NKD</button>
-                                    </form>
+                                    </div>
+                                </div>
+                                
                                 </div>
                     
                                 <!-- Buttons for different sections -->
@@ -1885,13 +1645,14 @@ id='logout'>
                       <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
-              </div>
-          </footer>
+             <footer class="footer mt-auto py-3 bg-footer-theme">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span id="datetime"></span>
+                <span>Nautilus Shipping</span>
+            </div>
+        </div>
+    </footer>
             <!-- / Footer -->
             
 

@@ -1,7 +1,24 @@
 const token = localStorage.getItem('token')
+function decodeToken(token) {
+    // Implementation depends on your JWT library
+    // Here, we're using a simple base64 decode
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+}
 document.addEventListener('DOMContentLoaded', async function () {
     const candidateId= localStorage.getItem('memId')
         const id = candidateId;
+        const decodedToken = decodeToken(token);
+    console.log(decodedToken)
+
+const hasUserManagement = decodedToken.userManagement;
+console.log(hasUserManagement)
+if (hasUserManagement) {
+  document.getElementById('userManagementSection').style.display = 'block';
+  document.getElementById('userManagementSections').style.display = 'block';
+
+}
 
         try {
             const response = await axios.get(`http://localhost:3000/candidate/get-hospital-details/${id}`, {
@@ -33,7 +50,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         data.forEach(hospital => {
             const row = document.createElement('tr');
             row.innerHTML = `
-                <td>${hospital.hospitalName}</td>
+                <td><span class='badge bg-success'>${hospital.hospitalName}</span></td>
                 <td>${hospital.place}</td>
                 <td>${hospital.date}</td>
                 <td>${hospital.expiry_date}</td>

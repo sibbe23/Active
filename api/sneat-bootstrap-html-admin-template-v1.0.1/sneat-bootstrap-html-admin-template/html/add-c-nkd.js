@@ -1,4 +1,21 @@
+function decodeToken(token) {
+    // Implementation depends on your JWT library
+    // Here, we're using a simple base64 decode
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+}
 document.addEventListener('DOMContentLoaded', async function () {
+    const decodedToken = decodeToken(token);
+    console.log(decodedToken)
+
+const hasUserManagement = decodedToken.userManagement;
+console.log(hasUserManagement)
+if (hasUserManagement) {
+  document.getElementById('userManagementSection').style.display = 'block';
+  document.getElementById('userManagementSections').style.display = 'block';
+
+}
     const candidateId= localStorage.getItem('memId')
         const id = candidateId;
         fetchAndDisplayNkdData()
@@ -84,16 +101,16 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     const fetchAndDisplayNkdData = async () => {
         try {
-            const memId = localStorage.getItem('memId')
+            const memId = localStorage.getItem('memId');
             const response = await axios.get(`http://localhost:3000/candidate/get-nkd-details/${memId}`, { headers: { "Authorization": token } });
-
+    
             // Assuming response.data contains an array of NKD objects
             const nkdData = response.data;
-
+    
             // Get the table body element
             const tableBody = document.getElementById('nkdTableBody');
             tableBody.innerHTML = ''; // Clear existing table content
-
+    
             // Iterate through the NKD data and append rows to the table
             nkdData.forEach((nkd) => {
                 const row = tableBody.insertRow();
@@ -101,28 +118,44 @@ document.addEventListener('DOMContentLoaded', async function () {
                 row.insertCell(1).innerText = nkd.kin_relation;
                 row.insertCell(2).innerText = nkd.kin_contact_number;
                 row.insertCell(3).innerText = nkd.kin_contact_address;
-                row.insertCell(4).innerText = nkd.kin_priority;
+    
+                // Create a new cell for kin_priority with the specified class
+                const priorityCell = row.insertCell(4);
+                priorityCell.innerHTML = `<span class="badge ${getPriorityClass(nkd.kin_priority)}">${nkd.kin_priority}</span>`;
+    
                 const editButton = document.createElement('button');
                 editButton.className = 'btn border-0 m-0 p-0';
                 editButton.innerHTML = '<i class="fa fa-pencil" onMouseOver="this.style.color=\'seagreen\'" onMouseOut="this.style.color=\'gray\'"></i>';
                 editButton.addEventListener('click', () => editNkd(nkd.id, nkd.kin_name, nkd.kin_relation, nkd.kin_contact_number, nkd.kin_contact_address, nkd.kin_priority));
-                
+    
                 const deleteButton = document.createElement('button');
                 deleteButton.className = 'btn border-0 m-0 p-0';
                 deleteButton.innerHTML = '<i class="fa fa-trash" onMouseOver="this.style.color=\'red\'" onMouseOut="this.style.color=\'gray\'"></i>';
                 deleteButton.addEventListener('click', () => deleteNkd(nkd.id));
-                
     
                 // Add buttons to the row
                 const cell = row.insertCell(5);
                 cell.appendChild(editButton);
                 cell.appendChild(deleteButton);
             });
-            
+    
         } catch (error) {
             console.error('Error fetching NKD data:', error);
         }
     };
+    
+    // Function to determine the class based on priority value
+    function getPriorityClass(priority) {
+        // Adjust this logic as needed based on your priority criteria
+        if (priority === 'HIGH') {
+            return 'bg-danger';
+        } else if (priority === 'MID') {
+            return 'bg-warning';
+        } else {
+            return 'bg-info';
+        }
+    }
+    
 
     function editNkd(id, kinName, kinRelation, kinContactNumber, kinContactAddress, kinPriority) {
         // Your edit logic here, you can open a modal or navigate to an edit page

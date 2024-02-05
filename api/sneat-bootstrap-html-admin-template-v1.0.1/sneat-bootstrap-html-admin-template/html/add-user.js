@@ -153,12 +153,15 @@ async function displayUsers() {
                 <td style="font-size:12px">${user.userClient}</td>
                 <td style="font-size:12px;">${user.createdDate}</td>
                 <td style="font-size:12px">${user.disableUser}</td>
-                <td style="font-size:12px">
-                    <div class="row me-1 ms-1">
-                        <button class="btn btn-outline-secondary btn-sm col mb-1" onclick="editUser(${user.id},'${user.userName}', '${user.lastName}', '${user.userEmail}','${user.userPassword}', '${user.userPhone}', '${user.userGroup}', '${user.userVendor}', '${user.userClient}', '${user.createdDate}', ${user.disableUser}, ${user.readOnly}, ${user.Write}, ${user.imports}, ${user.exports}, ${user.userManagement}, ${user.reports}, event)">E</button>
-                        <button class="btn btn-outline-danger btn-sm col mb-1" onclick="deleteUser(${user.id})">D</button>
-                    </div>
-                </td>
+                <td>
+    <button class="btn btn-sm m-0 p-0" onclick="editUser(${user.id},'${user.userName}', '${user.lastName}', '${user.userEmail}','${user.userPassword}', '${user.userPhone}', '${user.userGroup}', '${user.userVendor}', '${user.userClient}', '${user.createdDate}', ${user.disableUser}, ${user.readOnly}, ${user.Write}, ${user.imports}, ${user.exports}, ${user.userManagement}, ${user.reports}, event)">
+        <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
+    </button>
+    <button class="btn  btn-sm m-0 p-0" onclick="deleteUser(${user.id})">
+        <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
+    </button>
+</td>
+
             `;
 
             userList.appendChild(row);

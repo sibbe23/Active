@@ -562,13 +562,7 @@ id='logout'>
             </div>
           </nav>
 
-          <footer class="content-footer footer bg-footer-theme">
-            <div class="d-flex justify-content-between p-1 m-3 " >
-                
-                <span id="datetime"></span>
-                <span>Nautilus Shipping</span>
-            </div>
-        </footer>
+          
           <!-- / Navbar -->
 
           <!-- Content wrapper -->
@@ -611,34 +605,32 @@ id='logout'>
 
 
             <div class="content-wrapper">
-                <!-- Content -->
+                <!-- Content --> <div class="col-lg-3 mt-3">
+                          <div class="btn-group">
+                            <button
+                                type="button"
+                                class="btn btn-primary dropdown-toggle hide-arrow"
+                                data-bs-toggle="dropdown"
+                                aria-expanded="false"
+                            >
+                            ≡ EDIT CANDIDATE</i>
+                            </button>
+                            <ul class="dropdown-menu  dropdown-menu-start">
+                                <li><a class="dropdown-item" id="personnel" >> PERSONNEL</a></li>
+                                <li><a class="dropdown-item" id="discussion" >> DISCUSSION</a></li>
+                                <li><a class="dropdown-item" id="contract">> CONTRACT</a></li>
+                                <li><a class="dropdown-item" id="document">> DOCUMENT</a></li>
+                                <li><a class="dropdown-item" id="bank">> BANK</a></li>
+                                <li><a class="dropdown-item" id="travel">> TRAVEL</a></li>
+                                <li><a class="dropdown-item" id="medicals">> MEDICALS</a></li>
+                                <li><a class="dropdown-item" id="nkd">> NKD</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 <div class="w-100 mt-3" >
                   <form id="edit-candidate-form" class="card">
-                    <div class="m-4">
-                      <h5 class="card-header">Edit Candidate</h5>
-                      <div class="col-lg-3 mt-3">
-                          <div class="btn-group">
-                              <button
-                                  type="button"
-                                  class="btn btn-primary dropdown-toggle hide-arrow"
-                                  data-bs-toggle="dropdown"
-                                  aria-expanded="false"
-                              >
-                              ≡ EDIT CANDIDATE</i>
-                              </button>
-                              <ul class="dropdown-menu  dropdown-menu-start">
-                                  <li><a class="dropdown-item" id="personnel" >> PERSONNEL</a></li>
-                                  <li><a class="dropdown-item" id="discussion" >> DISCUSSION</a></li>
-                                  <li><a class="dropdown-item" id="contract">> CONTRACT</a></li>
-                                  <li><a class="dropdown-item" id="document">> DOCUMENT</a></li>
-                                  <li><a class="dropdown-item" id="bank">> BANK</a></li>
-                                  <li><a class="dropdown-item" id="travel">> TRAVEL</a></li>
-                                  <li><a class="dropdown-item" id="medicals">> MEDICALS</a></li>
-                                  <li><a class="dropdown-item" id="nkd">> NKD</a></li>
-                              </ul>
-                          </div>
-                      </div>
-                  </div>
+                      <h5 class="card-header">Personnel</h5>
+                     
                   
     
                     <!-- First set of input fields -->
@@ -1233,8 +1225,12 @@ id='logout'>
                                     <label for="edit_candidate_email2">Email</label>
                                 </div>
                             </div>
+                            
                         </div>
+                        <button type="submit" class="btn btn-primary m-3 ms-0" >EDIT CANDIDATE</button>
+
                     </div>
+                    
                     <input type="hidden" placeholder="Enter active details" id="edit_candidate_active_details" required>
     <input type="hidden" placeholder="Enter area code1" id="edit_candidate_area_code1" required>
     <input type="hidden" placeholder="Enter area code2" id="edit_candidate_area_code2" required>
@@ -1274,12 +1270,8 @@ id='logout'>
     
                     <!-- Repeat the card-body block for each set of fields -->
     
-                    <div class="row">
-                        <div class="col-md-6" style="display:flex">
-                            <button type="submit" class="btn btn-primary mt-5 mb-5 me-2 ms-4" style="">EDIT CANDIDATE</button>
-                            <button onclick="window.location.href='./edit-candidate.html'" class="btn btn-danger  mt-5 mb-5 me-5  " style="">CANCEL</button>
-                        </div>
-                    </div>
+                            <!-- <button onclick="window.location.href='./edit-candidate.html'" class="btn btn-danger  " style="">CANCEL</button> -->
+                    
                 </form>
                 </div>
             </div>
@@ -1291,13 +1283,22 @@ id='logout'>
                       <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
-              </div>
-          </footer>
+             <footer class="footer mt-auto py-3 bg-footer-theme">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span id="datetime"></span>
+                <span>Nautilus Shipping</span>
+            </div>
+        </div>
+    </footer>
+            <!--  <footer class="footer mt-auto py-3 bg-footer-theme">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span id="datetime"></span>
+                <span>Nautilus Shipping</span>
+            </div>
+        </div>
+    </footer> -->
             <!-- / Footer -->
             
 

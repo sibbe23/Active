@@ -394,21 +394,27 @@
               </ul>
             </li>
 
-<li class="menu-header small text-uppercase">
+            <li class="menu-header small text-uppercase" id="userManagementSection" style="display: none;">
               <span class="menu-header-text">User Management</span>
             </li>
-            <li class="menu-item">
+            
+            <li class="menu-item" id="userManagementSections" style="display: none;">
               <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-dock-top"></i>
                 <div data-i18n="Account Settings">User</div>
               </a>
               <ul class="menu-sub">
-                <li class="menu-item">
+               <li class="menu-item">
                   <a href="add-user.html" class="menu-link">
                     <div data-i18n="Account">Manage</div>
                   </a>
                 </li>
-            </li>
+                <li class="menu-item">
+                  <a href="add-userdata.html" class="menu-link">
+                    <div data-i18n="Account">Add</div>
+                  </a>
+                </li>
+              </ul></li>
             
             
 
@@ -563,7 +569,29 @@
           <div class="container-fluid">
 
             <div class="content-wrapper mt-3 rounded-3">
-                <div class="w-100 mt-3">
+              <div class="col-lg-3 ">
+                <div class="btn-group">
+                    <button
+                        type="button"
+                        class="btn btn-primary dropdown-toggle hide-arrow"
+                        data-bs-toggle="dropdown"
+                        aria-expanded="false"
+                    >
+                        ≡ EDIT CANDIDATE</i>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-start">
+                        <li><a class="dropdown-item" id="personnel" >> PERSONNEL</a></li>
+                        <li><a class="dropdown-item" id="discussion" >> DISCUSSION</a></li>
+                        <li><a class="dropdown-item" id="contract">> CONTRACT</a></li>
+                        <li><a class="dropdown-item" id="document">> DOCUMENT</a></li>
+                        <li><a class="dropdown-item" id="bank">> BANK</a></li>
+                        <li><a class="dropdown-item" id="travel">> TRAVEL</a></li>
+                        <li><a class="dropdown-item" id="medicals">> MEDICALS</a></li>
+                        <li><a class="dropdown-item" id="nkd">> NKD</a></li>
+                    </ul>
+                </div>
+            </div>
+                <div class="w-100 ">
                     <div class="">
                       <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Bank table</h4>
                         <div id="pagination-controls"></div>
@@ -609,36 +637,22 @@
                     
 
 
-                <div class="w-100 mt-3">
-                    <form id="bankForm" class="card">
-                        <div class="m-4">
-                            <div class="col-lg-3 mt-3">
-                                <div class="btn-group">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                    >
-                                        ≡ EDIT CANDIDATE</i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-start">
-                                        <li><a class="dropdown-item" id="personnel" >> PERSONNEL</a></li>
-                                        <li><a class="dropdown-item" id="discussion" >> DISCUSSION</a></li>
-                                        <li><a class="dropdown-item" id="contract">> CONTRACT</a></li>
-                                        <li><a class="dropdown-item" id="document">> DOCUMENT</a></li>
-                                        <li><a class="dropdown-item" id="bank">> BANK</a></li>
-                                        <li><a class="dropdown-item" id="travel">> TRAVEL</a></li>
-                                        <li><a class="dropdown-item" id="medicals">> MEDICALS</a></li>
-                                        <li><a class="dropdown-item" id="nkd">> NKD</a></li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div class="w-100 ">
+                    <form id="bankForm" class="">
+                        <div class="">
+                           
                         </div>
-                
-                        <div class="p-4">
+                        <div class="accordion" id="documentAccordion">
+                          <div class="accordion-item">
+                              <h2 class="accordion-header" id="documentHeading">
+                                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#documentCollapse" aria-expanded="true" aria-controls="documentCollapse">
+                                      Click to Add Bank details
+                                  </button>
+                              </h2>
+                              <div id="documentCollapse" class="accordion-collapse collapse " aria-labelledby="documentHeading" data-bs-parent="#documentAccordion">
+                                  <div class="accordion-body">
+                        <div class="">
                             <form class="card" id="bankForm">
-                                <h5 class="card-header">Add Bank Details</h5>
                                 <div class="row mb-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
@@ -785,7 +799,10 @@
                         </div>
                     </form>
                 </div>
-                
+            </div>
+          </div>
+        </div>
+      </div>
         
           
             
@@ -793,13 +810,7 @@
                       <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
-              </div>
-          </footer>
+            
             <!-- / Footer -->
             
 
@@ -807,8 +818,17 @@
           </div>
           <!-- Content wrapper -->
         </div>
+        <footer class="footer mt-auto py-3 bg-footer-theme">
+          <div class="container">
+              <div class="d-flex justify-content-between">
+                  <span id="datetime"></span>
+                  <span>Nautilus Shipping</span>
+              </div>
+          </div>
+      </footer>
         <!-- / Layout page -->
       </div>
+      
 
       <!-- Overlay -->
       <div class="layout-overlay layout-menu-toggle"></div>

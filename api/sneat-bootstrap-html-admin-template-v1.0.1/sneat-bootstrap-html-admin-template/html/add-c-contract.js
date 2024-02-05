@@ -1,5 +1,13 @@
 const token = localStorage.getItem('token')
 
+function decodeToken(token) {
+    // Implementation depends on your JWT library
+    // Here, we're using a simple base64 decode
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+}
+
 async function fetchAndDisplayContractDetails(candidateId) {
     try {
         const response = await axios.get(`http://localhost:3000/candidate/get-contract-details/${candidateId}`, {
@@ -68,6 +76,18 @@ const editContract = async(id,rank,company,vslName,vesselType,sign_on_port,sign_
 }
 
 document.addEventListener('DOMContentLoaded', async function () {
+
+   
+    const decodedToken = decodeToken(token);
+    console.log(decodedToken)
+
+const hasUserManagement = decodedToken.userManagement;
+console.log(hasUserManagement)
+if (hasUserManagement) {
+  document.getElementById('userManagementSection').style.display = 'block';
+  document.getElementById('userManagementSections').style.display = 'block';
+
+}
 const candidateId= localStorage.getItem('memId')
     const id = candidateId;
     await fetchAndDisplayContractDetails(id);
@@ -401,3 +421,4 @@ function updateDateTime() {
 // Update date and time initially and every second
 updateDateTime();
 setInterval(updateDateTime, 1000);
+

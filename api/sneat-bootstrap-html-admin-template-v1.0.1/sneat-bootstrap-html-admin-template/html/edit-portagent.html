@@ -572,41 +572,43 @@ id='logout'>
           <!-- Content wrapper -->
           <div class="container-fluid">
 
-            <div class="content-wrapper bg-white mt-3 rounded-3">
+            <div class="content-wrapper mt-3 rounded-3">
                 <div class="w-100 mt-3">
-                <h1 class="text-center">Port Agent List</h1>
-                    <div class="container">
-                        <div id="pagination-controls"></div>
+                  <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Port-agent Table</h4>
+                  <div class="">
 
                 <div class="table-responsive">
-                    <table id="port-agent-list" class="table table-sm table-striped table-bordered ">
+                    <table id="port-agent-list" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
                         <thead>
                                     <tr>
-                                        <th scope="col">Sno</th>
-                                        <th scope="col">Port Agent</th>
-                                        <th scope="col">Contact Person</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Phone</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">City</th>
-                                        <th scope="col">State</th>
-                                        <th scope="col">Country</th>
-                                        <th scope="col">Actions</th>
+                                        <th scope="col" style="font-size: 8px;">Sno</th>
+                                        <th scope="col" style="font-size: 8px;">Port Agent</th>
+                                        <th scope="col" style="font-size: 8px;">Contact Person</th>
+                                        <th scope="col" style="font-size: 8px;">Address</th>
+                                        <th scope="col" style="font-size: 8px;">Phone</th>
+                                        <th scope="col" style="font-size: 8px;">Email</th>
+                                        <th scope="col" style="font-size: 8px;">City</th>
+                                        <th scope="col" style="font-size: 8px;">State</th>
+                                        <th scope="col" style="font-size: 8px;">Country</th>
+                                        <th scope="col" style="font-size: 8px;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody id="port-agent-table"></tbody>
                             </table>
+                            <div id="pagination-controls"></div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
-              </div>
-          </footer>
+             <footer class="footer mt-auto py-3 bg-footer-theme">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span id="datetime"></span>
+                <span>Nautilus Shipping</span>
+            </div>
+        </div>
+    </footer>
             
 
             <div class="content-wrapper" style="display:none">
@@ -762,13 +764,14 @@ id='logout'>
                       <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
-              </div>
-          </footer>
+            <!--  <footer class="footer mt-auto py-3 bg-footer-theme">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span id="datetime"></span>
+                <span>Nautilus Shipping</span>
+            </div>
+        </div>
+    </footer> -->
             <!-- / Footer -->
             
 

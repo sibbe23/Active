@@ -1,8 +1,30 @@
-// Assuming you have the necessary libraries and functions defined
-
 const token = localStorage.getItem('token');
+console.log(token)
+// Assuming you have the necessary libraries and functions defined
+function decodeToken(token) {
+    // Implementation depends on your JWT library
+    // Here, we're using a simple base64 decode
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+}
+
 
 document.addEventListener("DOMContentLoaded", function () {
+  
+   
+    const decodedToken = decodeToken(token);
+    console.log(decodedToken)
+
+const hasUserManagement = decodedToken.userManagement;
+console.log(hasUserManagement)
+if (hasUserManagement) {
+  document.getElementById('userManagementSection').style.display = 'block';
+  document.getElementById('userManagementSections').style.display = 'block';
+
+}
+
+
 
    
     const urlParams = new URLSearchParams(window.location.search);
@@ -257,6 +279,7 @@ async function fetchAndDisplayCompanies() {
 
     // Add click event listener to each dropdown item
     dropdownItems.forEach(function (item) {
+
         item.addEventListener("click", function () {
             // Get the id attribute of the clicked item
             var itemId = item.id;

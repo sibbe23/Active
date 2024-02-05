@@ -568,10 +568,36 @@ id='logout'>
           <div class="container-fluid ">
 
             <div class="content-wrapper mt-3 rounded-3">
-                <div class="w-100 mt-3">
-                    <div class="m-3">
+              <div class=" mt-0">
+                <div class="col-lg-3 ">
+                    <div class="btn-group">
+                        <button
+                            type="button"
+                            class="btn btn-primary dropdown-toggle hide-arrow"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                            
+                        >
+                            ≡ EDIT CANDIDATE</i>
+                        </button>
+                        <ul class="dropdown-menu" >
+                            <li><a class="dropdown-item" id="personnel" >> PERSONNEL</a></li>
+                            <li><a class="dropdown-item" id="discussion" >> DISCUSSION</a></li>
+                            <li><a class="dropdown-item" id="contract">> CONTRACT</a></li>
+                            <li><a class="dropdown-item" id="document">> DOCUMENT</a></li>
+                            <li><a class="dropdown-item" id="bank">> BANK</a></li>
+                            <li><a class="dropdown-item" id="travel">> TRAVEL</a></li>
+                            <li><a class="dropdown-item" id="medicals">> MEDICALS</a></li>
+                            <li><a class="dropdown-item" id="nkd">> NKD</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+                <div class="w-100 mt-1">
+                    <div class="   ms-0 me-0">
                       <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Contract table</h4>
             
+                      
                         <div class="table-responsive text-center">
                           <table id="contractTable" class="table table-sm table-striped table-bordered " style="font-size: 12px;">
                               <thead>
@@ -614,37 +640,23 @@ id='logout'>
 
             <div class="content-wrapper">
                 <!-- Content -->
-                <div class="w-100 mt-3" >
-                    <form id="contractForm" class="card">
-                        <div class="m-4">
-                            <div class="col-lg-3 mt-3">
-                                <div class="btn-group">
-                                    <button
-                                        type="button"
-                                        class="btn btn-primary dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown"
-                                        aria-expanded="false"
-                                        
-                                    >
-                                        ≡ EDIT CANDIDATE</i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-start bottom" >
-                                        <li><a class="dropdown-item" id="personnel" >> PERSONNEL</a></li>
-                                        <li><a class="dropdown-item" id="discussion" >> DISCUSSION</a></li>
-                                        <li><a class="dropdown-item" id="contract">> CONTRACT</a></li>
-                                        <li><a class="dropdown-item" id="document">> DOCUMENT</a></li>
-                                        <li><a class="dropdown-item" id="bank">> BANK</a></li>
-                                        <li><a class="dropdown-item" id="travel">> TRAVEL</a></li>
-                                        <li><a class="dropdown-item" id="medicals">> MEDICALS</a></li>
-                                        <li><a class="dropdown-item" id="nkd">> NKD</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                <div class="w-100 mt-0 mb-0 p-0 " >
+                    <form id="contractForm" class="">
+                        
             
-                        <div class="p-4">
+                        <div class="">
+                          <!-- Bootstrap Accordion -->
+                          <div class="accordion" id="documentAccordion">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="documentHeading">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#documentCollapse" aria-expanded="true" aria-controls="documentCollapse">
+                                       Click here to Add Contract
+                                    </button>
+                                </h2>
+                                <div id="documentCollapse" class="accordion-collapse collapse" aria-labelledby="documentHeading" data-bs-parent="#documentAccordion">
+                                    <div class="accordion-body">
+                                              <!-- Form Content -->
                             <form class="card" id="contractForm">
-                              <h5 class="card-header">Add Contract</h5>
 
                                 <div class="row mb-3">
                                     <div class="col-md-6">
@@ -821,9 +833,15 @@ id='logout'>
                                     
                                 </div>
                             </form>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
                         </div>
                     </form>
-                </div>
+                
             </div>
         </div>
         
@@ -833,11 +851,12 @@ id='logout'>
                       <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
+            <footer class="footer mt-auto py-3 bg-footer-theme">
+              <div class="container">
+                  <div class="d-flex justify-content-between">
+                      <span id="datetime"></span>
+                      <span>Nautilus Shipping</span>
+                  </div>
               </div>
           </footer>
             <!-- / Footer -->

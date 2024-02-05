@@ -60,10 +60,7 @@ async function displayCompanies(page = 1, limit = 10) {
             const row = document.createElement("tr");
 
             row.innerHTML = `
-            <td>
-                    <button class="btn border-0 m-0 p-0" onclick="editCompany('${company.company_id}','${company.company_name}','${company.b_type}','${company.contact_person}','${company.email}','${company.address}','${company.management}','${company.phone}','${company.last_update}',event)"><i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i></button>
-                    <button class="btn border-0 m-0 p-0" onclick="deleteCompany('${company.company_id}', event)"><i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i></button>
-                </td>
+            
                 <td>${sno}</td>
                 <td>${company.company_id}</td>
                 <td>${company.company_name}</td>
@@ -74,6 +71,10 @@ async function displayCompanies(page = 1, limit = 10) {
                 <td>${company.management}</td>
                 <td>${company.phone}</td>
                 <td>${formatDate(company.last_update)}</td>
+                <td>
+                    <button class="btn border-0 m-0 p-0" onclick="editCompany('${company.company_id}','${company.company_name}','${company.b_type}','${company.contact_person}','${company.email}','${company.address}','${company.management}','${company.phone}','${company.last_update}',event)"><i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i></button>
+                    <button class="btn border-0 m-0 p-0" onclick="deleteCompany('${company.company_id}', event)"><i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i></button>
+                </td>
                 
             `;
 

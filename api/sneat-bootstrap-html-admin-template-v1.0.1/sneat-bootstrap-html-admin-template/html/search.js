@@ -103,9 +103,10 @@ document.getElementById('search_btn').addEventListener('click', async function (
             });
     
             // Add buttons for delete, edit, and view
-            const deleteButton = createButton('Delete', () => handleDelete(result.candidateId));
-            const editButton = createButton('Edit', () => handleEdit(result.candidateId));
-            const viewButton = createButton('View', () => handleView(result.candidateId));
+            const deleteButton = createButton('fa-trash', () => handleDelete(result.candidateId));
+            const editButton = createButton('fa-pencil-alt', () => handleEdit(result.candidateId));
+            const viewButton = createButton('fa-eye', () => handleView(result.candidateId));
+            
     
             const buttonsCell = document.createElement('td');
             buttonsCell.appendChild(deleteButton);
@@ -118,13 +119,21 @@ document.getElementById('search_btn').addEventListener('click', async function (
         });
     }
     
-    function createButton(text, onClickHandler) {
-        const button = document.createElement('button');
-        button.textContent = text;
-        button.classList.add('btn', 'btn-secondary', 'btn-sm', 'mx-1');
-        button.addEventListener('click', onClickHandler);
-        return button;
-    }
+    function createButton(iconClass, onClickHandler) {
+      const button = document.createElement('button');
+      const icon = document.createElement('i');
+      
+      icon.classList.add('fa', iconClass);
+      
+      button.appendChild(icon);
+      button.classList.add('btn', 'btn-secondary', 'btn-sm', 'mx-1');
+      button.addEventListener('click', onClickHandler);
+      
+      return button;
+  }
+  
+  // Usage
+ 
     
     // Example event handlers
     async function handleDelete(candidateId) {

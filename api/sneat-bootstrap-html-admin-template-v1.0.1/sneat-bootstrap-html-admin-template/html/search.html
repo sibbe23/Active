@@ -47,6 +47,7 @@
   <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
   <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
   <script src="../assets/js/config.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-GLhlTQ8iN17U4L+T11cprGtfUJ4FJbe8S9c5eVyL/D3h5NcH4/dD01l5P1Uv72/80" crossorigin="anonymous">
 </head>
 
   <body>
@@ -576,28 +577,32 @@ id='logout'>
           <!-- / Navbar -->
 
           <!-- Content wrapper -->
-          <div class="content-wrapper">
+          <div class="content-wrapper mt-3">
+            
             <!-- Content -->
-            <div class="navbar-nav align-items-center m-4 w-50 mx-auto">
+            <div class="navbar-nav align-items-center  w-50 mx-auto">
+              
                 <div class="input-group rounded-2 search-bar-container">
-                  <input
+                  <span class="me-4 mt-2 fw-bolder ">Advanced search :</span><input
                     type="text"
-                    class="form-control border-0 shadow-none search-input"
+                    class="form-control border-0 shadow-none search-input rounded-2 "
                     placeholder="Search..."
                     aria-label="Search..."
                     id="search_input"
                   />
+                  
                   <button class="btn btn-dark border-0 rounded-end p-1" id="search_btn">
                     <i class="bx bx-search fs-4 lh-0"></i>
                   </button>
+                  
                 </div>
               </div>
-              <div class="container ">
-                <div class="card">
-                  <div class="card-body">
-                    <h3 class="mb-4">Candidate Search Filter</h3>
+              <div class="ms-3 me-3 ">
+                  <div class="">
+                    <h4 class="text-center mt-3 mb-0 rounded-0 shadow-none border border-dark  card p-3">Candidate Search Filter</h4>
+                    <div class=" card border border-dark border-top-0  rounded-0 ">
                     <form id="search-form">
-                      <div class="row row-cols-md-4 g-3">
+                      <div class="row row-cols-md-4 g-3  p-3">
                         <div class="col mb-3">
                           <label for="nemoId">Nemo Id</label>
                           <input type="text" class="form-control" id="nemoId" placeholder=" ">
@@ -763,28 +768,30 @@ id='logout'>
                       <button type="submit" class="btn btn-primary w-100">Search</button>
                   </div>
                   
-                  <li class="w-100 ms-4"><strong>Note</strong> : Clicking on search without any inputs will fetch all the candidate details associated with this User account.</li>
 
                     </form>
+                    <p class="w-100 mb-0 "><strong>Note</strong> : Clicking on search without any inputs will fetch all the candidate details associated with this User account.</p>
+
                   </div>
                 </div>
               </div>
               
-              
-            <div class="container-fluid flex-grow-1 container-p-y">
+              <div class="p-3 mb-3 rounded-2  mt-3 ms-3 me-3 ">
+              <h4>Search Results : </h4>
+
               <div class="table-responsive ">
-                <table class="table table-bordered table-sm">
+                <table class="table table-bordered table-sm" style="font-size: 12px;">
                   <thead>
                     <tr>
-                      <th>Nemo ID</th>
-                      <th>First Name</th>
-                      <th>Last Name</th>
-                      <th>Rank</th>
-                      <th>Vessel</th>
-                      <th>Mobile</th>
-                      <th>Age</th>
-                      <th>Source</th>
-                      <th>Actions</th>
+                      <th class="col-auto " style="font-size: 8px;">Nemo ID</th>
+                      <th style="font-size: 8px;">First Name</th>
+                      <th style="font-size: 8px;">Last Name</th>
+                      <th style="font-size: 8px;">Rank</th>
+                      <th style="font-size: 8px;">Vessel</th>
+                      <th style="font-size: 8px;">Mobile</th>
+                      <th style="font-size: 8px;">Age</th>
+                      <th style="font-size: 8px;">Source</th>
+                      <th style="font-size: 8px;">Actions</th>
                     </tr>
                   </thead>
                   <tbody id="table-body">                    <!-- Sample data, replace with actual data from your server -->
@@ -797,17 +804,19 @@ id='logout'>
 <div id="result-container"></div>
 
                 </div>
+           
             </div>
             <!-- / Content -->
 
             <!-- Footer -->
-            <footer class="content-footer footer bg-footer-theme">
-              <div class="d-flex justify-content-between p-1 m-3 " >
-                  
-                  <span id="datetime"></span>
-                  <span>Nautilus Shipping</span>
-              </div>
-          </footer>
+             <footer class="footer mt-auto py-3 bg-footer-theme">
+        <div class="container">
+            <div class="d-flex justify-content-between">
+                <span id="datetime"></span>
+                <span>Nautilus Shipping</span>
+            </div>
+        </div>
+    </footer>
             <!-- / Footer -->
 
             <div class="content-backdrop fade"></div>

@@ -23,10 +23,10 @@ async function displayPortagent(page = 1, limit = 10) {
                 <td>${portAgent.state}</td>
                 <td>${portAgent.country}</td>
                 <td>
-                    <button class="btn border-0" onclick="editPortagent('${portAgent.id}','${portAgent.portAgentName}','${portAgent.contactPerson}','${portAgent.address}','${portAgent.phone}','${portAgent.email}','${portAgent.city}','${portAgent.state}','${portAgent.country}',event)">
+                    <button class="btn border-0 m-0 p-0" onclick="editPortagent('${portAgent.id}','${portAgent.portAgentName}','${portAgent.contactPerson}','${portAgent.address}','${portAgent.phone}','${portAgent.email}','${portAgent.city}','${portAgent.state}','${portAgent.country}',event)">
                         <i onMouseOver="this.style.color='seagreen'" onMouseOut="this.style.color='gray'" class="fa fa-pencil"></i>
                     </button>
-                    <button class="btn border-0" onclick="deletePortagent('${portAgent.id}',event)">
+                    <button class="btn border-0 m-0 p-0" onclick="deletePortagent('${portAgent.id}',event)">
                         <i onMouseOver="this.style.color='red'" onMouseOut="this.style.color='gray'" class="fa fa-trash"></i>
                     </button>
                 </td>
@@ -34,15 +34,64 @@ async function displayPortagent(page = 1, limit = 10) {
             portAgentTable.appendChild(row);
         });
 
-        // Display pagination controls (if needed)
+        // Display pagination controls
         const paginationControls = document.getElementById("pagination-controls");
-        paginationControls.innerHTML = `<button class="btn btn-primary " onclick="displayPortagent(${page - 1}, ${limit})" ${page === 1 ? 'disabled' : ''}>Previous</button>
-                                       <span>Page ${page}</span>
-                                       <button class="btn btn-primary " onclick="displayPortagent(${page + 1}, ${limit})" ${portAgentResponse.data.portAgents.length < limit ? 'disabled' : ''}>Next</button>`;
+
+        // Initialize the HTML content for pagination controls
+        let paginationHTML = `<nav aria-label="Page navigation" class="d-flex justify-content-start">
+                                <ul class="pagination">
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayPortagent(1, ${limit})">
+                                            <i class="tf-icon bx bx-chevrons-left"></i>
+                                        </a>
+                                    </li>
+                                    <li class="page-item ${page === 1 ? 'disabled' : ''}">
+                                        <a class="page-link" href="javascript:void(0);" onclick="displayPortagent(${page - 1}, ${limit})">
+                                            <i class="tf-icon bx bx-chevron-left"></i>
+                                        </a>
+                                    </li>`;
+
+        // Display the page buttons
+        for (let i = 1; i <= Math.ceil(portAgentResponse.data.totalPages); i++) {
+            if (i === 1 || i === page || i === page - 1 || i === page + 1 || i === Math.ceil(portAgentResponse.data.totalPages)) {
+                paginationHTML += `<li class="page-item ${page === i ? 'active' : ''}">
+                                      <a class="page-link"  onclick="displayPortagent(${i}, ${limit})">${i}</a>
+                                  </li>`;
+            } else if (i === page + 2 && i < Math.ceil(portAgentResponse.data.totalPages)) {
+                // Add ellipsis (...) before the last button
+                paginationHTML += `<li class="page-item disabled">
+                                      <span class="page-link">...</span>
+                                  </li>`;
+            }
+        }
+
+        paginationHTML += `<li class="page-item ${page === Math.ceil(portAgentResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayPortagent(${page + 1}, ${limit})">
+                                <i class="tf-icon bx bx-chevron-right"></i>
+                            </a>
+                        </li>
+                        <li class="page-item ${page === Math.ceil(portAgentResponse.data.totalPages) ? 'disabled' : ''}">
+                            <a class="page-link" href="javascript:void(0);" onclick="displayPortagent(${Math.ceil(portAgentResponse.data.totalPages)}, ${limit})">
+                                <i class="tf-icon bx bx-chevrons-right"></i>
+                            </a>
+                        </li>
+                        <span class='mt-2'> Showing ${page} of ${Math.ceil(portAgentResponse.data.totalPages)} pages </span>
+
+                    </ul>
+                </nav>
+                `;
+
+        // Set the generated HTML to paginationControls
+        paginationControls.innerHTML = paginationHTML;
+
     } catch (error) {
         console.error('Error:', error);
     }
 }
+
+
+
+
 
 
 

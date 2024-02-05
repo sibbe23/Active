@@ -1,5 +1,23 @@
+function decodeToken(token) {
+    // Implementation depends on your JWT library
+    // Here, we're using a simple base64 decode
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+}
 document.addEventListener('DOMContentLoaded', async function () {
     const token = localStorage.getItem('token')
+
+    const decodedToken = decodeToken(token);
+    console.log(decodedToken)
+
+const hasUserManagement = decodedToken.userManagement;
+console.log(hasUserManagement)
+if (hasUserManagement) {
+  document.getElementById('userManagementSection').style.display = 'block';
+  document.getElementById('userManagementSections').style.display = 'block';
+
+}
     const candidateId= localStorage.getItem('memId')
     const id = candidateId;
   
@@ -140,6 +158,7 @@ document.addEventListener('DOMContentLoaded', async function () {
             });
         });
     });
+    
     
     function editTravel(id, travel_date, travel_from, travel_to, travel_mode, travel_status, ticket_number, agent_name, portAgent, travel_amount, event) {
         event.preventDefault();

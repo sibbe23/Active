@@ -1,5 +1,23 @@
 const token = localStorage.getItem('token')
+function decodeToken(token) {
+    // Implementation depends on your JWT library
+    // Here, we're using a simple base64 decode
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(atob(base64));
+}
 document.addEventListener('DOMContentLoaded', async function () {
+      
+    const decodedToken = decodeToken(token);
+    console.log(decodedToken)
+
+const hasUserManagement = decodedToken.userManagement;
+console.log(hasUserManagement)
+if (hasUserManagement) {
+  document.getElementById('userManagementSection').style.display = 'block';
+  document.getElementById('userManagementSections').style.display = 'block';
+
+}
     const candidateId = localStorage.getItem('memId');
     fetchAndDisplayBankDetails(candidateId);
 
@@ -72,7 +90,7 @@ async function fetchAndDisplayBankDetails(candidateId) {
 
             // Add data to each cell
             row.innerHTML = `
-            <td>${bank.bank_name}</td>
+            <td><span class='badge bg-success'>${bank.bank_name}</span></td>
             <td>${bank.account_num}</td>
             <td>${bank.bank_addr}</td>
             <td>${bank.ifsc_code}</td>
@@ -82,7 +100,7 @@ async function fetchAndDisplayBankDetails(candidateId) {
             <td>${bank.pan_num}</td>
             <td>${bank.passbook}</td>
             <td>${bank.pan_card}</td>
-            <td>${bank.nri_bank_name}</td>
+            <td><span class='badge bg-success'>${bank.nri_bank_name}</span></td>
             <td>${bank.nri_account_num}</td>
             <td>${bank.nri_bank_addr}</td>
             <td>${bank.nri_ifsc_code}</td>
